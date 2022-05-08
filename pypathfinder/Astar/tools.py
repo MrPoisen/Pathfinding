@@ -1,7 +1,7 @@
 from heapq import heappop, heappush
 from typing import Callable, Dict, Hashable, List, Union
-from Pathfinder.utils import LowComby, HighComby, get_pop, get_push
-from Pathfinder.Dijkstra import Node, construct
+from pypathfinder.utils import LowComby, HighComby, get_pop, get_push
+from pypathfinder.Dijkstra import Node, construct
 
 class ANode(Node):
     def __init__(self, id: Hashable, connections: Dict["ANode", int] = None):

@@ -1,6 +1,6 @@
 
 from typing import Dict, Hashable, List, Union
-from Pathfinder.utils import HighComby, LowComby, PathError, PathfinderError, get_pop, get_push
+from pypathfinder.utils import HighComby, LowComby, PathError, PathfinderError, get_pop, get_push
 from heapq import heappop, heappush
 from functools import total_ordering
 

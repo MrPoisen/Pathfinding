@@ -1,7 +1,7 @@
 import imp
 from ex import example2
-from Pathfinder.Astar import ANode, bestpath
-from Pathfinder.utils import LowComby
+from pypathfinder.Astar import ANode, bestpath
+from pypathfinder.utils import LowComby
 import cProfile
 def run():
     start, stop, matrix, solution = example2(ANode, 2)
