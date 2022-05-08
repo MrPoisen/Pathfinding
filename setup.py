@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages, Extension
 
-CPATH = "Pathfinder\\fast"
+CPATH = "pypathfinder\\fast"
 CPACK = CPATH.replace("\\", ".")
 
 ext1 = Extension(f"{CPACK}.ctools", [f"{CPATH}\\ctools.c"])
