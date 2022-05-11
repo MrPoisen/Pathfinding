@@ -1,11 +1,12 @@
 
-from typing import Dict, Hashable, List, Union
+from typing import Dict, Hashable, List, Tuple, Union
 from pypathfinder.utils import HighComby, LowComby, PathError, PathfinderError, get_pop, get_push
 from heapq import heappop, heappush
 from functools import total_ordering
 
 @total_ordering
 class Node:
+    __slots__ = ("_connections", "id", "cost")
     def __init__(self, id: Hashable, connections: Dict["Node", int] = None):
         self._connections: Dict[Node, int] = {} if connections is None else connections
         self.id = id
@@ -40,6 +41,21 @@ class Node:
         if reflect:
             for node, value in conn.items():
                 node.connect({self: value}, False)
+
+    def _copy(self, nodes: dict) -> "Node": 
+        self_copy = type(self)(self.id)
+        nodes[self_copy] = self_copy
+        new_connections = {}
+        for node, cost in self._connections.items():
+            if node in nodes.keys():
+                node_copy = nodes.get(node)
+            else:
+                node_copy = node._copy(nodes)
+                nodes[node_copy] = node_copy
+            new_connections[node_copy] = cost
+        self_copy.connect(new_connections, False)
+        return self_copy
+        #return self_copy
 
 def construct(startnode, endnode) -> list:
     # get path
@@ -92,3 +108,10 @@ def bestpath(startnode: Node, endnode: Node, first_contact: bool = False, queue_
     
     # get path
     return construct(startnode, endnode)
+
+def copy_graph(start: Node, stop: Node) -> Tuple[Node, Node, Dict[str, Node]]:
+    """copies the Nodestructure deleting the found cost values for them"""
+    nodes = {}
+    new_start = start._copy(nodes)
+    return new_start, nodes.get(stop), nodes
+

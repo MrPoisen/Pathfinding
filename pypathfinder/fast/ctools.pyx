@@ -1,14 +1,15 @@
-# cython: language_level=3,emit_code_comments=True, embedsignature=True
-from typing import Dict, Hashable
+# cython: language_level=3, emit_code_comments=True, embedsignature=True
 from heapq import heappop, heappush
 cimport cython
 
-class PathfinderError(Exception): pass
+cdef class CPathfinderError(Exception): pass
 
-class DublicateError(PathfinderError): pass
+cdef class CDublicateError(CPathfinderError): pass
 
-class PathError(PathfinderError): pass
-   
+cdef class CPathError(CPathfinderError): pass
+
+cdef double INFINITY = float("inf")
+
 cdef class LowComby:
     def __init__(self):
         self.list_ = []
@@ -55,7 +56,7 @@ class HighComby(LowComby):
     
     def __setitem__(self, index: int, obj):
         if obj in self.set and self.list[index] != obj:
-            raise DublicateError("object already exists")
+            raise CDublicateError("object already exists")
         if index < 0 or index >= len(self.list):
             raise IndexError("index out of bounds")
         if not hasattr(obj, "__hash__"):
@@ -64,14 +65,14 @@ class HighComby(LowComby):
     
     def append(self, obj):
         if obj in self.set:
-            raise DublicateError("object already exists")
+            raise CDublicateError("object already exists")
         if not hasattr(obj, "__hash__"):
             raise TypeError("object can't be hashed")
         super().append(obj)
     
     def insert(self, int index, obj):
         if obj in self.set and self.list[index] != obj:
-            raise DublicateError("object already exists")
+            raise CDublicateError("object already exists")
         if index < 0 or index >= len(self.list):
             raise IndexError("index out of bounds")
         if not hasattr(obj, "__hash__"):
@@ -87,20 +88,20 @@ class HighComby(LowComby):
         except IndexError as e:
             raise IndexError("out of bounds") from e
         except KeyError as e:
-            raise PathfinderError("set didn't contain item") from e
+            raise CPathfinderError("set didn't contain item") from e
 
 cdef wrappop(LowComby x):
     return heappop(x.list_)
 
-cdef wrappush(LowComby x,CNode n):
+cdef wrappush(LowComby x, CNode n):
     return heappush(x.list_, n)
 
 cdef class CNode:
-    def __init__(self, id: Hashable, connections: Dict["CNode", int] = None):
-        self._connections: Dict[CNode, int] = {} if connections is None else connections
-        self.id = id
-        self.cost = float("inf")
-        self.probable_cost = float("inf")
+    def __init__(self, id_, connections = None):
+        self._connections = {} if connections is None else connections
+        self.id = id_
+        self.cost = INFINITY
+        self.probable_cost = INFINITY
     
     def __str__(self) -> str:
         return f"CNode(id={self.id}, cost={self.cost})"
@@ -108,30 +109,20 @@ cdef class CNode:
     def __repr__(self) -> str:
         return self.__str__()
     
-    def __lt__(self, other):
-        if not isinstance(other, type(self)):
-            raise NotImplemented
+    def __lt__(self, CNode other):
         return self.cost < other.cost
     
-    def __le__(self, other):
-        if not isinstance(other, type(self)):
-            raise NotImplemented
+    def __le__(self, CNode other):
         return self.cost <= other.cost
     
-    def __gt__(self, other):
-        if not isinstance(other, type(self)):
-            raise NotImplemented
+    def __gt__(self, CNode other):
         return self.cost > other.cost
 
-    def __ge__(self, other):
-        if not isinstance(other, type(self)):
-            raise NotImplemented
+    def __ge__(self, CNode other):
         return self.probable_cost >= other.probable_cost
     
-    def __eq__(self, __o: object) -> bool:
-        if not isinstance(__o, type(self)):
-            return False
-        return __o.id == self.id
+    def __eq__(self, CNode other):
+        return other.id == self.id
 
     def __hash__(self) -> int:
         return hash(self.id)
@@ -143,28 +134,45 @@ cdef class CNode:
             reflect: if the connections should also be applied to the connected CNodes
         """
         cdef double value
-        cdef CNode CNode
+        cdef CNode cnode
         self._connections.update(conn)
         if reflect:
-            for CNode, value in conn.items():
-                CNode.connect({self: value}, False)
+            for cnode, value in conn.items():
+                cnode.connect({self: value}, False)
+    
+    cpdef CNode _copy(self, dict nodes): 
+        cdef CNode self_copy = CNode(self.id)
+        cdef dict new_connections = {}
+        cdef CNode node, node_copy
+        cdef double cost
+        nodes[self_copy] = self_copy
+
+        for node, cost in self._connections.items():
+            if node in nodes.keys():
+                node_copy = nodes.get(node)
+            else:
+                node_copy = node._copy(nodes)
+                nodes[node_copy] = node_copy
+            new_connections[node_copy] = cost
+        self_copy.connect(new_connections, False)
+        return self_copy
 
 cdef list construct(CNode startCNode, CNode endCNode):
     # get path
     cdef list path
     cdef CNode to_check
-    cdef CNode CNode
+    cdef CNode cnode
 
     path = [endCNode]
     to_check = endCNode
     while to_check != startCNode:
-        for CNode in to_check._connections.keys():
-            if CNode.cost + CNode._connections.get(to_check) == to_check.cost:
-                path.append(CNode)
-                to_check = CNode
+        for cnode in to_check._connections.keys():
+            if cnode.cost + cnode._connections.get(to_check) == to_check.cost:
+                path.append(cnode)
+                to_check = cnode
                 break
         else:
-            raise PathError("Coulnd't construct path")
+            raise CPathError("Coulnd't construct path")
         
     path.reverse()
     return path
@@ -183,7 +191,7 @@ cpdef list djikstra_bestpath(CNode startCNode, CNode endCNode, bint first_contac
     """
     cdef LowComby queue
     cdef CNode currentCNode
-    cdef CNode Cnode
+    cdef CNode cnode
     cdef double cost, new_cost
  
     # get costs
@@ -193,12 +201,12 @@ cpdef list djikstra_bestpath(CNode startCNode, CNode endCNode, bint first_contac
     
     while len(queue) != 0:
         currentCNode = wrappop(queue)
-        for Cnode, cost in currentCNode._connections.items():
+        for cnode, cost in currentCNode._connections.items():
             new_cost = currentCNode.cost + cost
-            if new_cost < Cnode.cost:
-                Cnode.cost = new_cost
-                if Cnode not in queue:
-                    wrappush(queue, Cnode)
+            if new_cost < cnode.cost:
+                cnode.cost = new_cost
+                if cnode not in queue:
+                    wrappush(queue, cnode)
         
         if endCNode.cost <= currentCNode.cost:
             break
@@ -223,7 +231,7 @@ cpdef list astar_bestpath(CNode startCNode, CNode endCNode, object func,  bint f
         args = []
     cdef LowComby queue
     cdef CNode currentCNode
-    cdef CNode CNode
+    cdef CNode cnode
     cdef double cost, new_cost, result
  
     # get costs
@@ -233,15 +241,15 @@ cpdef list astar_bestpath(CNode startCNode, CNode endCNode, object func,  bint f
     
     while len(queue) != 0:
         currentCNode = wrappop(queue)
-        for CNode, cost in currentCNode._connections.items():
+        for cnode, cost in currentCNode._connections.items():
                 
             new_cost = currentCNode.cost + cost
-            if new_cost < CNode.cost:
-                CNode.cost = new_cost
-                result = func(CNode, args)
-                CNode.probable_cost = new_cost + result
-                if CNode not in queue:
-                    wrappush(queue, CNode)
+            if new_cost < cnode.cost:
+                cnode.cost = new_cost
+                result = func(cnode, args)
+                cnode.probable_cost = new_cost + result
+                if cnode not in queue:
+                    wrappush(queue, cnode)
         
         if endCNode.cost <= currentCNode.cost:
             break
@@ -250,3 +258,9 @@ cpdef list astar_bestpath(CNode startCNode, CNode endCNode, object func,  bint f
     
     # get path
     return construct(startCNode, endCNode)
+
+cpdef tuple copy_graph(CNode start, CNode stop):
+    """copies the Nodestructure deleting the found cost values for them"""
+    cdef dict nodes = {}
+    cdef CNode new_start = start._copy(nodes)
+    return new_start, nodes.get(stop), nodes
