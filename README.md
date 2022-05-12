@@ -72,7 +72,7 @@ path = bestpath(frankfurt, muenchen)
 ````
 
 ## Using INode (example for the pure Python version)
-`````Python
+````Python
 ...
 
 from pypathfinder.Dijkstra import INode, ibestpath, copy_graph
