@@ -112,3 +112,7 @@ def example2(node_type, file: int):
         matrix = load_matrix(file, node_type)
     return matrix[0][0], matrix[-1][-1], matrix, fname[1]
 
+def from_file(node_type, file):
+    matrix = load_matrix(file, node_type)
+    return matrix[0][0], matrix[-1][-1], matrix
+

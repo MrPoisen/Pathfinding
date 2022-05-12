@@ -909,7 +909,7 @@ struct __pyx_obj_12pypathfinder_4fast_6ctools_CPathError;
 struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby;
 struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode;
 struct __pyx_opt_args_12pypathfinder_4fast_6ctools_5CNode_connect;
-struct __pyx_opt_args_12pypathfinder_4fast_6ctools_djikstra_bestpath;
+struct __pyx_opt_args_12pypathfinder_4fast_6ctools_dijkstra_bestpath;
 struct __pyx_opt_args_12pypathfinder_4fast_6ctools_astar_bestpath;
 
 /* "pypathfinder/fast/ctools.pxd":23
@@ -927,18 +927,18 @@ struct __pyx_opt_args_12pypathfinder_4fast_6ctools_5CNode_connect {
 /* "pypathfinder/fast/ctools.pxd":29
  * cdef wrappop(LowComby x)
  * cdef wrappush(LowComby x,CNode n)
- * cpdef list djikstra_bestpath(CNode startCNode, CNode endCNode, bint first_contact = *)             # <<<<<<<<<<<<<<
+ * cpdef list dijkstra_bestpath(CNode startCNode, CNode endCNode, bint first_contact = *)             # <<<<<<<<<<<<<<
  * cpdef list astar_bestpath(CNode startCNode, CNode endCNode, object func,  bint first_contact = *, list args = *)
  * cpdef tuple copy_graph(CNode start, CNode stop)
  */
-struct __pyx_opt_args_12pypathfinder_4fast_6ctools_djikstra_bestpath {
+struct __pyx_opt_args_12pypathfinder_4fast_6ctools_dijkstra_bestpath {
   int __pyx_n;
   int first_contact;
 };
 
 /* "pypathfinder/fast/ctools.pxd":30
  * cdef wrappush(LowComby x,CNode n)
- * cpdef list djikstra_bestpath(CNode startCNode, CNode endCNode, bint first_contact = *)
+ * cpdef list dijkstra_bestpath(CNode startCNode, CNode endCNode, bint first_contact = *)
  * cpdef list astar_bestpath(CNode startCNode, CNode endCNode, object func,  bint first_contact = *, list args = *)             # <<<<<<<<<<<<<<
  * cpdef tuple copy_graph(CNode start, CNode stop)
  */
@@ -1785,7 +1785,7 @@ static double __pyx_v_12pypathfinder_4fast_6ctools_INFINITY;
 static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_construct(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *); /*proto*/
 static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_wrappop(struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby *); /*proto*/
 static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_wrappush(struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby *, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *); /*proto*/
-static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_djikstra_bestpath(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *, int __pyx_skip_dispatch, struct __pyx_opt_args_12pypathfinder_4fast_6ctools_djikstra_bestpath *__pyx_optional_args); /*proto*/
+static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_dijkstra_bestpath(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *, int __pyx_skip_dispatch, struct __pyx_opt_args_12pypathfinder_4fast_6ctools_dijkstra_bestpath *__pyx_optional_args); /*proto*/
 static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *, PyObject *, int __pyx_skip_dispatch, struct __pyx_opt_args_12pypathfinder_4fast_6ctools_astar_bestpath *__pyx_optional_args); /*proto*/
 static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_copy_graph(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *, int __pyx_skip_dispatch); /*proto*/
 static PyObject *__pyx_f_12pypathfinder_4fast_6ctools___pyx_unpickle_CPathfinderError__set_state(struct __pyx_obj_12pypathfinder_4fast_6ctools_CPathfinderError *, PyObject *); /*proto*/
@@ -2044,7 +2044,7 @@ static int __pyx_pf_12pypathfinder_4fast_6ctools_5CNode_2id_2__set__(struct __py
 static int __pyx_pf_12pypathfinder_4fast_6ctools_5CNode_2id_4__del__(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_22__reduce_cython__(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_24__setstate_cython__(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_djikstra_bestpath(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_startCNode, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_endCNode, int __pyx_v_first_contact); /* proto */
+static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_dijkstra_bestpath(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_startCNode, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_endCNode, int __pyx_v_first_contact); /* proto */
 static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_2astar_bestpath(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_startCNode, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_endCNode, PyObject *__pyx_v_func, int __pyx_v_first_contact, PyObject *__pyx_v_args); /* proto */
 static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_4copy_graph(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_start, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_stop); /* proto */
 static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_6__pyx_unpickle_CPathfinderError(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
@@ -8348,7 +8348,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_construct(struct __pyx_obj
  *     path.reverse()
  *     return path             # <<<<<<<<<<<<<<
  * 
- * # DJIKSTRA
+ * # DIJKSTRA
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(__pyx_v_path);
@@ -8381,15 +8381,15 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_construct(struct __pyx_obj
 }
 
 /* "pypathfinder/fast/ctools.pyx":182
- * # DJIKSTRA
+ * # DIJKSTRA
  * @cython.boundscheck(False)
- * cpdef list djikstra_bestpath(CNode startCNode, CNode endCNode, bint first_contact = False):             # <<<<<<<<<<<<<<
+ * cpdef list dijkstra_bestpath(CNode startCNode, CNode endCNode, bint first_contact = False):             # <<<<<<<<<<<<<<
  *     """
  *     Args:
  */
 
-static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_1djikstra_bestpath(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_djikstra_bestpath(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_startCNode, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_endCNode, CYTHON_UNUSED int __pyx_skip_dispatch, struct __pyx_opt_args_12pypathfinder_4fast_6ctools_djikstra_bestpath *__pyx_optional_args) {
+static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_1dijkstra_bestpath(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_dijkstra_bestpath(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_startCNode, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_endCNode, CYTHON_UNUSED int __pyx_skip_dispatch, struct __pyx_opt_args_12pypathfinder_4fast_6ctools_dijkstra_bestpath *__pyx_optional_args) {
   int __pyx_v_first_contact = ((int)0);
   struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby *__pyx_v_queue = 0;
   struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_currentCNode = 0;
@@ -8412,7 +8412,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_djikstra_bestpath(struct _
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("djikstra_bestpath", 0);
+  __Pyx_RefNannySetupContext("dijkstra_bestpath", 0);
   if (__pyx_optional_args) {
     if (__pyx_optional_args->__pyx_n > 0) {
       __pyx_v_first_contact = __pyx_optional_args->first_contact;
@@ -8658,9 +8658,9 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_djikstra_bestpath(struct _
   goto __pyx_L0;
 
   /* "pypathfinder/fast/ctools.pyx":182
- * # DJIKSTRA
+ * # DIJKSTRA
  * @cython.boundscheck(False)
- * cpdef list djikstra_bestpath(CNode startCNode, CNode endCNode, bint first_contact = False):             # <<<<<<<<<<<<<<
+ * cpdef list dijkstra_bestpath(CNode startCNode, CNode endCNode, bint first_contact = False):             # <<<<<<<<<<<<<<
  *     """
  *     Args:
  */
@@ -8670,7 +8670,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_djikstra_bestpath(struct _
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_6);
   __Pyx_XDECREF(__pyx_t_7);
-  __Pyx_AddTraceback("pypathfinder.fast.ctools.djikstra_bestpath", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("pypathfinder.fast.ctools.dijkstra_bestpath", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF((PyObject *)__pyx_v_queue);
@@ -8682,9 +8682,9 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_djikstra_bestpath(struct _
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_1djikstra_bestpath(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_12pypathfinder_4fast_6ctools_djikstra_bestpath[] = "djikstra_bestpath(CNode startCNode, CNode endCNode, bool first_contact=False) -> list\n\n    Args:\n        startCNode: starting point\n        endCNode: ending point\n        first_contact: if True, pathfinding will end as soon as the endCNode has first been discoverd\n    \n    Returns:\n        list of CNodes, creating a path\n    ";
-static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_1djikstra_bestpath(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_1dijkstra_bestpath(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_12pypathfinder_4fast_6ctools_dijkstra_bestpath[] = "dijkstra_bestpath(CNode startCNode, CNode endCNode, bool first_contact=False) -> list\n\n    Args:\n        startCNode: starting point\n        endCNode: ending point\n        first_contact: if True, pathfinding will end as soon as the endCNode has first been discoverd\n    \n    Returns:\n        list of CNodes, creating a path\n    ";
+static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_1dijkstra_bestpath(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_startCNode = 0;
   struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_endCNode = 0;
   int __pyx_v_first_contact;
@@ -8693,7 +8693,7 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_1djikstra_bestpath(PyObje
   int __pyx_clineno = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("djikstra_bestpath (wrapper)", 0);
+  __Pyx_RefNannySetupContext("dijkstra_bestpath (wrapper)", 0);
   {
     static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_startCNode,&__pyx_n_s_endCNode,&__pyx_n_s_first_contact,0};
     PyObject* values[3] = {0,0,0};
@@ -8719,7 +8719,7 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_1djikstra_bestpath(PyObje
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_endCNode)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("djikstra_bestpath", 0, 2, 3, 1); __PYX_ERR(0, 182, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("dijkstra_bestpath", 0, 2, 3, 1); __PYX_ERR(0, 182, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
@@ -8729,7 +8729,7 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_1djikstra_bestpath(PyObje
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "djikstra_bestpath") < 0)) __PYX_ERR(0, 182, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "dijkstra_bestpath") < 0)) __PYX_ERR(0, 182, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -8751,15 +8751,15 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_1djikstra_bestpath(PyObje
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("djikstra_bestpath", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 182, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("dijkstra_bestpath", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 182, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("pypathfinder.fast.ctools.djikstra_bestpath", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("pypathfinder.fast.ctools.dijkstra_bestpath", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_startCNode), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "startCNode", 0))) __PYX_ERR(0, 182, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_endCNode), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "endCNode", 0))) __PYX_ERR(0, 182, __pyx_L1_error)
-  __pyx_r = __pyx_pf_12pypathfinder_4fast_6ctools_djikstra_bestpath(__pyx_self, __pyx_v_startCNode, __pyx_v_endCNode, __pyx_v_first_contact);
+  __pyx_r = __pyx_pf_12pypathfinder_4fast_6ctools_dijkstra_bestpath(__pyx_self, __pyx_v_startCNode, __pyx_v_endCNode, __pyx_v_first_contact);
 
   /* function exit code */
   goto __pyx_L0;
@@ -8770,19 +8770,19 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_1djikstra_bestpath(PyObje
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_djikstra_bestpath(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_startCNode, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_endCNode, int __pyx_v_first_contact) {
+static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_dijkstra_bestpath(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_startCNode, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_endCNode, int __pyx_v_first_contact) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  struct __pyx_opt_args_12pypathfinder_4fast_6ctools_djikstra_bestpath __pyx_t_2;
+  struct __pyx_opt_args_12pypathfinder_4fast_6ctools_dijkstra_bestpath __pyx_t_2;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("djikstra_bestpath", 0);
+  __Pyx_RefNannySetupContext("dijkstra_bestpath", 0);
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2.__pyx_n = 1;
   __pyx_t_2.first_contact = __pyx_v_first_contact;
-  __pyx_t_1 = __pyx_f_12pypathfinder_4fast_6ctools_djikstra_bestpath(__pyx_v_startCNode, __pyx_v_endCNode, 0, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 182, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_12pypathfinder_4fast_6ctools_dijkstra_bestpath(__pyx_v_startCNode, __pyx_v_endCNode, 0, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 182, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -8791,7 +8791,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_djikstra_bestpath(CYTHON_
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("pypathfinder.fast.ctools.djikstra_bestpath", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("pypathfinder.fast.ctools.dijkstra_bestpath", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -8802,7 +8802,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_djikstra_bestpath(CYTHON_
 /* "pypathfinder/fast/ctools.pyx":220
  * 
  * @cython.boundscheck(False)
- * cpdef list astar_bestpath(CNode startCNode, CNode endCNode, object func,  bint first_contact = False, list args = []):             # <<<<<<<<<<<<<<
+ * cpdef list astar_bestpath(CNode startCNode, CNode endCNode, object func, bint first_contact = False, list args = []):             # <<<<<<<<<<<<<<
  *     """
  *     Args:
  */
@@ -8819,12 +8819,12 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
   double __pyx_v_result;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  int __pyx_t_3;
+  Py_ssize_t __pyx_t_1;
+  int __pyx_t_2;
+  PyObject *__pyx_t_3 = NULL;
   Py_ssize_t __pyx_t_4;
-  Py_ssize_t __pyx_t_5;
-  int __pyx_t_6;
+  int __pyx_t_5;
+  PyObject *__pyx_t_6 = NULL;
   PyObject *__pyx_t_7 = NULL;
   int __pyx_t_8;
   double __pyx_t_9;
@@ -8849,34 +8849,34 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
   /* "pypathfinder/fast/ctools.pyx":230
  *         list of CNodes, creating a path
  *     """
- *     if args == []:             # <<<<<<<<<<<<<<
+ *     if len(args) == 0:             # <<<<<<<<<<<<<<
  *         args = []
  *     cdef LowComby queue
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 230, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_RichCompare(__pyx_v_args, __pyx_t_1, Py_EQ); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 230, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 230, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (__pyx_t_3) {
+  if (unlikely(__pyx_v_args == Py_None)) {
+    PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
+    __PYX_ERR(0, 230, __pyx_L1_error)
+  }
+  __pyx_t_1 = PyList_GET_SIZE(__pyx_v_args); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 230, __pyx_L1_error)
+  __pyx_t_2 = ((__pyx_t_1 == 0) != 0);
+  if (__pyx_t_2) {
 
     /* "pypathfinder/fast/ctools.pyx":231
  *     """
- *     if args == []:
+ *     if len(args) == 0:
  *         args = []             # <<<<<<<<<<<<<<
  *     cdef LowComby queue
  *     cdef CNode currentCNode
  */
-    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 231, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF_SET(__pyx_v_args, ((PyObject*)__pyx_t_2));
-    __pyx_t_2 = 0;
+    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 231, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_DECREF_SET(__pyx_v_args, ((PyObject*)__pyx_t_3));
+    __pyx_t_3 = 0;
 
     /* "pypathfinder/fast/ctools.pyx":230
  *         list of CNodes, creating a path
  *     """
- *     if args == []:             # <<<<<<<<<<<<<<
+ *     if len(args) == 0:             # <<<<<<<<<<<<<<
  *         args = []
  *     cdef LowComby queue
  */
@@ -8898,10 +8898,10 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
  *     queue.append(startCNode)
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_LowComby)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 239, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_v_queue = ((struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby *)__pyx_t_2);
-  __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_LowComby)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 239, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_v_queue = ((struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby *)__pyx_t_3);
+  __pyx_t_3 = 0;
 
   /* "pypathfinder/fast/ctools.pyx":240
  *     startCNode.cost = 0
@@ -8910,9 +8910,9 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
  * 
  *     while len(queue) != 0:
  */
-  __pyx_t_2 = ((struct __pyx_vtabstruct_12pypathfinder_4fast_6ctools_LowComby *)__pyx_v_queue->__pyx_vtab)->append(__pyx_v_queue, __pyx_v_startCNode, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 240, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = ((struct __pyx_vtabstruct_12pypathfinder_4fast_6ctools_LowComby *)__pyx_v_queue->__pyx_vtab)->append(__pyx_v_queue, __pyx_v_startCNode, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 240, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "pypathfinder/fast/ctools.pyx":242
  *     queue.append(startCNode)
@@ -8922,9 +8922,9 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
  *         for cnode, cost in currentCNode._connections.items():
  */
   while (1) {
-    __pyx_t_4 = PyObject_Length(((PyObject *)__pyx_v_queue)); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 242, __pyx_L1_error)
-    __pyx_t_3 = ((__pyx_t_4 != 0) != 0);
-    if (!__pyx_t_3) break;
+    __pyx_t_1 = PyObject_Length(((PyObject *)__pyx_v_queue)); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 242, __pyx_L1_error)
+    __pyx_t_2 = ((__pyx_t_1 != 0) != 0);
+    if (!__pyx_t_2) break;
 
     /* "pypathfinder/fast/ctools.pyx":243
  * 
@@ -8933,11 +8933,11 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
  *         for cnode, cost in currentCNode._connections.items():
  * 
  */
-    __pyx_t_2 = __pyx_f_12pypathfinder_4fast_6ctools_wrappop(__pyx_v_queue); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 243, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_12pypathfinder_4fast_6ctools_CNode))))) __PYX_ERR(0, 243, __pyx_L1_error)
-    __Pyx_XDECREF_SET(__pyx_v_currentCNode, ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_t_2));
-    __pyx_t_2 = 0;
+    __pyx_t_3 = __pyx_f_12pypathfinder_4fast_6ctools_wrappop(__pyx_v_queue); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 243, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_12pypathfinder_4fast_6ctools_CNode))))) __PYX_ERR(0, 243, __pyx_L1_error)
+    __Pyx_XDECREF_SET(__pyx_v_currentCNode, ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_t_3));
+    __pyx_t_3 = 0;
 
     /* "pypathfinder/fast/ctools.pyx":244
  *     while len(queue) != 0:
@@ -8946,27 +8946,27 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
  * 
  *             new_cost = currentCNode.cost + cost
  */
-    __pyx_t_4 = 0;
+    __pyx_t_1 = 0;
     if (unlikely(__pyx_v_currentCNode->_connections == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "items");
       __PYX_ERR(0, 244, __pyx_L1_error)
     }
-    __pyx_t_1 = __Pyx_dict_iterator(__pyx_v_currentCNode->_connections, 1, __pyx_n_s_items, (&__pyx_t_5), (&__pyx_t_6)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 244, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_XDECREF(__pyx_t_2);
-    __pyx_t_2 = __pyx_t_1;
-    __pyx_t_1 = 0;
+    __pyx_t_6 = __Pyx_dict_iterator(__pyx_v_currentCNode->_connections, 1, __pyx_n_s_items, (&__pyx_t_4), (&__pyx_t_5)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 244, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    __Pyx_XDECREF(__pyx_t_3);
+    __pyx_t_3 = __pyx_t_6;
+    __pyx_t_6 = 0;
     while (1) {
-      __pyx_t_8 = __Pyx_dict_iter_next(__pyx_t_2, __pyx_t_5, &__pyx_t_4, &__pyx_t_1, &__pyx_t_7, NULL, __pyx_t_6);
+      __pyx_t_8 = __Pyx_dict_iter_next(__pyx_t_3, __pyx_t_4, &__pyx_t_1, &__pyx_t_6, &__pyx_t_7, NULL, __pyx_t_5);
       if (unlikely(__pyx_t_8 == 0)) break;
       if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 244, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_1);
+      __Pyx_GOTREF(__pyx_t_6);
       __Pyx_GOTREF(__pyx_t_7);
-      if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_12pypathfinder_4fast_6ctools_CNode))))) __PYX_ERR(0, 244, __pyx_L1_error)
+      if (!(likely(((__pyx_t_6) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_6, __pyx_ptype_12pypathfinder_4fast_6ctools_CNode))))) __PYX_ERR(0, 244, __pyx_L1_error)
       __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_7); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 244, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      __Pyx_XDECREF_SET(__pyx_v_cnode, ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_t_1));
-      __pyx_t_1 = 0;
+      __Pyx_XDECREF_SET(__pyx_v_cnode, ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_t_6));
+      __pyx_t_6 = 0;
       __pyx_v_cost = __pyx_t_9;
 
       /* "pypathfinder/fast/ctools.pyx":246
@@ -8985,8 +8985,8 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
  *                 cnode.cost = new_cost
  *                 result = func(cnode, args)
  */
-      __pyx_t_3 = ((__pyx_v_new_cost < __pyx_v_cnode->cost) != 0);
-      if (__pyx_t_3) {
+      __pyx_t_2 = ((__pyx_v_new_cost < __pyx_v_cnode->cost) != 0);
+      if (__pyx_t_2) {
 
         /* "pypathfinder/fast/ctools.pyx":248
  *             new_cost = currentCNode.cost + cost
@@ -9005,30 +9005,30 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
  *                 if cnode not in queue:
  */
         __Pyx_INCREF(__pyx_v_func);
-        __pyx_t_1 = __pyx_v_func; __pyx_t_10 = NULL;
+        __pyx_t_6 = __pyx_v_func; __pyx_t_10 = NULL;
         __pyx_t_8 = 0;
-        if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_1))) {
-          __pyx_t_10 = PyMethod_GET_SELF(__pyx_t_1);
+        if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_6))) {
+          __pyx_t_10 = PyMethod_GET_SELF(__pyx_t_6);
           if (likely(__pyx_t_10)) {
-            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_6);
             __Pyx_INCREF(__pyx_t_10);
             __Pyx_INCREF(function);
-            __Pyx_DECREF_SET(__pyx_t_1, function);
+            __Pyx_DECREF_SET(__pyx_t_6, function);
             __pyx_t_8 = 1;
           }
         }
         #if CYTHON_FAST_PYCALL
-        if (PyFunction_Check(__pyx_t_1)) {
+        if (PyFunction_Check(__pyx_t_6)) {
           PyObject *__pyx_temp[3] = {__pyx_t_10, ((PyObject *)__pyx_v_cnode), __pyx_v_args};
-          __pyx_t_7 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 249, __pyx_L1_error)
+          __pyx_t_7 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 249, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
           __Pyx_GOTREF(__pyx_t_7);
         } else
         #endif
         #if CYTHON_FAST_PYCCALL
-        if (__Pyx_PyFastCFunction_Check(__pyx_t_1)) {
+        if (__Pyx_PyFastCFunction_Check(__pyx_t_6)) {
           PyObject *__pyx_temp[3] = {__pyx_t_10, ((PyObject *)__pyx_v_cnode), __pyx_v_args};
-          __pyx_t_7 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 249, __pyx_L1_error)
+          __pyx_t_7 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 249, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
           __Pyx_GOTREF(__pyx_t_7);
         } else
@@ -9045,11 +9045,11 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
           __Pyx_INCREF(__pyx_v_args);
           __Pyx_GIVEREF(__pyx_v_args);
           PyTuple_SET_ITEM(__pyx_t_11, 1+__pyx_t_8, __pyx_v_args);
-          __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_11, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 249, __pyx_L1_error)
+          __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_11, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 249, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
           __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
         }
-        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+        __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_7); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 249, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
         __pyx_v_result = __pyx_t_9;
@@ -9070,8 +9070,8 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
  *                     wrappush(queue, cnode)
  * 
  */
-        __pyx_t_3 = (__Pyx_PySequence_ContainsTF(((PyObject *)__pyx_v_cnode), ((PyObject *)__pyx_v_queue), Py_NE)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 251, __pyx_L1_error)
-        __pyx_t_12 = (__pyx_t_3 != 0);
+        __pyx_t_2 = (__Pyx_PySequence_ContainsTF(((PyObject *)__pyx_v_cnode), ((PyObject *)__pyx_v_queue), Py_NE)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 251, __pyx_L1_error)
+        __pyx_t_12 = (__pyx_t_2 != 0);
         if (__pyx_t_12) {
 
           /* "pypathfinder/fast/ctools.pyx":252
@@ -9103,7 +9103,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
  */
       }
     }
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
     /* "pypathfinder/fast/ctools.pyx":254
  *                     wrappush(queue, cnode)
@@ -9140,14 +9140,14 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
  *             break
  * 
  */
-    __pyx_t_3 = (__pyx_v_first_contact != 0);
-    if (__pyx_t_3) {
+    __pyx_t_2 = (__pyx_v_first_contact != 0);
+    if (__pyx_t_2) {
     } else {
-      __pyx_t_12 = __pyx_t_3;
+      __pyx_t_12 = __pyx_t_2;
       goto __pyx_L12_bool_binop_done;
     }
-    __pyx_t_3 = (__pyx_v_currentCNode == __pyx_v_endCNode);
-    __pyx_t_13 = (__pyx_t_3 != 0);
+    __pyx_t_2 = (__pyx_v_currentCNode == __pyx_v_endCNode);
+    __pyx_t_13 = (__pyx_t_2 != 0);
     __pyx_t_12 = __pyx_t_13;
     __pyx_L12_bool_binop_done:;
     if (__pyx_t_12) {
@@ -9180,24 +9180,24 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
  * cpdef tuple copy_graph(CNode start, CNode stop):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __pyx_f_12pypathfinder_4fast_6ctools_construct(__pyx_v_startCNode, __pyx_v_endCNode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 260, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_r = ((PyObject*)__pyx_t_2);
-  __pyx_t_2 = 0;
+  __pyx_t_3 = __pyx_f_12pypathfinder_4fast_6ctools_construct(__pyx_v_startCNode, __pyx_v_endCNode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 260, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_r = ((PyObject*)__pyx_t_3);
+  __pyx_t_3 = 0;
   goto __pyx_L0;
 
   /* "pypathfinder/fast/ctools.pyx":220
  * 
  * @cython.boundscheck(False)
- * cpdef list astar_bestpath(CNode startCNode, CNode endCNode, object func,  bint first_contact = False, list args = []):             # <<<<<<<<<<<<<<
+ * cpdef list astar_bestpath(CNode startCNode, CNode endCNode, object func, bint first_contact = False, list args = []):             # <<<<<<<<<<<<<<
  *     """
  *     Args:
  */
 
   /* function exit code */
   __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_6);
   __Pyx_XDECREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_10);
   __Pyx_XDECREF(__pyx_t_11);
@@ -12189,7 +12189,7 @@ static PyTypeObject __pyx_type_12pypathfinder_4fast_6ctools_CNode = {
 };
 
 static PyMethodDef __pyx_methods[] = {
-  {"djikstra_bestpath", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_12pypathfinder_4fast_6ctools_1djikstra_bestpath, METH_VARARGS|METH_KEYWORDS, __pyx_doc_12pypathfinder_4fast_6ctools_djikstra_bestpath},
+  {"dijkstra_bestpath", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_12pypathfinder_4fast_6ctools_1dijkstra_bestpath, METH_VARARGS|METH_KEYWORDS, __pyx_doc_12pypathfinder_4fast_6ctools_dijkstra_bestpath},
   {"astar_bestpath", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_12pypathfinder_4fast_6ctools_3astar_bestpath, METH_VARARGS|METH_KEYWORDS, __pyx_doc_12pypathfinder_4fast_6ctools_2astar_bestpath},
   {"copy_graph", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_12pypathfinder_4fast_6ctools_5copy_graph, METH_VARARGS|METH_KEYWORDS, __pyx_doc_12pypathfinder_4fast_6ctools_4copy_graph},
   {0, 0, 0, 0}
@@ -12558,7 +12558,7 @@ static int __Pyx_modinit_function_export_code(void) {
   if (__Pyx_ExportFunction("construct", (void (*)(void))__pyx_f_12pypathfinder_4fast_6ctools_construct, "PyObject *(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   if (__Pyx_ExportFunction("wrappop", (void (*)(void))__pyx_f_12pypathfinder_4fast_6ctools_wrappop, "PyObject *(struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby *)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   if (__Pyx_ExportFunction("wrappush", (void (*)(void))__pyx_f_12pypathfinder_4fast_6ctools_wrappush, "PyObject *(struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby *, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
-  if (__Pyx_ExportFunction("djikstra_bestpath", (void (*)(void))__pyx_f_12pypathfinder_4fast_6ctools_djikstra_bestpath, "PyObject *(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *, int __pyx_skip_dispatch, struct __pyx_opt_args_12pypathfinder_4fast_6ctools_djikstra_bestpath *__pyx_optional_args)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("dijkstra_bestpath", (void (*)(void))__pyx_f_12pypathfinder_4fast_6ctools_dijkstra_bestpath, "PyObject *(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *, int __pyx_skip_dispatch, struct __pyx_opt_args_12pypathfinder_4fast_6ctools_dijkstra_bestpath *__pyx_optional_args)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   if (__Pyx_ExportFunction("astar_bestpath", (void (*)(void))__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath, "PyObject *(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *, PyObject *, int __pyx_skip_dispatch, struct __pyx_opt_args_12pypathfinder_4fast_6ctools_astar_bestpath *__pyx_optional_args)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   if (__Pyx_ExportFunction("copy_graph", (void (*)(void))__pyx_f_12pypathfinder_4fast_6ctools_copy_graph, "PyObject *(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *, int __pyx_skip_dispatch)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
@@ -13028,7 +13028,7 @@ if (!__Pyx_RefNanny) {
   /* "pypathfinder/fast/ctools.pyx":220
  * 
  * @cython.boundscheck(False)
- * cpdef list astar_bestpath(CNode startCNode, CNode endCNode, object func,  bint first_contact = False, list args = []):             # <<<<<<<<<<<<<<
+ * cpdef list astar_bestpath(CNode startCNode, CNode endCNode, object func, bint first_contact = False, list args = []):             # <<<<<<<<<<<<<<
  *     """
  *     Args:
  */

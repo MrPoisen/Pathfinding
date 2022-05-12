@@ -1,1 +1,2 @@
-from .ctools import CNode, djikstra_bestpath, astar_bestpath, LowComby, copy_graph
+from .ctools import CNode, dijkstra_bestpath, astar_bestpath, LowComby, copy_graph, CPathfinderError, CDublicateError, CPathError
+from .citools import CINode, idijkstra_bestpath, iastar_bestpath, copy_graph as icopy_graph

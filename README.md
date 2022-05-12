@@ -70,3 +70,34 @@ path = bestpath(frankfurt, muenchen)
 # path includes start and endpoint
 # all Nodes have a cost value now
 ````
+
+## Using INode (example for the pure Python version)
+`````Python
+...
+
+from pypathfinder.Dijkstra import INode, ibestpath, copy_graph
+from pypathfinder.utils import PathError
+
+point1 = INode(1)
+point2 = INode(2, lambda x: x % 2 == 1)
+point3 = INode(3, lambda x: x % 2 == 0)
+point4 = INode(4)
+
+point1.connect({point2: 15, point3: 5}, True)
+point4.connect({point2: 15, point3: 10}, True)
+try:
+    path = bestpath(point1, point4) # time 0 at startingposition
+except PathError:
+    print("Error, no path")
+else:
+    print(path)
+
+point1, point4, graph = copy_graph(point1, point4)
+graph.get(point2).connect({graph.get(point3): 2}, True)
+try:
+    path = bestpath(point1, point4)
+except PathError:
+    print("Error, no path")
+else:
+    print(path)
+````

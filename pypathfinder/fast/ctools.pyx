@@ -177,9 +177,9 @@ cdef list construct(CNode startCNode, CNode endCNode):
     path.reverse()
     return path
 
-# DJIKSTRA
+# DIJKSTRA
 @cython.boundscheck(False)
-cpdef list djikstra_bestpath(CNode startCNode, CNode endCNode, bint first_contact = False):
+cpdef list dijkstra_bestpath(CNode startCNode, CNode endCNode, bint first_contact = False):
     """
     Args:
         startCNode: starting point
@@ -217,7 +217,7 @@ cpdef list djikstra_bestpath(CNode startCNode, CNode endCNode, bint first_contac
     return construct(startCNode, endCNode)
     
 @cython.boundscheck(False)
-cpdef list astar_bestpath(CNode startCNode, CNode endCNode, object func,  bint first_contact = False, list args = []):
+cpdef list astar_bestpath(CNode startCNode, CNode endCNode, object func, bint first_contact = False, list args = []):
     """
     Args:
         startCNode: starting point
@@ -227,7 +227,7 @@ cpdef list astar_bestpath(CNode startCNode, CNode endCNode, object func,  bint f
     Returns:
         list of CNodes, creating a path
     """
-    if args == []:
+    if len(args) == 0:
         args = []
     cdef LowComby queue
     cdef CNode currentCNode

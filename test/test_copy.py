@@ -1,6 +1,7 @@
 from unittest import TestCase, main
 
 from pypathfinder.Dijkstra import copy_graph, Node, bestpath
+from pypathfinder import fast
 from ex import example1
 
 class TestDijkstra(TestCase):
@@ -22,11 +23,17 @@ class TestDijkstra(TestCase):
         bestpath(new_start, new_stop)
         self.assertEqual(new_stop.cost, 15)
 
-
     def test_copy2(self):
         start, end = example1(Node)
         path = bestpath(start, end) # Nodes will get a cost
         new_start, new_end, all_nodes = copy_graph(start, end)
+        self.assertEqual(end.cost, 487)
+        self.assertEqual(new_end.cost, float("inf"))
+    
+    def test_cythoncopy1(self):
+        start, end = example1(fast.CNode)
+        path = bestpath(start, end) # Nodes will get a cost
+        new_start, new_end, all_nodes = fast.copy_graph(start, end)
         self.assertEqual(end.cost, 487)
         self.assertEqual(new_end.cost, float("inf"))
 

@@ -3575,11 +3575,11 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_20_copy(struct __p
   __pyx_r = __pyx_v_path;
   goto __pyx_L0;
 </pre><pre class="cython line score-0">&#xA0;<span class="">179</span>: </pre>
-<pre class="cython line score-0">&#xA0;<span class="">180</span>: # DJIKSTRA</pre>
+<pre class="cython line score-0">&#xA0;<span class="">180</span>: # DIJKSTRA</pre>
 <pre class="cython line score-0">&#xA0;<span class="">181</span>: @cython.boundscheck(False)</pre>
-<pre class="cython line score-51" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">182</span>: cpdef list djikstra_bestpath(CNode startCNode, CNode endCNode, bint first_contact = False):</pre>
-<pre class='cython code score-51 '>static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_1djikstra_bestpath(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_djikstra_bestpath(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_startCNode, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_endCNode, CYTHON_UNUSED int __pyx_skip_dispatch, struct __pyx_opt_args_12pypathfinder_4fast_6ctools_djikstra_bestpath *__pyx_optional_args) {
+<pre class="cython line score-51" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">182</span>: cpdef list dijkstra_bestpath(CNode startCNode, CNode endCNode, bint first_contact = False):</pre>
+<pre class='cython code score-51 '>static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_1dijkstra_bestpath(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_dijkstra_bestpath(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_startCNode, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_endCNode, CYTHON_UNUSED int __pyx_skip_dispatch, struct __pyx_opt_args_12pypathfinder_4fast_6ctools_dijkstra_bestpath *__pyx_optional_args) {
   int __pyx_v_first_contact = ((int)0);
   struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby *__pyx_v_queue = 0;
   struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_currentCNode = 0;
@@ -3588,7 +3588,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_djikstra_bestpath(struct _
   double __pyx_v_new_cost;
   PyObject *__pyx_r = NULL;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
-  <span class='refnanny'>__Pyx_RefNannySetupContext</span>("djikstra_bestpath", 0);
+  <span class='refnanny'>__Pyx_RefNannySetupContext</span>("dijkstra_bestpath", 0);
   if (__pyx_optional_args) {
     if (__pyx_optional_args-&gt;__pyx_n &gt; 0) {
       __pyx_v_first_contact = __pyx_optional_args-&gt;first_contact;
@@ -3600,7 +3600,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_djikstra_bestpath(struct _
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_1);
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_6);
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_7);
-  <span class='pyx_c_api'>__Pyx_AddTraceback</span>("pypathfinder.fast.ctools.djikstra_bestpath", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  <span class='pyx_c_api'>__Pyx_AddTraceback</span>("pypathfinder.fast.ctools.dijkstra_bestpath", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>((PyObject *)__pyx_v_queue);
@@ -3612,15 +3612,15 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_djikstra_bestpath(struct _
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_1djikstra_bestpath(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_12pypathfinder_4fast_6ctools_djikstra_bestpath[] = "djikstra_bestpath(CNode startCNode, CNode endCNode, bool first_contact=False) -&gt; list\n\n    Args:\n        startCNode: starting point\n        endCNode: ending point\n        first_contact: if True, pathfinding will end as soon as the endCNode has first been discoverd\n    \n    Returns:\n        list of CNodes, creating a path\n    ";
-static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_1djikstra_bestpath(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_1dijkstra_bestpath(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_12pypathfinder_4fast_6ctools_dijkstra_bestpath[] = "dijkstra_bestpath(CNode startCNode, CNode endCNode, bool first_contact=False) -&gt; list\n\n    Args:\n        startCNode: starting point\n        endCNode: ending point\n        first_contact: if True, pathfinding will end as soon as the endCNode has first been discoverd\n    \n    Returns:\n        list of CNodes, creating a path\n    ";
+static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_1dijkstra_bestpath(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_startCNode = 0;
   struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_endCNode = 0;
   int __pyx_v_first_contact;
   PyObject *__pyx_r = 0;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
-  <span class='refnanny'>__Pyx_RefNannySetupContext</span>("djikstra_bestpath (wrapper)", 0);
+  <span class='refnanny'>__Pyx_RefNannySetupContext</span>("dijkstra_bestpath (wrapper)", 0);
   {
     static PyObject **__pyx_pyargnames[] = {&amp;__pyx_n_s_startCNode,&amp;__pyx_n_s_endCNode,&amp;__pyx_n_s_first_contact,0};
     PyObject* values[3] = {0,0,0};
@@ -3646,7 +3646,7 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_1djikstra_bestpath(PyObje
         case  1:
         if (likely((values[1] = <span class='pyx_c_api'>__Pyx_PyDict_GetItemStr</span>(__pyx_kwds, __pyx_n_s_endCNode)) != 0)) kw_args--;
         else {
-          <span class='pyx_c_api'>__Pyx_RaiseArgtupleInvalid</span>("djikstra_bestpath", 0, 2, 3, 1); <span class='error_goto'>__PYX_ERR(0, 182, __pyx_L3_error)</span>
+          <span class='pyx_c_api'>__Pyx_RaiseArgtupleInvalid</span>("dijkstra_bestpath", 0, 2, 3, 1); <span class='error_goto'>__PYX_ERR(0, 182, __pyx_L3_error)</span>
         }
         CYTHON_FALLTHROUGH;
         case  2:
@@ -3656,7 +3656,7 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_1djikstra_bestpath(PyObje
         }
       }
       if (unlikely(kw_args &gt; 0)) {
-        if (unlikely(<span class='pyx_c_api'>__Pyx_ParseOptionalKeywords</span>(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "djikstra_bestpath") &lt; 0)) <span class='error_goto'>__PYX_ERR(0, 182, __pyx_L3_error)</span>
+        if (unlikely(<span class='pyx_c_api'>__Pyx_ParseOptionalKeywords</span>(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "dijkstra_bestpath") &lt; 0)) <span class='error_goto'>__PYX_ERR(0, 182, __pyx_L3_error)</span>
       }
     } else {
       switch (<span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args)) {
@@ -3678,15 +3678,15 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_1djikstra_bestpath(PyObje
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  <span class='pyx_c_api'>__Pyx_RaiseArgtupleInvalid</span>("djikstra_bestpath", 0, 2, 3, <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args)); <span class='error_goto'>__PYX_ERR(0, 182, __pyx_L3_error)</span>
+  <span class='pyx_c_api'>__Pyx_RaiseArgtupleInvalid</span>("dijkstra_bestpath", 0, 2, 3, <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args)); <span class='error_goto'>__PYX_ERR(0, 182, __pyx_L3_error)</span>
   __pyx_L3_error:;
-  <span class='pyx_c_api'>__Pyx_AddTraceback</span>("pypathfinder.fast.ctools.djikstra_bestpath", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  <span class='pyx_c_api'>__Pyx_AddTraceback</span>("pypathfinder.fast.ctools.dijkstra_bestpath", __pyx_clineno, __pyx_lineno, __pyx_filename);
   <span class='refnanny'>__Pyx_RefNannyFinishContext</span>();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!<span class='pyx_c_api'>__Pyx_ArgTypeTest</span>(((PyObject *)__pyx_v_startCNode), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "startCNode", 0))) <span class='error_goto'>__PYX_ERR(0, 182, __pyx_L1_error)</span>
   if (unlikely(!<span class='pyx_c_api'>__Pyx_ArgTypeTest</span>(((PyObject *)__pyx_v_endCNode), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "endCNode", 0))) <span class='error_goto'>__PYX_ERR(0, 182, __pyx_L1_error)</span>
-  __pyx_r = __pyx_pf_12pypathfinder_4fast_6ctools_djikstra_bestpath(__pyx_self, __pyx_v_startCNode, __pyx_v_endCNode, __pyx_v_first_contact);
+  __pyx_r = __pyx_pf_12pypathfinder_4fast_6ctools_dijkstra_bestpath(__pyx_self, __pyx_v_startCNode, __pyx_v_endCNode, __pyx_v_first_contact);
 
   /* function exit code */
   goto __pyx_L0;
@@ -3697,14 +3697,14 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_1djikstra_bestpath(PyObje
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_djikstra_bestpath(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_startCNode, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_endCNode, int __pyx_v_first_contact) {
+static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_dijkstra_bestpath(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_startCNode, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_endCNode, int __pyx_v_first_contact) {
   PyObject *__pyx_r = NULL;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
-  <span class='refnanny'>__Pyx_RefNannySetupContext</span>("djikstra_bestpath", 0);
+  <span class='refnanny'>__Pyx_RefNannySetupContext</span>("dijkstra_bestpath", 0);
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_r);
   __pyx_t_2.__pyx_n = 1;
   __pyx_t_2.first_contact = __pyx_v_first_contact;
-  __pyx_t_1 = __pyx_f_12pypathfinder_4fast_6ctools_djikstra_bestpath(__pyx_v_startCNode, __pyx_v_endCNode, 0, &amp;__pyx_t_2);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 182, __pyx_L1_error)</span>
+  __pyx_t_1 = __pyx_f_12pypathfinder_4fast_6ctools_dijkstra_bestpath(__pyx_v_startCNode, __pyx_v_endCNode, 0, &amp;__pyx_t_2);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 182, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3713,7 +3713,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_djikstra_bestpath(CYTHON_
   /* function exit code */
   __pyx_L1_error:;
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_1);
-  <span class='pyx_c_api'>__Pyx_AddTraceback</span>("pypathfinder.fast.ctools.djikstra_bestpath", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  <span class='pyx_c_api'>__Pyx_AddTraceback</span>("pypathfinder.fast.ctools.dijkstra_bestpath", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   <span class='refnanny'>__Pyx_XGIVEREF</span>(__pyx_r);
@@ -3839,7 +3839,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_djikstra_bestpath(CYTHON_
   goto __pyx_L0;
 </pre><pre class="cython line score-0">&#xA0;<span class="">218</span>: </pre>
 <pre class="cython line score-0">&#xA0;<span class="">219</span>: @cython.boundscheck(False)</pre>
-<pre class="cython line score-77" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">220</span>: cpdef list astar_bestpath(CNode startCNode, CNode endCNode, object func,  bint first_contact = False, list args = []):</pre>
+<pre class="cython line score-77" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">220</span>: cpdef list astar_bestpath(CNode startCNode, CNode endCNode, object func, bint first_contact = False, list args = []):</pre>
 <pre class='cython code score-77 '>static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_3astar_bestpath(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_startCNode, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_endCNode, PyObject *__pyx_v_func, CYTHON_UNUSED int __pyx_skip_dispatch, struct __pyx_opt_args_12pypathfinder_4fast_6ctools_astar_bestpath *__pyx_optional_args) {
   int __pyx_v_first_contact = ((int)0);
@@ -3865,8 +3865,8 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
 /* … */
   /* function exit code */
   __pyx_L1_error:;
-  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_1);
-  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_2);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_3);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_6);
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_7);
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_10);
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_11);
@@ -4037,21 +4037,21 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_2astar_bestpath(CYTHON_UN
 <pre class="cython line score-0">&#xA0;<span class="">227</span>:     Returns:</pre>
 <pre class="cython line score-0">&#xA0;<span class="">228</span>:         list of CNodes, creating a path</pre>
 <pre class="cython line score-0">&#xA0;<span class="">229</span>:     """</pre>
-<pre class="cython line score-14" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">230</span>:     if args == []:</pre>
-<pre class='cython code score-14 '>  __pyx_t_1 = <span class='py_c_api'>PyList_New</span>(0);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 230, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
-  __pyx_t_2 = <span class='py_c_api'>PyObject_RichCompare</span>(__pyx_v_args, __pyx_t_1, Py_EQ); <span class='refnanny'>__Pyx_XGOTREF</span>(__pyx_t_2);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 230, __pyx_L1_error)</span>
-  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = <span class='pyx_c_api'>__Pyx_PyObject_IsTrue</span>(__pyx_t_2); if (unlikely(__pyx_t_3 &lt; 0)) <span class='error_goto'>__PYX_ERR(0, 230, __pyx_L1_error)</span>
-  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_2); __pyx_t_2 = 0;
-  if (__pyx_t_3) {
+<pre class="cython line score-6" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">230</span>:     if len(args) == 0:</pre>
+<pre class='cython code score-6 '>  if (unlikely(__pyx_v_args == Py_None)) {
+    <span class='py_c_api'>PyErr_SetString</span>(PyExc_TypeError, "object of type 'NoneType' has no len()");
+    <span class='error_goto'>__PYX_ERR(0, 230, __pyx_L1_error)</span>
+  }
+  __pyx_t_1 = <span class='py_macro_api'>PyList_GET_SIZE</span>(__pyx_v_args);<span class='error_goto'> if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 230, __pyx_L1_error)</span>
+  __pyx_t_2 = ((__pyx_t_1 == 0) != 0);
+  if (__pyx_t_2) {
 /* … */
   }
 </pre><pre class="cython line score-6" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">231</span>:         args = []</pre>
-<pre class='cython code score-6 '>    __pyx_t_2 = <span class='py_c_api'>PyList_New</span>(0);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 231, __pyx_L1_error)</span>
-    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
-    <span class='pyx_macro_api'>__Pyx_DECREF_SET</span>(__pyx_v_args, ((PyObject*)__pyx_t_2));
-    __pyx_t_2 = 0;
+<pre class='cython code score-6 '>    __pyx_t_3 = <span class='py_c_api'>PyList_New</span>(0);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 231, __pyx_L1_error)</span>
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
+    <span class='pyx_macro_api'>__Pyx_DECREF_SET</span>(__pyx_v_args, ((PyObject*)__pyx_t_3));
+    __pyx_t_3 = 0;
 </pre><pre class="cython line score-0">&#xA0;<span class="">232</span>:     cdef LowComby queue</pre>
 <pre class="cython line score-0">&#xA0;<span class="">233</span>:     cdef CNode currentCNode</pre>
 <pre class="cython line score-0">&#xA0;<span class="">234</span>:     cdef CNode cnode</pre>
@@ -4061,87 +4061,87 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_2astar_bestpath(CYTHON_UN
 <pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">238</span>:     startCNode.cost = 0</pre>
 <pre class='cython code score-0 '>  __pyx_v_startCNode-&gt;cost = 0.0;
 </pre><pre class="cython line score-2" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">239</span>:     queue = LowComby()</pre>
-<pre class='cython code score-2 '>  __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyObject_CallNoArg</span>(((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_LowComby));<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 239, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
-  __pyx_v_queue = ((struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby *)__pyx_t_2);
-  __pyx_t_2 = 0;
+<pre class='cython code score-2 '>  __pyx_t_3 = <span class='pyx_c_api'>__Pyx_PyObject_CallNoArg</span>(((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_LowComby));<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 239, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
+  __pyx_v_queue = ((struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby *)__pyx_t_3);
+  __pyx_t_3 = 0;
 </pre><pre class="cython line score-1" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">240</span>:     queue.append(startCNode)</pre>
-<pre class='cython code score-1 '>  __pyx_t_2 = ((struct __pyx_vtabstruct_12pypathfinder_4fast_6ctools_LowComby *)__pyx_v_queue-&gt;__pyx_vtab)-&gt;append(__pyx_v_queue, __pyx_v_startCNode, 0);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 240, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
-  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_2); __pyx_t_2 = 0;
+<pre class='cython code score-1 '>  __pyx_t_3 = ((struct __pyx_vtabstruct_12pypathfinder_4fast_6ctools_LowComby *)__pyx_v_queue-&gt;__pyx_vtab)-&gt;append(__pyx_v_queue, __pyx_v_startCNode, 0);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 240, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
 </pre><pre class="cython line score-0">&#xA0;<span class="">241</span>: </pre>
 <pre class="cython line score-5" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">242</span>:     while len(queue) != 0:</pre>
 <pre class='cython code score-5 '>  while (1) {
-    __pyx_t_4 = <span class='py_c_api'>PyObject_Length</span>(((PyObject *)__pyx_v_queue));<span class='error_goto'> if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 242, __pyx_L1_error)</span>
-    __pyx_t_3 = ((__pyx_t_4 != 0) != 0);
-    if (!__pyx_t_3) break;
+    __pyx_t_1 = <span class='py_c_api'>PyObject_Length</span>(((PyObject *)__pyx_v_queue));<span class='error_goto'> if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 242, __pyx_L1_error)</span>
+    __pyx_t_2 = ((__pyx_t_1 != 0) != 0);
+    if (!__pyx_t_2) break;
 </pre><pre class="cython line score-3" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">243</span>:         currentCNode = wrappop(queue)</pre>
-<pre class='cython code score-3 '>    __pyx_t_2 = __pyx_f_12pypathfinder_4fast_6ctools_wrappop(__pyx_v_queue);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 243, __pyx_L1_error)</span>
-    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
-    if (!(likely(((__pyx_t_2) == Py_None) || likely(<span class='pyx_c_api'>__Pyx_TypeTest</span>(__pyx_t_2, __pyx_ptype_12pypathfinder_4fast_6ctools_CNode))))) <span class='error_goto'>__PYX_ERR(0, 243, __pyx_L1_error)</span>
-    <span class='pyx_macro_api'>__Pyx_XDECREF_SET</span>(__pyx_v_currentCNode, ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_t_2));
-    __pyx_t_2 = 0;
+<pre class='cython code score-3 '>    __pyx_t_3 = __pyx_f_12pypathfinder_4fast_6ctools_wrappop(__pyx_v_queue);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 243, __pyx_L1_error)</span>
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
+    if (!(likely(((__pyx_t_3) == Py_None) || likely(<span class='pyx_c_api'>__Pyx_TypeTest</span>(__pyx_t_3, __pyx_ptype_12pypathfinder_4fast_6ctools_CNode))))) <span class='error_goto'>__PYX_ERR(0, 243, __pyx_L1_error)</span>
+    <span class='pyx_macro_api'>__Pyx_XDECREF_SET</span>(__pyx_v_currentCNode, ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_t_3));
+    __pyx_t_3 = 0;
 </pre><pre class="cython line score-20" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">244</span>:         for cnode, cost in currentCNode._connections.items():</pre>
-<pre class='cython code score-20 '>    __pyx_t_4 = 0;
+<pre class='cython code score-20 '>    __pyx_t_1 = 0;
     if (unlikely(__pyx_v_currentCNode-&gt;_connections == Py_None)) {
       <span class='py_c_api'>PyErr_Format</span>(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "items");
       <span class='error_goto'>__PYX_ERR(0, 244, __pyx_L1_error)</span>
     }
-    __pyx_t_1 = __Pyx_dict_iterator(__pyx_v_currentCNode-&gt;_connections, 1, __pyx_n_s_items, (&amp;__pyx_t_5), (&amp;__pyx_t_6));<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 244, __pyx_L1_error)</span>
-    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
-    <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_2);
-    __pyx_t_2 = __pyx_t_1;
-    __pyx_t_1 = 0;
+    __pyx_t_6 = __Pyx_dict_iterator(__pyx_v_currentCNode-&gt;_connections, 1, __pyx_n_s_items, (&amp;__pyx_t_4), (&amp;__pyx_t_5));<span class='error_goto'> if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 244, __pyx_L1_error)</span>
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_6);
+    <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_3);
+    __pyx_t_3 = __pyx_t_6;
+    __pyx_t_6 = 0;
     while (1) {
-      __pyx_t_8 = __Pyx_dict_iter_next(__pyx_t_2, __pyx_t_5, &amp;__pyx_t_4, &amp;__pyx_t_1, &amp;__pyx_t_7, NULL, __pyx_t_6);
+      __pyx_t_8 = __Pyx_dict_iter_next(__pyx_t_3, __pyx_t_4, &amp;__pyx_t_1, &amp;__pyx_t_6, &amp;__pyx_t_7, NULL, __pyx_t_5);
       if (unlikely(__pyx_t_8 == 0)) break;
       if (unlikely(__pyx_t_8 == -1)) <span class='error_goto'>__PYX_ERR(0, 244, __pyx_L1_error)</span>
-      <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+      <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_6);
       <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_7);
-      if (!(likely(((__pyx_t_1) == Py_None) || likely(<span class='pyx_c_api'>__Pyx_TypeTest</span>(__pyx_t_1, __pyx_ptype_12pypathfinder_4fast_6ctools_CNode))))) <span class='error_goto'>__PYX_ERR(0, 244, __pyx_L1_error)</span>
+      if (!(likely(((__pyx_t_6) == Py_None) || likely(<span class='pyx_c_api'>__Pyx_TypeTest</span>(__pyx_t_6, __pyx_ptype_12pypathfinder_4fast_6ctools_CNode))))) <span class='error_goto'>__PYX_ERR(0, 244, __pyx_L1_error)</span>
       __pyx_t_9 = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(__pyx_t_7); if (unlikely((__pyx_t_9 == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 244, __pyx_L1_error)</span>
       <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_7); __pyx_t_7 = 0;
-      <span class='pyx_macro_api'>__Pyx_XDECREF_SET</span>(__pyx_v_cnode, ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_t_1));
-      __pyx_t_1 = 0;
+      <span class='pyx_macro_api'>__Pyx_XDECREF_SET</span>(__pyx_v_cnode, ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_t_6));
+      __pyx_t_6 = 0;
       __pyx_v_cost = __pyx_t_9;
 </pre><pre class="cython line score-0">&#xA0;<span class="">245</span>: </pre>
 <pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">246</span>:             new_cost = currentCNode.cost + cost</pre>
 <pre class='cython code score-0 '>      __pyx_v_new_cost = (__pyx_v_currentCNode-&gt;cost + __pyx_v_cost);
 </pre><pre class="cython line score-1" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">247</span>:             if new_cost &lt; cnode.cost:</pre>
-<pre class='cython code score-1 '>      __pyx_t_3 = ((__pyx_v_new_cost &lt; __pyx_v_cnode-&gt;cost) != 0);
-      if (__pyx_t_3) {
+<pre class='cython code score-1 '>      __pyx_t_2 = ((__pyx_v_new_cost &lt; __pyx_v_cnode-&gt;cost) != 0);
+      if (__pyx_t_2) {
 /* … */
       }
     }
-    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_2); __pyx_t_2 = 0;
+    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
 </pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">248</span>:                 cnode.cost = new_cost</pre>
 <pre class='cython code score-0 '>        __pyx_v_cnode-&gt;cost = __pyx_v_new_cost;
 </pre><pre class="cython line score-49" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">249</span>:                 result = func(cnode, args)</pre>
 <pre class='cython code score-49 '>        <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_v_func);
-        __pyx_t_1 = __pyx_v_func; __pyx_t_10 = NULL;
+        __pyx_t_6 = __pyx_v_func; __pyx_t_10 = NULL;
         __pyx_t_8 = 0;
-        if (CYTHON_UNPACK_METHODS &amp;&amp; unlikely(<span class='py_c_api'>PyMethod_Check</span>(__pyx_t_1))) {
-          __pyx_t_10 = <span class='py_macro_api'>PyMethod_GET_SELF</span>(__pyx_t_1);
+        if (CYTHON_UNPACK_METHODS &amp;&amp; unlikely(<span class='py_c_api'>PyMethod_Check</span>(__pyx_t_6))) {
+          __pyx_t_10 = <span class='py_macro_api'>PyMethod_GET_SELF</span>(__pyx_t_6);
           if (likely(__pyx_t_10)) {
-            PyObject* function = <span class='py_macro_api'>PyMethod_GET_FUNCTION</span>(__pyx_t_1);
+            PyObject* function = <span class='py_macro_api'>PyMethod_GET_FUNCTION</span>(__pyx_t_6);
             <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_t_10);
             <span class='pyx_macro_api'>__Pyx_INCREF</span>(function);
-            <span class='pyx_macro_api'>__Pyx_DECREF_SET</span>(__pyx_t_1, function);
+            <span class='pyx_macro_api'>__Pyx_DECREF_SET</span>(__pyx_t_6, function);
             __pyx_t_8 = 1;
           }
         }
         #if CYTHON_FAST_PYCALL
-        if (<span class='py_c_api'>PyFunction_Check</span>(__pyx_t_1)) {
+        if (<span class='py_c_api'>PyFunction_Check</span>(__pyx_t_6)) {
           PyObject *__pyx_temp[3] = {__pyx_t_10, ((PyObject *)__pyx_v_cnode), __pyx_v_args};
-          __pyx_t_7 = <span class='pyx_c_api'>__Pyx_PyFunction_FastCall</span>(__pyx_t_1, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8);<span class='error_goto'> if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 249, __pyx_L1_error)</span>
+          __pyx_t_7 = <span class='pyx_c_api'>__Pyx_PyFunction_FastCall</span>(__pyx_t_6, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8);<span class='error_goto'> if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 249, __pyx_L1_error)</span>
           <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_10); __pyx_t_10 = 0;
           <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_7);
         } else
         #endif
         #if CYTHON_FAST_PYCCALL
-        if (<span class='pyx_c_api'>__Pyx_PyFastCFunction_Check</span>(__pyx_t_1)) {
+        if (<span class='pyx_c_api'>__Pyx_PyFastCFunction_Check</span>(__pyx_t_6)) {
           PyObject *__pyx_temp[3] = {__pyx_t_10, ((PyObject *)__pyx_v_cnode), __pyx_v_args};
-          __pyx_t_7 = <span class='pyx_c_api'>__Pyx_PyCFunction_FastCall</span>(__pyx_t_1, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8);<span class='error_goto'> if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 249, __pyx_L1_error)</span>
+          __pyx_t_7 = <span class='pyx_c_api'>__Pyx_PyCFunction_FastCall</span>(__pyx_t_6, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8);<span class='error_goto'> if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 249, __pyx_L1_error)</span>
           <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_10); __pyx_t_10 = 0;
           <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_7);
         } else
@@ -4158,19 +4158,19 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_2astar_bestpath(CYTHON_UN
           <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_v_args);
           <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_v_args);
           <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_11, 1+__pyx_t_8, __pyx_v_args);
-          __pyx_t_7 = <span class='pyx_c_api'>__Pyx_PyObject_Call</span>(__pyx_t_1, __pyx_t_11, NULL);<span class='error_goto'> if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 249, __pyx_L1_error)</span>
+          __pyx_t_7 = <span class='pyx_c_api'>__Pyx_PyObject_Call</span>(__pyx_t_6, __pyx_t_11, NULL);<span class='error_goto'> if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 249, __pyx_L1_error)</span>
           <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_7);
           <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_11); __pyx_t_11 = 0;
         }
-        <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+        <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_6); __pyx_t_6 = 0;
         __pyx_t_9 = __pyx_<span class='py_c_api'>PyFloat_AsDouble</span>(__pyx_t_7); if (unlikely((__pyx_t_9 == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 249, __pyx_L1_error)</span>
         <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_7); __pyx_t_7 = 0;
         __pyx_v_result = __pyx_t_9;
 </pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">250</span>:                 cnode.probable_cost = new_cost + result</pre>
 <pre class='cython code score-0 '>        __pyx_v_cnode-&gt;probable_cost = (__pyx_v_new_cost + __pyx_v_result);
 </pre><pre class="cython line score-2" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">251</span>:                 if cnode not in queue:</pre>
-<pre class='cython code score-2 '>        __pyx_t_3 = (<span class='pyx_c_api'>__Pyx_PySequence_ContainsTF</span>(((PyObject *)__pyx_v_cnode), ((PyObject *)__pyx_v_queue), Py_NE)); if (unlikely(__pyx_t_3 &lt; 0)) <span class='error_goto'>__PYX_ERR(0, 251, __pyx_L1_error)</span>
-        __pyx_t_12 = (__pyx_t_3 != 0);
+<pre class='cython code score-2 '>        __pyx_t_2 = (<span class='pyx_c_api'>__Pyx_PySequence_ContainsTF</span>(((PyObject *)__pyx_v_cnode), ((PyObject *)__pyx_v_queue), Py_NE)); if (unlikely(__pyx_t_2 &lt; 0)) <span class='error_goto'>__PYX_ERR(0, 251, __pyx_L1_error)</span>
+        __pyx_t_12 = (__pyx_t_2 != 0);
         if (__pyx_t_12) {
 /* … */
         }
@@ -4187,14 +4187,14 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_2astar_bestpath(CYTHON_UN
 </pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">255</span>:             break</pre>
 <pre class='cython code score-0 '>      goto __pyx_L5_break;
 </pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">256</span>:         if first_contact and currentCNode is endCNode:</pre>
-<pre class='cython code score-0 '>    __pyx_t_3 = (__pyx_v_first_contact != 0);
-    if (__pyx_t_3) {
+<pre class='cython code score-0 '>    __pyx_t_2 = (__pyx_v_first_contact != 0);
+    if (__pyx_t_2) {
     } else {
-      __pyx_t_12 = __pyx_t_3;
+      __pyx_t_12 = __pyx_t_2;
       goto __pyx_L12_bool_binop_done;
     }
-    __pyx_t_3 = (__pyx_v_currentCNode == __pyx_v_endCNode);
-    __pyx_t_13 = (__pyx_t_3 != 0);
+    __pyx_t_2 = (__pyx_v_currentCNode == __pyx_v_endCNode);
+    __pyx_t_13 = (__pyx_t_2 != 0);
     __pyx_t_12 = __pyx_t_13;
     __pyx_L12_bool_binop_done:;
     if (__pyx_t_12) {
@@ -4208,10 +4208,10 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_2astar_bestpath(CYTHON_UN
 <pre class="cython line score-0">&#xA0;<span class="">259</span>:     # get path</pre>
 <pre class="cython line score-1" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">260</span>:     return construct(startCNode, endCNode)</pre>
 <pre class='cython code score-1 '>  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_r);
-  __pyx_t_2 = __pyx_f_12pypathfinder_4fast_6ctools_construct(__pyx_v_startCNode, __pyx_v_endCNode);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 260, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
-  __pyx_r = ((PyObject*)__pyx_t_2);
-  __pyx_t_2 = 0;
+  __pyx_t_3 = __pyx_f_12pypathfinder_4fast_6ctools_construct(__pyx_v_startCNode, __pyx_v_endCNode);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 260, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
+  __pyx_r = ((PyObject*)__pyx_t_3);
+  __pyx_t_3 = 0;
   goto __pyx_L0;
 </pre><pre class="cython line score-0">&#xA0;<span class="">261</span>: </pre>
 <pre class="cython line score-38" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">262</span>: cpdef tuple copy_graph(CNode start, CNode stop):</pre>
