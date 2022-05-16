@@ -1,15 +1,18 @@
 from typing import Callable, Dict, Hashable, List, Union
 from pypathfinder.Astar import ANode
+from pypathfinder.Dijkstra import get_calc_visiter, get_set_visiter, Collecter, iconstruct
 from pypathfinder.utils import HighComby, LowComby, PathError, get_pop, get_push
 from functools import total_ordering
 
 @total_ordering
 class INode(ANode):
-    def __init__(self, id: Hashable, t_func: Callable = None, connections: Dict["INode", int] = None):
+    Default_Collector_Size = 2
+    def __init__(self, id: Hashable, t_func: Callable = None, connections: Dict["INode", int] = None, collector_size: int = None):
         super().__init__(id, connections)
-        self.t = -1
-        #self.opencost = 
-        #self.closedcost = {}
+        if collector_size is None:
+            collector_size = self.Default_Collector_Size
+        self.collector = Collecter(collector_size)
+        self.collector.add(-1, float("inf"))
         if t_func is None:
             t_func = lambda x: True
         self.t_func = t_func
@@ -20,7 +23,7 @@ class INode(ANode):
     def __call__(self, t: int):
         return self.t_func(t)
 
-    def _copy(self, nodes: dict) -> "Node": 
+    def _copy(self, nodes: dict) -> "INode": 
         self_copy = type(self)(self.id, self.t_func)
         nodes[self_copy] = self_copy
         new_connections = {}
@@ -34,11 +37,12 @@ class INode(ANode):
         self_copy.connect(new_connections, False)
         return self_copy
     
-def bestpath(startnode: INode, endnode: INode, func: Callable, first_contact: bool = False, queue_type: Union[list, LowComby, HighComby]=list, args: list = None) -> List[INode]:
+def bestpath(startnode: INode, endnode: INode, func: Callable, first_contact: bool = False, queue_type: Union[list, LowComby, HighComby]=list, use_memory: bool = True, args: list = None) -> List[INode]:
     """
     Args:
         startnode: starting point
         endnode: ending point
+        func: estimation function
         first_contact: if True, pathfinding will end as soon as the endnode has first been discoverd
         queue_type: type used for queueing nodes; LowComby can be faster but consumes more memory
     
@@ -47,10 +51,16 @@ def bestpath(startnode: INode, endnode: INode, func: Callable, first_contact: bo
     """
     if args is None:
         args = []
-        
+
+    if use_memory:
+        was_visited = get_set_visiter()
+    else:
+        was_visited = get_calc_visiter()
+    
     # get costs
-    startnode.cost = 0
-    startnode.t = 0
+    startnode.collector.clear()
+    startnode.add(0, 0)
+    startnode.probable_cost = 0
     queue: Union[List[INode], LowComby] = queue_type()
     queue.append(startnode)
 
@@ -60,36 +70,24 @@ def bestpath(startnode: INode, endnode: INode, func: Callable, first_contact: bo
     while len(queue) != 0:
         currentnode = use_heappop(queue)
         for node, cost in currentnode._connections.items():
-            if node(currentnode.t+1) is False:
+            #node: INode
+            highest_cost_pair = node.collector.highest_cost_pair()
+            if was_visited(currentnode, node):
                 continue
-            new_cost = currentnode.cost + cost
-            if new_cost < node.cost:
-                node.cost = new_cost
-                node.t = currentnode.t + 1
-                node.probable_cost = new_cost+ func(node, args)
-                if node not in queue:
-                    use_heappush(queue, node)
+            for t, t_cost in currentnode:
+                if node(t+1) is False:
+                    continue
+                new_cost = t_cost + cost
+                if not (t+1 < highest_cost_pair[0] and new_cost > highest_cost_pair[1]):
+                    node.add(t+1, new_cost)
+                    node.probable_cost = node.cost + func(node, args)
+                    if node not in queue:
+                        use_heappush(queue, node)
         
-        if endnode.cost <= currentnode.probable_cost:
+        if endnode.cost <= currentnode.cost:
             break
+
         if first_contact and currentnode is endnode:
             break
     
-    # get path
-    return construct(startnode, endnode) # TODO: Maybe need time?
-
-def construct(startnode, endnode) -> list:
-    # get path
-    path = [endnode]
-    to_check = endnode
-    while to_check != startnode:
-        for node in to_check._connections.keys():
-            if node.cost + node._connections.get(to_check) == to_check.cost and node.t == to_check.t-1:
-                path.append(node)
-                to_check = node
-                break
-        else:
-            raise PathError("Coulnd't construct path")
-        
-    path.reverse()
-    return path
+    return iconstruct(startnode, endnode)

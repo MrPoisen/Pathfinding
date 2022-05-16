@@ -44,6 +44,7 @@ def bestpath(startnode: ANode, endnode: ANode, func: Callable, first_contact: bo
     Args:
         startnode: starting point
         endnode: ending point
+        func: estimation function
         first_contact: if True, pathfinding will end as soon as the endnode has first been discoverd
         queue_type: type used for queueing nodes; LowComby can be faster but consumes more memory
     

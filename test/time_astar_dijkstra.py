@@ -1,7 +1,7 @@
 from ex import example2, speedcheck
 from pypathfinder.Astar import ANode, bestpath as a_bestpath
 from pypathfinder.Dijkstra import Node, bestpath as d_bestpath
-from pypathfinder.fast import CNode, astar_bestpath, djikstra_bestpath
+from pypathfinder.fast import CNode, astar_bestpath, dijkstra_bestpath
 #from Pathfinder.fast.ctools import CNode, astar_bestpath, djikstra_bestpath
 from pypathfinder.utils import LowComby
 
@@ -16,7 +16,7 @@ def setup_fast():
 
 @speedcheck(50, setup_fast, print_=True)
 def fast_djikstra(start, stop, matrix, solution):
-    djikstra_bestpath(start, stop)
+    dijkstra_bestpath(start, stop)
 
 @speedcheck(50, setup_fast, print_=True)
 def fast_astar(start, stop, matrix, solution):       
@@ -50,12 +50,12 @@ def dijkstra_lowcomby(start, stop, matrix, solution):
 
 
 if __name__ == "__main__":
-    print("-"*40)
+    print("-"*40, "Astar")
     astar_lowcomby()
-    print("-"*40)
+    print("-"*40, "Dijkstra")
     dijkstra_lowcomby()
-    print("-"*40)
+    print("-"*40, "Fast Dijkstra")
     fast_djikstra()
-    print("-"*40)
+    print("-"*40, "Fast Astar")
     fast_astar()
 

@@ -912,7 +912,7 @@ struct __pyx_opt_args_12pypathfinder_4fast_6ctools_5CNode_connect;
 struct __pyx_opt_args_12pypathfinder_4fast_6ctools_dijkstra_bestpath;
 struct __pyx_opt_args_12pypathfinder_4fast_6ctools_astar_bestpath;
 
-/* "pypathfinder/fast/ctools.pxd":23
+/* "pypathfinder/fast/ctools.pxd":24
  *     cdef readonly dict _connections
  *     cdef public object id
  *     cpdef void connect(self, dict conn, bint reflect = *)             # <<<<<<<<<<<<<<
@@ -924,7 +924,7 @@ struct __pyx_opt_args_12pypathfinder_4fast_6ctools_5CNode_connect {
   int reflect;
 };
 
-/* "pypathfinder/fast/ctools.pxd":29
+/* "pypathfinder/fast/ctools.pxd":30
  * cdef wrappop(LowComby x)
  * cdef wrappush(LowComby x,CNode n)
  * cpdef list dijkstra_bestpath(CNode startCNode, CNode endCNode, bint first_contact = *)             # <<<<<<<<<<<<<<
@@ -936,7 +936,7 @@ struct __pyx_opt_args_12pypathfinder_4fast_6ctools_dijkstra_bestpath {
   int first_contact;
 };
 
-/* "pypathfinder/fast/ctools.pxd":30
+/* "pypathfinder/fast/ctools.pxd":31
  * cdef wrappush(LowComby x,CNode n)
  * cpdef list dijkstra_bestpath(CNode startCNode, CNode endCNode, bint first_contact = *)
  * cpdef list astar_bestpath(CNode startCNode, CNode endCNode, object func,  bint first_contact = *, list args = *)             # <<<<<<<<<<<<<<
@@ -948,8 +948,9 @@ struct __pyx_opt_args_12pypathfinder_4fast_6ctools_astar_bestpath {
   PyObject *args;
 };
 
-/* "pypathfinder/fast/ctools.pxd":2
- * # cython: language_level=3
+/* "pypathfinder/fast/ctools.pxd":3
+ * # cython: language_level=3, , binding=True
+ * 
  * cdef class CPathfinderError(Exception):             # <<<<<<<<<<<<<<
  *     pass
  * 
@@ -959,7 +960,7 @@ struct __pyx_obj_12pypathfinder_4fast_6ctools_CPathfinderError {
 };
 
 
-/* "pypathfinder/fast/ctools.pxd":5
+/* "pypathfinder/fast/ctools.pxd":6
  *     pass
  * 
  * cdef class CDublicateError(CPathfinderError):             # <<<<<<<<<<<<<<
@@ -971,7 +972,7 @@ struct __pyx_obj_12pypathfinder_4fast_6ctools_CDublicateError {
 };
 
 
-/* "pypathfinder/fast/ctools.pxd":8
+/* "pypathfinder/fast/ctools.pxd":9
  *     pass
  * 
  * cdef class CPathError(CPathfinderError):             # <<<<<<<<<<<<<<
@@ -983,7 +984,7 @@ struct __pyx_obj_12pypathfinder_4fast_6ctools_CPathError {
 };
 
 
-/* "pypathfinder/fast/ctools.pxd":11
+/* "pypathfinder/fast/ctools.pxd":12
  *     pass
  * 
  * cdef class LowComby:             # <<<<<<<<<<<<<<
@@ -998,7 +999,7 @@ struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby {
 };
 
 
-/* "pypathfinder/fast/ctools.pxd":19
+/* "pypathfinder/fast/ctools.pxd":20
  *     cpdef pop(self, int index)
  * 
  * cdef class CNode:             # <<<<<<<<<<<<<<
@@ -1016,8 +1017,8 @@ struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode {
 
 
 
-/* "pypathfinder/fast/ctools.pyx":13
- * cdef double INFINITY = float("inf")
+/* "pypathfinder/fast/ctools.pyx":16
+ *     return func(node, arg)
  * 
  * cdef class LowComby:             # <<<<<<<<<<<<<<
  *     def __init__(self):
@@ -1033,11 +1034,11 @@ struct __pyx_vtabstruct_12pypathfinder_4fast_6ctools_LowComby {
 static struct __pyx_vtabstruct_12pypathfinder_4fast_6ctools_LowComby *__pyx_vtabptr_12pypathfinder_4fast_6ctools_LowComby;
 
 
-/* "pypathfinder/fast/ctools.pyx":99
+/* "pypathfinder/fast/ctools.pyx":102
  *     return heappush(x.list_, n)
  * 
  * cdef class CNode:             # <<<<<<<<<<<<<<
- *     def __init__(self, id_, connections = None):
+ *     def __cinit__(self, id_, connections = None):
  *         self._connections = {} if connections is None else connections
  */
 
@@ -1218,6 +1219,50 @@ static PyObject *__Pyx__GetModuleGlobalName(PyObject *name, PY_UINT64_T *dict_ve
 static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name);
 #endif
 
+/* PyFunctionFastCall.proto */
+#if CYTHON_FAST_PYCALL
+#define __Pyx_PyFunction_FastCall(func, args, nargs)\
+    __Pyx_PyFunction_FastCallDict((func), (args), (nargs), NULL)
+#if 1 || PY_VERSION_HEX < 0x030600B1
+static PyObject *__Pyx_PyFunction_FastCallDict(PyObject *func, PyObject **args, Py_ssize_t nargs, PyObject *kwargs);
+#else
+#define __Pyx_PyFunction_FastCallDict(func, args, nargs, kwargs) _PyFunction_FastCallDict(func, args, nargs, kwargs)
+#endif
+#define __Pyx_BUILD_ASSERT_EXPR(cond)\
+    (sizeof(char [1 - 2*!(cond)]) - 1)
+#ifndef Py_MEMBER_SIZE
+#define Py_MEMBER_SIZE(type, member) sizeof(((type *)0)->member)
+#endif
+#if CYTHON_FAST_PYCALL
+  static size_t __pyx_pyframe_localsplus_offset = 0;
+  #include "frameobject.h"
+  #define __Pxy_PyFrame_Initialize_Offsets()\
+    ((void)__Pyx_BUILD_ASSERT_EXPR(sizeof(PyFrameObject) == offsetof(PyFrameObject, f_localsplus) + Py_MEMBER_SIZE(PyFrameObject, f_localsplus)),\
+     (void)(__pyx_pyframe_localsplus_offset = ((size_t)PyFrame_Type.tp_basicsize) - Py_MEMBER_SIZE(PyFrameObject, f_localsplus)))
+  #define __Pyx_PyFrame_GetLocalsplus(frame)\
+    (assert(__pyx_pyframe_localsplus_offset), (PyObject **)(((char *)(frame)) + __pyx_pyframe_localsplus_offset))
+#endif // CYTHON_FAST_PYCALL
+#endif
+
+/* PyCFunctionFastCall.proto */
+#if CYTHON_FAST_PYCCALL
+static CYTHON_INLINE PyObject *__Pyx_PyCFunction_FastCall(PyObject *func, PyObject **args, Py_ssize_t nargs);
+#else
+#define __Pyx_PyCFunction_FastCall(func, args, nargs)  (assert(0), NULL)
+#endif
+
+/* PyObjectCall.proto */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw);
+#else
+#define __Pyx_PyObject_Call(func, arg, kw) PyObject_Call(func, arg, kw)
+#endif
+
+/* WriteUnraisableException.proto */
+static void __Pyx_WriteUnraisable(const char *name, int clineno,
+                                  int lineno, const char *filename,
+                                  int full_traceback, int nogil);
+
 /* RaiseArgTupleInvalid.proto */
 static void __Pyx_RaiseArgtupleInvalid(const char* func_name, int exact,
     Py_ssize_t num_min, Py_ssize_t num_max, Py_ssize_t num_found);
@@ -1269,38 +1314,6 @@ static CYTHON_INLINE PyObject* __Pyx_PyFrozenSet_New(PyObject* it);
 /* PySetContains.proto */
 static CYTHON_INLINE int __Pyx_PySet_ContainsTF(PyObject* key, PyObject* set, int eq);
 
-/* PyFunctionFastCall.proto */
-#if CYTHON_FAST_PYCALL
-#define __Pyx_PyFunction_FastCall(func, args, nargs)\
-    __Pyx_PyFunction_FastCallDict((func), (args), (nargs), NULL)
-#if 1 || PY_VERSION_HEX < 0x030600B1
-static PyObject *__Pyx_PyFunction_FastCallDict(PyObject *func, PyObject **args, Py_ssize_t nargs, PyObject *kwargs);
-#else
-#define __Pyx_PyFunction_FastCallDict(func, args, nargs, kwargs) _PyFunction_FastCallDict(func, args, nargs, kwargs)
-#endif
-#define __Pyx_BUILD_ASSERT_EXPR(cond)\
-    (sizeof(char [1 - 2*!(cond)]) - 1)
-#ifndef Py_MEMBER_SIZE
-#define Py_MEMBER_SIZE(type, member) sizeof(((type *)0)->member)
-#endif
-#if CYTHON_FAST_PYCALL
-  static size_t __pyx_pyframe_localsplus_offset = 0;
-  #include "frameobject.h"
-  #define __Pxy_PyFrame_Initialize_Offsets()\
-    ((void)__Pyx_BUILD_ASSERT_EXPR(sizeof(PyFrameObject) == offsetof(PyFrameObject, f_localsplus) + Py_MEMBER_SIZE(PyFrameObject, f_localsplus)),\
-     (void)(__pyx_pyframe_localsplus_offset = ((size_t)PyFrame_Type.tp_basicsize) - Py_MEMBER_SIZE(PyFrameObject, f_localsplus)))
-  #define __Pyx_PyFrame_GetLocalsplus(frame)\
-    (assert(__pyx_pyframe_localsplus_offset), (PyObject **)(((char *)(frame)) + __pyx_pyframe_localsplus_offset))
-#endif // CYTHON_FAST_PYCALL
-#endif
-
-/* PyObjectCall.proto */
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw);
-#else
-#define __Pyx_PyObject_Call(func, arg, kw) PyObject_Call(func, arg, kw)
-#endif
-
 /* PyObjectCallMethO.proto */
 #if CYTHON_COMPILING_IN_CPYTHON
 static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject *arg);
@@ -1311,13 +1324,6 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject
 static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
 #else
 #define __Pyx_PyObject_CallNoArg(func) __Pyx_PyObject_Call(func, __pyx_empty_tuple, NULL)
-#endif
-
-/* PyCFunctionFastCall.proto */
-#if CYTHON_FAST_PYCCALL
-static CYTHON_INLINE PyObject *__Pyx_PyCFunction_FastCall(PyObject *func, PyObject **args, Py_ssize_t nargs);
-#else
-#define __Pyx_PyCFunction_FastCall(func, args, nargs)  (assert(0), NULL)
 #endif
 
 /* PyObjectCallOneArg.proto */
@@ -1517,11 +1523,6 @@ static CYTHON_INLINE PyObject* __Pyx_dict_iterator(PyObject* dict, int is_dict, 
 static CYTHON_INLINE int __Pyx_dict_iter_next(PyObject* dict_or_iter, Py_ssize_t orig_length, Py_ssize_t* ppos,
                                               PyObject** pkey, PyObject** pvalue, PyObject** pitem, int is_dict);
 
-/* WriteUnraisableException.proto */
-static void __Pyx_WriteUnraisable(const char *name, int clineno,
-                                  int lineno, const char *filename,
-                                  int full_traceback, int nogil);
-
 /* py_dict_keys.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyDict_Keys(PyObject* d);
 
@@ -1602,22 +1603,6 @@ static int __Pyx_setup_reduce(PyObject* type_obj);
 /* SetVTable.proto */
 static int __Pyx_SetVtable(PyObject *dict, void *vtable);
 
-/* pyobject_as_double.proto */
-static double __Pyx__PyObject_AsDouble(PyObject* obj);
-#if CYTHON_COMPILING_IN_PYPY
-#define __Pyx_PyObject_AsDouble(obj)\
-(likely(PyFloat_CheckExact(obj)) ? PyFloat_AS_DOUBLE(obj) :\
- likely(PyInt_CheckExact(obj)) ?\
- PyFloat_AsDouble(obj) : __Pyx__PyObject_AsDouble(obj))
-#else
-#define __Pyx_PyObject_AsDouble(obj)\
-((likely(PyFloat_CheckExact(obj))) ?\
- PyFloat_AS_DOUBLE(obj) : __Pyx__PyObject_AsDouble(obj))
-#endif
-
-/* CalculateMetaclass.proto */
-static PyObject *__Pyx_CalculateMetaclass(PyTypeObject *metaclass, PyObject *bases);
-
 /* FetchCommonType.proto */
 static PyTypeObject* __Pyx_FetchCommonType(PyTypeObject* type);
 
@@ -1680,6 +1665,22 @@ static PyObject *__Pyx_CyFunction_New(PyMethodDef *ml,
                                       PyObject *closure,
                                       PyObject *module, PyObject *globals,
                                       PyObject* code);
+
+/* pyobject_as_double.proto */
+static double __Pyx__PyObject_AsDouble(PyObject* obj);
+#if CYTHON_COMPILING_IN_PYPY
+#define __Pyx_PyObject_AsDouble(obj)\
+(likely(PyFloat_CheckExact(obj)) ? PyFloat_AS_DOUBLE(obj) :\
+ likely(PyInt_CheckExact(obj)) ?\
+ PyFloat_AsDouble(obj) : __Pyx__PyObject_AsDouble(obj))
+#else
+#define __Pyx_PyObject_AsDouble(obj)\
+((likely(PyFloat_CheckExact(obj))) ?\
+ PyFloat_AS_DOUBLE(obj) : __Pyx__PyObject_AsDouble(obj))
+#endif
+
+/* CalculateMetaclass.proto */
+static PyObject *__Pyx_CalculateMetaclass(PyTypeObject *metaclass, PyObject *bases);
 
 /* SetNameInClass.proto */
 #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030500A1
@@ -1788,11 +1789,11 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_wrappush(struct __pyx_obj_
 static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_dijkstra_bestpath(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *, int __pyx_skip_dispatch, struct __pyx_opt_args_12pypathfinder_4fast_6ctools_dijkstra_bestpath *__pyx_optional_args); /*proto*/
 static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *, PyObject *, int __pyx_skip_dispatch, struct __pyx_opt_args_12pypathfinder_4fast_6ctools_astar_bestpath *__pyx_optional_args); /*proto*/
 static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_copy_graph(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *, int __pyx_skip_dispatch); /*proto*/
+static double __pyx_f_12pypathfinder_4fast_6ctools_wrapped_func(PyObject *, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *, PyObject *); /*proto*/
 static PyObject *__pyx_f_12pypathfinder_4fast_6ctools___pyx_unpickle_CPathfinderError__set_state(struct __pyx_obj_12pypathfinder_4fast_6ctools_CPathfinderError *, PyObject *); /*proto*/
 static PyObject *__pyx_f_12pypathfinder_4fast_6ctools___pyx_unpickle_CDublicateError__set_state(struct __pyx_obj_12pypathfinder_4fast_6ctools_CDublicateError *, PyObject *); /*proto*/
 static PyObject *__pyx_f_12pypathfinder_4fast_6ctools___pyx_unpickle_CPathError__set_state(struct __pyx_obj_12pypathfinder_4fast_6ctools_CPathError *, PyObject *); /*proto*/
 static PyObject *__pyx_f_12pypathfinder_4fast_6ctools___pyx_unpickle_LowComby__set_state(struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby *, PyObject *); /*proto*/
-static PyObject *__pyx_f_12pypathfinder_4fast_6ctools___pyx_unpickle_CNode__set_state(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *, PyObject *); /*proto*/
 #define __Pyx_MODULE_NAME "pypathfinder.fast.ctools"
 extern int __pyx_module_is_main_pypathfinder__fast__ctools;
 int __pyx_module_is_main_pypathfinder__fast__ctools = 0;
@@ -1834,10 +1835,13 @@ static const char __pyx_k_CNode[] = "CNode";
 static const char __pyx_k_heapq[] = "heapq";
 static const char __pyx_k_index[] = "index";
 static const char __pyx_k_items[] = "items";
+static const char __pyx_k_nodes[] = "nodes";
 static const char __pyx_k_start[] = "start";
+static const char __pyx_k_state[] = "state";
 static const char __pyx_k_super[] = "super";
 static const char __pyx_k_append[] = "append";
 static const char __pyx_k_copy_2[] = "_copy";
+static const char __pyx_k_dict_2[] = "_dict";
 static const char __pyx_k_import[] = "__import__";
 static const char __pyx_k_insert[] = "insert";
 static const char __pyx_k_module[] = "__module__";
@@ -1867,46 +1871,75 @@ static const char __pyx_k_reduce_ex[] = "__reduce_ex__";
 static const char __pyx_k_CPathError[] = "CPathError";
 static const char __pyx_k_IndexError[] = "IndexError";
 static const char __pyx_k_ValueError[] = "ValueError";
+static const char __pyx_k_copy_graph[] = "copy_graph";
 static const char __pyx_k_ctools_pyx[] = "ctools.pyx";
 static const char __pyx_k_pyx_result[] = "__pyx_result";
 static const char __pyx_k_pyx_vtable[] = "__pyx_vtable__";
 static const char __pyx_k_startCNode[] = "startCNode";
+static const char __pyx_k_CNode__copy[] = "CNode._copy";
 static const char __pyx_k_PickleError[] = "PickleError";
 static const char __pyx_k_connections[] = "connections";
+static const char __pyx_k_LowComby_pop[] = "LowComby.pop";
 static const char __pyx_k_pyx_checksum[] = "__pyx_checksum";
 static const char __pyx_k_stringsource[] = "stringsource";
+static const char __pyx_k_use_setstate[] = "use_setstate";
+static const char __pyx_k_CNode_connect[] = "CNode.connect";
 static const char __pyx_k_HighComby_pop[] = "HighComby.pop";
+static const char __pyx_k_LowComby_copy[] = "LowComby.copy";
 static const char __pyx_k_first_contact[] = "first_contact";
 static const char __pyx_k_out_of_bounds[] = "out of bounds";
 static const char __pyx_k_reduce_cython[] = "__reduce_cython__";
+static const char __pyx_k_astar_bestpath[] = "astar_bestpath";
 static const char __pyx_k_CDublicateError[] = "CDublicateError";
+static const char __pyx_k_LowComby_append[] = "LowComby.append";
+static const char __pyx_k_LowComby_insert[] = "LowComby.insert";
 static const char __pyx_k_pyx_PickleError[] = "__pyx_PickleError";
 static const char __pyx_k_setstate_cython[] = "__setstate_cython__";
 static const char __pyx_k_CPathfinderError[] = "CPathfinderError";
 static const char __pyx_k_HighComby_append[] = "HighComby.append";
 static const char __pyx_k_HighComby_insert[] = "HighComby.insert";
+static const char __pyx_k_dijkstra_bestpath[] = "dijkstra_bestpath";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
-static const char __pyx_k_pyx_unpickle_CNode[] = "__pyx_unpickle_CNode";
 static const char __pyx_k_HighComby___getitem[] = "HighComby.__getitem__";
 static const char __pyx_k_HighComby___setitem[] = "HighComby.__setitem__";
 static const char __pyx_k_index_out_of_bounds[] = "index out of bounds";
+static const char __pyx_k_CNode___reduce_cython[] = "CNode.__reduce_cython__";
 static const char __pyx_k_object_already_exists[] = "object already exists";
 static const char __pyx_k_pyx_unpickle_LowComby[] = "__pyx_unpickle_LowComby";
 static const char __pyx_k_object_can_t_be_hashed[] = "object can't be hashed";
+static const char __pyx_k_CNode___setstate_cython[] = "CNode.__setstate_cython__";
 static const char __pyx_k_Coulnd_t_construct_path[] = "Coulnd't construct path";
 static const char __pyx_k_pyx_unpickle_CPathError[] = "__pyx_unpickle_CPathError";
 static const char __pyx_k_set_didn_t_contain_item[] = "set didn't contain item";
+static const char __pyx_k_LowComby___reduce_cython[] = "LowComby.__reduce_cython__";
 static const char __pyx_k_pypathfinder_fast_ctools[] = "pypathfinder.fast.ctools";
+static const char __pyx_k_CPathError___reduce_cython[] = "CPathError.__reduce_cython__";
+static const char __pyx_k_LowComby___setstate_cython[] = "LowComby.__setstate_cython__";
+static const char __pyx_k_CPathError___setstate_cython[] = "CPathError.__setstate_cython__";
 static const char __pyx_k_pyx_unpickle_CDublicateError[] = "__pyx_unpickle_CDublicateError";
 static const char __pyx_k_pyx_unpickle_CPathfinderError[] = "__pyx_unpickle_CPathfinderError";
-static const char __pyx_k_Incompatible_checksums_s_vs_0x98[] = "Incompatible checksums (%s vs 0x986b206 = (_connections, cost, id, probable_cost))";
+static const char __pyx_k_CDublicateError___reduce_cython[] = "CDublicateError.__reduce_cython__";
+static const char __pyx_k_CDublicateError___setstate_cytho[] = "CDublicateError.__setstate_cython__";
+static const char __pyx_k_CPathfinderError___reduce_cython[] = "CPathfinderError.__reduce_cython__";
+static const char __pyx_k_CPathfinderError___setstate_cyth[] = "CPathfinderError.__setstate_cython__";
 static const char __pyx_k_Incompatible_checksums_s_vs_0xcd[] = "Incompatible checksums (%s vs 0xcd2609e = (list_, set_))";
 static const char __pyx_k_Incompatible_checksums_s_vs_0xd4[] = "Incompatible checksums (%s vs 0xd41d8cd = ())";
+static const char __pyx_k_no_default___reduce___due_to_non[] = "no default __reduce__ due to non-trivial __cinit__";
 static PyObject *__pyx_n_s_CDublicateError;
+static PyObject *__pyx_n_s_CDublicateError___reduce_cython;
+static PyObject *__pyx_n_s_CDublicateError___setstate_cytho;
 static PyObject *__pyx_n_s_CNode;
+static PyObject *__pyx_n_s_CNode___reduce_cython;
+static PyObject *__pyx_n_s_CNode___setstate_cython;
+static PyObject *__pyx_n_s_CNode__copy;
+static PyObject *__pyx_n_s_CNode_connect;
 static PyObject *__pyx_kp_u_CNode_id;
 static PyObject *__pyx_n_s_CPathError;
+static PyObject *__pyx_n_s_CPathError___reduce_cython;
+static PyObject *__pyx_n_s_CPathError___setstate_cython;
 static PyObject *__pyx_n_s_CPathfinderError;
+static PyObject *__pyx_n_s_CPathfinderError___reduce_cython;
+static PyObject *__pyx_n_s_CPathfinderError___setstate_cyth;
 static PyObject *__pyx_kp_u_Coulnd_t_construct_path;
 static PyObject *__pyx_n_s_HighComby;
 static PyObject *__pyx_n_s_HighComby___getitem;
@@ -1914,27 +1947,36 @@ static PyObject *__pyx_n_s_HighComby___setitem;
 static PyObject *__pyx_n_s_HighComby_append;
 static PyObject *__pyx_n_s_HighComby_insert;
 static PyObject *__pyx_n_s_HighComby_pop;
-static PyObject *__pyx_kp_s_Incompatible_checksums_s_vs_0x98;
 static PyObject *__pyx_kp_s_Incompatible_checksums_s_vs_0xcd;
 static PyObject *__pyx_kp_s_Incompatible_checksums_s_vs_0xd4;
 static PyObject *__pyx_n_s_IndexError;
 static PyObject *__pyx_n_s_KeyError;
 static PyObject *__pyx_n_s_LowComby;
+static PyObject *__pyx_n_s_LowComby___reduce_cython;
+static PyObject *__pyx_n_s_LowComby___setstate_cython;
+static PyObject *__pyx_n_s_LowComby_append;
+static PyObject *__pyx_n_s_LowComby_copy;
+static PyObject *__pyx_n_s_LowComby_insert;
+static PyObject *__pyx_n_s_LowComby_pop;
 static PyObject *__pyx_n_s_PickleError;
 static PyObject *__pyx_n_s_TypeError;
 static PyObject *__pyx_n_s_ValueError;
 static PyObject *__pyx_kp_u__6;
 static PyObject *__pyx_n_s_append;
 static PyObject *__pyx_n_s_args;
+static PyObject *__pyx_n_s_astar_bestpath;
 static PyObject *__pyx_n_s_cline_in_traceback;
 static PyObject *__pyx_n_s_conn;
 static PyObject *__pyx_n_s_connect;
 static PyObject *__pyx_n_s_connections;
 static PyObject *__pyx_n_s_copy;
 static PyObject *__pyx_n_s_copy_2;
+static PyObject *__pyx_n_s_copy_graph;
 static PyObject *__pyx_kp_u_cost;
 static PyObject *__pyx_kp_s_ctools_pyx;
 static PyObject *__pyx_n_s_dict;
+static PyObject *__pyx_n_s_dict_2;
+static PyObject *__pyx_n_s_dijkstra_bestpath;
 static PyObject *__pyx_n_s_doc;
 static PyObject *__pyx_n_s_e;
 static PyObject *__pyx_n_s_endCNode;
@@ -1962,6 +2004,8 @@ static PyObject *__pyx_n_s_metaclass;
 static PyObject *__pyx_n_s_module;
 static PyObject *__pyx_n_s_name;
 static PyObject *__pyx_n_s_new;
+static PyObject *__pyx_kp_s_no_default___reduce___due_to_non;
+static PyObject *__pyx_n_s_nodes;
 static PyObject *__pyx_n_s_obj;
 static PyObject *__pyx_kp_u_object_already_exists;
 static PyObject *__pyx_kp_u_object_can_t_be_hashed;
@@ -1976,7 +2020,6 @@ static PyObject *__pyx_n_s_pyx_result;
 static PyObject *__pyx_n_s_pyx_state;
 static PyObject *__pyx_n_s_pyx_type;
 static PyObject *__pyx_n_s_pyx_unpickle_CDublicateError;
-static PyObject *__pyx_n_s_pyx_unpickle_CNode;
 static PyObject *__pyx_n_s_pyx_unpickle_CPathError;
 static PyObject *__pyx_n_s_pyx_unpickle_CPathfinderError;
 static PyObject *__pyx_n_s_pyx_unpickle_LowComby;
@@ -1995,12 +2038,14 @@ static PyObject *__pyx_n_s_setstate;
 static PyObject *__pyx_n_s_setstate_cython;
 static PyObject *__pyx_n_s_start;
 static PyObject *__pyx_n_s_startCNode;
+static PyObject *__pyx_n_s_state;
 static PyObject *__pyx_n_s_stop;
 static PyObject *__pyx_n_s_str;
 static PyObject *__pyx_kp_s_stringsource;
 static PyObject *__pyx_n_s_super;
 static PyObject *__pyx_n_s_test;
 static PyObject *__pyx_n_s_update;
+static PyObject *__pyx_n_s_use_setstate;
 static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_16CPathfinderError___reduce_cython__(struct __pyx_obj_12pypathfinder_4fast_6ctools_CPathfinderError *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_16CPathfinderError_2__setstate_cython__(struct __pyx_obj_12pypathfinder_4fast_6ctools_CPathfinderError *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_15CDublicateError___reduce_cython__(struct __pyx_obj_12pypathfinder_4fast_6ctools_CDublicateError *__pyx_v_self); /* proto */
@@ -2023,7 +2068,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_2__setitem__(C
 static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_4append(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_obj); /* proto */
 static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_6insert(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, int __pyx_v_index, PyObject *__pyx_v_obj); /* proto */
 static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_8pop(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, int __pyx_v_index); /* proto */
-static int __pyx_pf_12pypathfinder_4fast_6ctools_5CNode___init__(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_self, PyObject *__pyx_v_id_, PyObject *__pyx_v_connections); /* proto */
+static int __pyx_pf_12pypathfinder_4fast_6ctools_5CNode___cinit__(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_self, PyObject *__pyx_v_id_, PyObject *__pyx_v_connections); /* proto */
 static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_2__str__(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_4__repr__(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_6__lt__(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_self, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_other); /* proto */
@@ -2042,8 +2087,8 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_12_connections___g
 static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_2id___get__(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_self); /* proto */
 static int __pyx_pf_12pypathfinder_4fast_6ctools_5CNode_2id_2__set__(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
 static int __pyx_pf_12pypathfinder_4fast_6ctools_5CNode_2id_4__del__(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_22__reduce_cython__(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_24__setstate_cython__(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_22__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_24__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_dijkstra_bestpath(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_startCNode, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_endCNode, int __pyx_v_first_contact); /* proto */
 static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_2astar_bestpath(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_startCNode, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_endCNode, PyObject *__pyx_v_func, int __pyx_v_first_contact, PyObject *__pyx_v_args); /* proto */
 static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_4copy_graph(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_start, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_stop); /* proto */
@@ -2051,7 +2096,6 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_6__pyx_unpickle_CPathfind
 static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_8__pyx_unpickle_CDublicateError(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_10__pyx_unpickle_CPathError(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_12__pyx_unpickle_LowComby(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_14__pyx_unpickle_CNode(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_tp_new_12pypathfinder_4fast_6ctools_CPathfinderError(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_12pypathfinder_4fast_6ctools_CDublicateError(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_12pypathfinder_4fast_6ctools_CPathError(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
@@ -2060,16 +2104,16 @@ static PyObject *__pyx_tp_new_12pypathfinder_4fast_6ctools_CNode(PyTypeObject *t
 static __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_get = {0, &__pyx_n_s_get, 0, 0, 0};
 static __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_keys = {0, &__pyx_n_s_keys, 0, 0, 0};
 static PyObject *__pyx_int_0;
-static PyObject *__pyx_int_159822342;
 static PyObject *__pyx_int_215113886;
 static PyObject *__pyx_int_222419149;
-static PyObject *__pyx_k__8;
+static PyObject *__pyx_k__10;
 static PyObject *__pyx_tuple_;
 static PyObject *__pyx_tuple__2;
 static PyObject *__pyx_tuple__3;
 static PyObject *__pyx_tuple__4;
 static PyObject *__pyx_tuple__5;
 static PyObject *__pyx_tuple__7;
+static PyObject *__pyx_tuple__8;
 static PyObject *__pyx_tuple__9;
 static PyObject *__pyx_tuple__11;
 static PyObject *__pyx_tuple__13;
@@ -2080,7 +2124,25 @@ static PyObject *__pyx_tuple__21;
 static PyObject *__pyx_tuple__23;
 static PyObject *__pyx_tuple__25;
 static PyObject *__pyx_tuple__27;
-static PyObject *__pyx_codeobj__10;
+static PyObject *__pyx_tuple__29;
+static PyObject *__pyx_tuple__31;
+static PyObject *__pyx_tuple__33;
+static PyObject *__pyx_tuple__35;
+static PyObject *__pyx_tuple__37;
+static PyObject *__pyx_tuple__39;
+static PyObject *__pyx_tuple__41;
+static PyObject *__pyx_tuple__43;
+static PyObject *__pyx_tuple__45;
+static PyObject *__pyx_tuple__47;
+static PyObject *__pyx_tuple__49;
+static PyObject *__pyx_tuple__51;
+static PyObject *__pyx_tuple__53;
+static PyObject *__pyx_tuple__55;
+static PyObject *__pyx_tuple__57;
+static PyObject *__pyx_tuple__59;
+static PyObject *__pyx_tuple__61;
+static PyObject *__pyx_tuple__63;
+static PyObject *__pyx_tuple__65;
 static PyObject *__pyx_codeobj__12;
 static PyObject *__pyx_codeobj__14;
 static PyObject *__pyx_codeobj__16;
@@ -2090,6 +2152,25 @@ static PyObject *__pyx_codeobj__22;
 static PyObject *__pyx_codeobj__24;
 static PyObject *__pyx_codeobj__26;
 static PyObject *__pyx_codeobj__28;
+static PyObject *__pyx_codeobj__30;
+static PyObject *__pyx_codeobj__32;
+static PyObject *__pyx_codeobj__34;
+static PyObject *__pyx_codeobj__36;
+static PyObject *__pyx_codeobj__38;
+static PyObject *__pyx_codeobj__40;
+static PyObject *__pyx_codeobj__42;
+static PyObject *__pyx_codeobj__44;
+static PyObject *__pyx_codeobj__46;
+static PyObject *__pyx_codeobj__48;
+static PyObject *__pyx_codeobj__50;
+static PyObject *__pyx_codeobj__52;
+static PyObject *__pyx_codeobj__54;
+static PyObject *__pyx_codeobj__56;
+static PyObject *__pyx_codeobj__58;
+static PyObject *__pyx_codeobj__60;
+static PyObject *__pyx_codeobj__62;
+static PyObject *__pyx_codeobj__64;
+static PyObject *__pyx_codeobj__66;
 /* Late includes */
 
 /* "(tree fragment)":1
@@ -2101,6 +2182,7 @@ static PyObject *__pyx_codeobj__28;
 /* Python wrapper */
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_16CPathfinderError_1__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
 static char __pyx_doc_12pypathfinder_4fast_6ctools_16CPathfinderError___reduce_cython__[] = "CPathfinderError.__reduce_cython__(self)";
+static PyMethodDef __pyx_mdef_12pypathfinder_4fast_6ctools_16CPathfinderError_1__reduce_cython__ = {"__reduce_cython__", (PyCFunction)__pyx_pw_12pypathfinder_4fast_6ctools_16CPathfinderError_1__reduce_cython__, METH_NOARGS, __pyx_doc_12pypathfinder_4fast_6ctools_16CPathfinderError___reduce_cython__};
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_16CPathfinderError_1__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -2331,6 +2413,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_16CPathfinderError___redu
 /* Python wrapper */
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_16CPathfinderError_3__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
 static char __pyx_doc_12pypathfinder_4fast_6ctools_16CPathfinderError_2__setstate_cython__[] = "CPathfinderError.__setstate_cython__(self, __pyx_state)";
+static PyMethodDef __pyx_mdef_12pypathfinder_4fast_6ctools_16CPathfinderError_3__setstate_cython__ = {"__setstate_cython__", (PyCFunction)__pyx_pw_12pypathfinder_4fast_6ctools_16CPathfinderError_3__setstate_cython__, METH_O, __pyx_doc_12pypathfinder_4fast_6ctools_16CPathfinderError_2__setstate_cython__};
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_16CPathfinderError_3__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -2390,6 +2473,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_16CPathfinderError_2__set
 /* Python wrapper */
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_15CDublicateError_1__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
 static char __pyx_doc_12pypathfinder_4fast_6ctools_15CDublicateError___reduce_cython__[] = "CDublicateError.__reduce_cython__(self)";
+static PyMethodDef __pyx_mdef_12pypathfinder_4fast_6ctools_15CDublicateError_1__reduce_cython__ = {"__reduce_cython__", (PyCFunction)__pyx_pw_12pypathfinder_4fast_6ctools_15CDublicateError_1__reduce_cython__, METH_NOARGS, __pyx_doc_12pypathfinder_4fast_6ctools_15CDublicateError___reduce_cython__};
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_15CDublicateError_1__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -2620,6 +2704,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_15CDublicateError___reduc
 /* Python wrapper */
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_15CDublicateError_3__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
 static char __pyx_doc_12pypathfinder_4fast_6ctools_15CDublicateError_2__setstate_cython__[] = "CDublicateError.__setstate_cython__(self, __pyx_state)";
+static PyMethodDef __pyx_mdef_12pypathfinder_4fast_6ctools_15CDublicateError_3__setstate_cython__ = {"__setstate_cython__", (PyCFunction)__pyx_pw_12pypathfinder_4fast_6ctools_15CDublicateError_3__setstate_cython__, METH_O, __pyx_doc_12pypathfinder_4fast_6ctools_15CDublicateError_2__setstate_cython__};
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_15CDublicateError_3__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -2679,6 +2764,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_15CDublicateError_2__sets
 /* Python wrapper */
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_10CPathError_1__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
 static char __pyx_doc_12pypathfinder_4fast_6ctools_10CPathError___reduce_cython__[] = "CPathError.__reduce_cython__(self)";
+static PyMethodDef __pyx_mdef_12pypathfinder_4fast_6ctools_10CPathError_1__reduce_cython__ = {"__reduce_cython__", (PyCFunction)__pyx_pw_12pypathfinder_4fast_6ctools_10CPathError_1__reduce_cython__, METH_NOARGS, __pyx_doc_12pypathfinder_4fast_6ctools_10CPathError___reduce_cython__};
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_10CPathError_1__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -2909,6 +2995,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_10CPathError___reduce_cyt
 /* Python wrapper */
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_10CPathError_3__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
 static char __pyx_doc_12pypathfinder_4fast_6ctools_10CPathError_2__setstate_cython__[] = "CPathError.__setstate_cython__(self, __pyx_state)";
+static PyMethodDef __pyx_mdef_12pypathfinder_4fast_6ctools_10CPathError_3__setstate_cython__ = {"__setstate_cython__", (PyCFunction)__pyx_pw_12pypathfinder_4fast_6ctools_10CPathError_3__setstate_cython__, METH_O, __pyx_doc_12pypathfinder_4fast_6ctools_10CPathError_2__setstate_cython__};
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_10CPathError_3__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -2959,7 +3046,108 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_10CPathError_2__setstate_
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pyx":14
+/* "pypathfinder/fast/ctools.pyx":13
+ * cdef double INFINITY = float("inf")
+ * 
+ * cdef double wrapped_func(object func, CNode node, list arg):             # <<<<<<<<<<<<<<
+ *     return func(node, arg)
+ * 
+ */
+
+static double __pyx_f_12pypathfinder_4fast_6ctools_wrapped_func(PyObject *__pyx_v_func, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_node, PyObject *__pyx_v_arg) {
+  double __pyx_r;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  int __pyx_t_4;
+  PyObject *__pyx_t_5 = NULL;
+  double __pyx_t_6;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("wrapped_func", 0);
+
+  /* "pypathfinder/fast/ctools.pyx":14
+ * 
+ * cdef double wrapped_func(object func, CNode node, list arg):
+ *     return func(node, arg)             # <<<<<<<<<<<<<<
+ * 
+ * cdef class LowComby:
+ */
+  __Pyx_INCREF(__pyx_v_func);
+  __pyx_t_2 = __pyx_v_func; __pyx_t_3 = NULL;
+  __pyx_t_4 = 0;
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+      __pyx_t_4 = 1;
+    }
+  }
+  #if CYTHON_FAST_PYCALL
+  if (PyFunction_Check(__pyx_t_2)) {
+    PyObject *__pyx_temp[3] = {__pyx_t_3, ((PyObject *)__pyx_v_node), __pyx_v_arg};
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 14, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_GOTREF(__pyx_t_1);
+  } else
+  #endif
+  #if CYTHON_FAST_PYCCALL
+  if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
+    PyObject *__pyx_temp[3] = {__pyx_t_3, ((PyObject *)__pyx_v_node), __pyx_v_arg};
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 14, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_GOTREF(__pyx_t_1);
+  } else
+  #endif
+  {
+    __pyx_t_5 = PyTuple_New(2+__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 14, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    if (__pyx_t_3) {
+      __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_3); __pyx_t_3 = NULL;
+    }
+    __Pyx_INCREF(((PyObject *)__pyx_v_node));
+    __Pyx_GIVEREF(((PyObject *)__pyx_v_node));
+    PyTuple_SET_ITEM(__pyx_t_5, 0+__pyx_t_4, ((PyObject *)__pyx_v_node));
+    __Pyx_INCREF(__pyx_v_arg);
+    __Pyx_GIVEREF(__pyx_v_arg);
+    PyTuple_SET_ITEM(__pyx_t_5, 1+__pyx_t_4, __pyx_v_arg);
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 14, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  }
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 14, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_r = __pyx_t_6;
+  goto __pyx_L0;
+
+  /* "pypathfinder/fast/ctools.pyx":13
+ * cdef double INFINITY = float("inf")
+ * 
+ * cdef double wrapped_func(object func, CNode node, list arg):             # <<<<<<<<<<<<<<
+ *     return func(node, arg)
+ * 
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_WriteUnraisable("pypathfinder.fast.ctools.wrapped_func", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
+  __pyx_r = 0;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "pypathfinder/fast/ctools.pyx":17
  * 
  * cdef class LowComby:
  *     def __init__(self):             # <<<<<<<<<<<<<<
@@ -2992,14 +3180,14 @@ static int __pyx_pf_12pypathfinder_4fast_6ctools_8LowComby___init__(struct __pyx
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "pypathfinder/fast/ctools.pyx":15
+  /* "pypathfinder/fast/ctools.pyx":18
  * cdef class LowComby:
  *     def __init__(self):
  *         self.list_ = []             # <<<<<<<<<<<<<<
  *         self.set_ = set()
  * 
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 18, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_self->list_);
@@ -3007,14 +3195,14 @@ static int __pyx_pf_12pypathfinder_4fast_6ctools_8LowComby___init__(struct __pyx
   __pyx_v_self->list_ = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pypathfinder/fast/ctools.pyx":16
+  /* "pypathfinder/fast/ctools.pyx":19
  *     def __init__(self):
  *         self.list_ = []
  *         self.set_ = set()             # <<<<<<<<<<<<<<
  * 
  *     def __getitem__(self, int index):
  */
-  __pyx_t_1 = PySet_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __pyx_t_1 = PySet_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_self->set_);
@@ -3022,7 +3210,7 @@ static int __pyx_pf_12pypathfinder_4fast_6ctools_8LowComby___init__(struct __pyx
   __pyx_v_self->set_ = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pypathfinder/fast/ctools.pyx":14
+  /* "pypathfinder/fast/ctools.pyx":17
  * 
  * cdef class LowComby:
  *     def __init__(self):             # <<<<<<<<<<<<<<
@@ -3042,7 +3230,7 @@ static int __pyx_pf_12pypathfinder_4fast_6ctools_8LowComby___init__(struct __pyx
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pyx":18
+/* "pypathfinder/fast/ctools.pyx":21
  *         self.set_ = set()
  * 
  *     def __getitem__(self, int index):             # <<<<<<<<<<<<<<
@@ -3061,7 +3249,7 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_3__getitem__(Py
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__getitem__ (wrapper)", 0);
   assert(__pyx_arg_index); {
-    __pyx_v_index = __Pyx_PyInt_As_int(__pyx_arg_index); if (unlikely((__pyx_v_index == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 18, __pyx_L3_error)
+    __pyx_v_index = __Pyx_PyInt_As_int(__pyx_arg_index); if (unlikely((__pyx_v_index == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 21, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -3086,7 +3274,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_8LowComby_2__getitem__(st
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__getitem__", 0);
 
-  /* "pypathfinder/fast/ctools.pyx":19
+  /* "pypathfinder/fast/ctools.pyx":22
  * 
  *     def __getitem__(self, int index):
  *         return self.list[index]             # <<<<<<<<<<<<<<
@@ -3094,16 +3282,16 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_8LowComby_2__getitem__(st
  *     def __setitem__(self, int index, CNode obj):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_list); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_list); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 22, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, __pyx_v_index, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, __pyx_v_index, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 22, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "pypathfinder/fast/ctools.pyx":18
+  /* "pypathfinder/fast/ctools.pyx":21
  *         self.set_ = set()
  * 
  *     def __getitem__(self, int index):             # <<<<<<<<<<<<<<
@@ -3123,7 +3311,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_8LowComby_2__getitem__(st
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pyx":21
+/* "pypathfinder/fast/ctools.pyx":24
  *         return self.list[index]
  * 
  *     def __setitem__(self, int index, CNode obj):             # <<<<<<<<<<<<<<
@@ -3142,7 +3330,7 @@ static int __pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_5__setitem__(PyObject
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__setitem__ (wrapper)", 0);
   assert(__pyx_arg_index); {
-    __pyx_v_index = __Pyx_PyInt_As_int(__pyx_arg_index); if (unlikely((__pyx_v_index == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 21, __pyx_L3_error)
+    __pyx_v_index = __Pyx_PyInt_As_int(__pyx_arg_index); if (unlikely((__pyx_v_index == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 24, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -3150,7 +3338,7 @@ static int __pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_5__setitem__(PyObject
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_obj), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "obj", 0))) __PYX_ERR(0, 21, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_obj), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "obj", 0))) __PYX_ERR(0, 24, __pyx_L1_error)
   __pyx_r = __pyx_pf_12pypathfinder_4fast_6ctools_8LowComby_4__setitem__(((struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby *)__pyx_v_self), ((int)__pyx_v_index), ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_v_obj));
 
   /* function exit code */
@@ -3171,7 +3359,7 @@ static int __pyx_pf_12pypathfinder_4fast_6ctools_8LowComby_4__setitem__(struct _
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__setitem__", 0);
 
-  /* "pypathfinder/fast/ctools.pyx":22
+  /* "pypathfinder/fast/ctools.pyx":25
  * 
  *     def __setitem__(self, int index, CNode obj):
  *         self.list_[index] = obj             # <<<<<<<<<<<<<<
@@ -3180,11 +3368,11 @@ static int __pyx_pf_12pypathfinder_4fast_6ctools_8LowComby_4__setitem__(struct _
  */
   if (unlikely(__pyx_v_self->list_ == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 22, __pyx_L1_error)
+    __PYX_ERR(0, 25, __pyx_L1_error)
   }
-  if (unlikely(__Pyx_SetItemInt(__pyx_v_self->list_, __pyx_v_index, ((PyObject *)__pyx_v_obj), int, 1, __Pyx_PyInt_From_int, 1, 1, 1) < 0)) __PYX_ERR(0, 22, __pyx_L1_error)
+  if (unlikely(__Pyx_SetItemInt(__pyx_v_self->list_, __pyx_v_index, ((PyObject *)__pyx_v_obj), int, 1, __Pyx_PyInt_From_int, 1, 1, 1) < 0)) __PYX_ERR(0, 25, __pyx_L1_error)
 
-  /* "pypathfinder/fast/ctools.pyx":23
+  /* "pypathfinder/fast/ctools.pyx":26
  *     def __setitem__(self, int index, CNode obj):
  *         self.list_[index] = obj
  *         self.set_.add(obj)             # <<<<<<<<<<<<<<
@@ -3193,11 +3381,11 @@ static int __pyx_pf_12pypathfinder_4fast_6ctools_8LowComby_4__setitem__(struct _
  */
   if (unlikely(__pyx_v_self->set_ == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "add");
-    __PYX_ERR(0, 23, __pyx_L1_error)
+    __PYX_ERR(0, 26, __pyx_L1_error)
   }
-  __pyx_t_1 = PySet_Add(__pyx_v_self->set_, ((PyObject *)__pyx_v_obj)); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_t_1 = PySet_Add(__pyx_v_self->set_, ((PyObject *)__pyx_v_obj)); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 26, __pyx_L1_error)
 
-  /* "pypathfinder/fast/ctools.pyx":21
+  /* "pypathfinder/fast/ctools.pyx":24
  *         return self.list[index]
  * 
  *     def __setitem__(self, int index, CNode obj):             # <<<<<<<<<<<<<<
@@ -3216,7 +3404,7 @@ static int __pyx_pf_12pypathfinder_4fast_6ctools_8LowComby_4__setitem__(struct _
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pyx":25
+/* "pypathfinder/fast/ctools.pyx":28
  *         self.set_.add(obj)
  * 
  *     def __len__(self):             # <<<<<<<<<<<<<<
@@ -3247,7 +3435,7 @@ static Py_ssize_t __pyx_pf_12pypathfinder_4fast_6ctools_8LowComby_6__len__(struc
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__len__", 0);
 
-  /* "pypathfinder/fast/ctools.pyx":26
+  /* "pypathfinder/fast/ctools.pyx":29
  * 
  *     def __len__(self):
  *         return len(self.list_)             # <<<<<<<<<<<<<<
@@ -3258,14 +3446,14 @@ static Py_ssize_t __pyx_pf_12pypathfinder_4fast_6ctools_8LowComby_6__len__(struc
   __Pyx_INCREF(__pyx_t_1);
   if (unlikely(__pyx_t_1 == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-    __PYX_ERR(0, 26, __pyx_L1_error)
+    __PYX_ERR(0, 29, __pyx_L1_error)
   }
-  __pyx_t_2 = PyList_GET_SIZE(__pyx_t_1); if (unlikely(__pyx_t_2 == ((Py_ssize_t)-1))) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_t_2 = PyList_GET_SIZE(__pyx_t_1); if (unlikely(__pyx_t_2 == ((Py_ssize_t)-1))) __PYX_ERR(0, 29, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   goto __pyx_L0;
 
-  /* "pypathfinder/fast/ctools.pyx":25
+  /* "pypathfinder/fast/ctools.pyx":28
  *         self.set_.add(obj)
  * 
  *     def __len__(self):             # <<<<<<<<<<<<<<
@@ -3283,7 +3471,7 @@ static Py_ssize_t __pyx_pf_12pypathfinder_4fast_6ctools_8LowComby_6__len__(struc
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pyx":28
+/* "pypathfinder/fast/ctools.pyx":31
  *         return len(self.list_)
  * 
  *     def __contains__(self, CNode obj):             # <<<<<<<<<<<<<<
@@ -3300,7 +3488,7 @@ static int __pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_9__contains__(PyObjec
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__contains__ (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_obj), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "obj", 0))) __PYX_ERR(0, 28, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_obj), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "obj", 0))) __PYX_ERR(0, 31, __pyx_L1_error)
   __pyx_r = __pyx_pf_12pypathfinder_4fast_6ctools_8LowComby_8__contains__(((struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby *)__pyx_v_self), ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_v_obj));
 
   /* function exit code */
@@ -3321,7 +3509,7 @@ static int __pyx_pf_12pypathfinder_4fast_6ctools_8LowComby_8__contains__(struct 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__contains__", 0);
 
-  /* "pypathfinder/fast/ctools.pyx":29
+  /* "pypathfinder/fast/ctools.pyx":32
  * 
  *     def __contains__(self, CNode obj):
  *         return obj in self.set_             # <<<<<<<<<<<<<<
@@ -3330,13 +3518,13 @@ static int __pyx_pf_12pypathfinder_4fast_6ctools_8LowComby_8__contains__(struct 
  */
   if (unlikely(__pyx_v_self->set_ == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 29, __pyx_L1_error)
+    __PYX_ERR(0, 32, __pyx_L1_error)
   }
-  __pyx_t_1 = (__Pyx_PySet_ContainsTF(((PyObject *)__pyx_v_obj), __pyx_v_self->set_, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 29, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PySet_ContainsTF(((PyObject *)__pyx_v_obj), __pyx_v_self->set_, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 32, __pyx_L1_error)
   __pyx_r = __pyx_t_1;
   goto __pyx_L0;
 
-  /* "pypathfinder/fast/ctools.pyx":28
+  /* "pypathfinder/fast/ctools.pyx":31
  *         return len(self.list_)
  * 
  *     def __contains__(self, CNode obj):             # <<<<<<<<<<<<<<
@@ -3353,7 +3541,7 @@ static int __pyx_pf_12pypathfinder_4fast_6ctools_8LowComby_8__contains__(struct 
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pyx":31
+/* "pypathfinder/fast/ctools.pyx":34
  *         return obj in self.set_
  * 
  *     cpdef LowComby copy(self):             # <<<<<<<<<<<<<<
@@ -3383,7 +3571,7 @@ static struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby *__pyx_f_12pypathf
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_copy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 31, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_copy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_11copy)) {
         __Pyx_XDECREF(((PyObject *)__pyx_r));
@@ -3400,10 +3588,10 @@ static struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby *__pyx_f_12pypathf
         }
         __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 31, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 34, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_12pypathfinder_4fast_6ctools_LowComby))))) __PYX_ERR(0, 31, __pyx_L1_error)
+        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_12pypathfinder_4fast_6ctools_LowComby))))) __PYX_ERR(0, 34, __pyx_L1_error)
         __pyx_r = ((struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby *)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -3422,26 +3610,26 @@ static struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby *__pyx_f_12pypathf
     #endif
   }
 
-  /* "pypathfinder/fast/ctools.pyx":33
+  /* "pypathfinder/fast/ctools.pyx":36
  *     cpdef LowComby copy(self):
  *         cdef LowComby lc
  *         lc = LowComby()             # <<<<<<<<<<<<<<
  *         lc.list_ = self.list_.copy()
  *         lc.set = self.set_.copy()
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_LowComby)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_LowComby)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_lc = ((struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pypathfinder/fast/ctools.pyx":34
+  /* "pypathfinder/fast/ctools.pyx":37
  *         cdef LowComby lc
  *         lc = LowComby()
  *         lc.list_ = self.list_.copy()             # <<<<<<<<<<<<<<
  *         lc.set = self.set_.copy()
  *         return lc
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->list_, __pyx_n_s_copy); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->list_, __pyx_n_s_copy); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 37, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -3455,24 +3643,24 @@ static struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby *__pyx_f_12pypathf
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (!(likely(PyList_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 34, __pyx_L1_error)
+  if (!(likely(PyList_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 37, __pyx_L1_error)
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_lc->list_);
   __Pyx_DECREF(__pyx_v_lc->list_);
   __pyx_v_lc->list_ = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pypathfinder/fast/ctools.pyx":35
+  /* "pypathfinder/fast/ctools.pyx":38
  *         lc = LowComby()
  *         lc.list_ = self.list_.copy()
  *         lc.set = self.set_.copy()             # <<<<<<<<<<<<<<
  *         return lc
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->set_, __pyx_n_s_copy); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->set_, __pyx_n_s_copy); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -3486,13 +3674,13 @@ static struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby *__pyx_f_12pypathf
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_lc), __pyx_n_s_set, __pyx_t_1) < 0) __PYX_ERR(0, 35, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_lc), __pyx_n_s_set, __pyx_t_1) < 0) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "pypathfinder/fast/ctools.pyx":36
+  /* "pypathfinder/fast/ctools.pyx":39
  *         lc.list_ = self.list_.copy()
  *         lc.set = self.set_.copy()
  *         return lc             # <<<<<<<<<<<<<<
@@ -3504,7 +3692,7 @@ static struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby *__pyx_f_12pypathf
   __pyx_r = __pyx_v_lc;
   goto __pyx_L0;
 
-  /* "pypathfinder/fast/ctools.pyx":31
+  /* "pypathfinder/fast/ctools.pyx":34
  *         return obj in self.set_
  * 
  *     cpdef LowComby copy(self):             # <<<<<<<<<<<<<<
@@ -3530,6 +3718,7 @@ static struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby *__pyx_f_12pypathf
 /* Python wrapper */
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_11copy(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
 static char __pyx_doc_12pypathfinder_4fast_6ctools_8LowComby_10copy[] = "LowComby.copy(self) -> LowComby";
+static PyMethodDef __pyx_mdef_12pypathfinder_4fast_6ctools_8LowComby_11copy = {"copy", (PyCFunction)__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_11copy, METH_NOARGS, __pyx_doc_12pypathfinder_4fast_6ctools_8LowComby_10copy};
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_11copy(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -3550,7 +3739,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_8LowComby_10copy(struct _
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("copy", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_12pypathfinder_4fast_6ctools_8LowComby_copy(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_12pypathfinder_4fast_6ctools_8LowComby_copy(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3567,7 +3756,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_8LowComby_10copy(struct _
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pyx":38
+/* "pypathfinder/fast/ctools.pyx":41
  *         return lc
  * 
  *     cpdef append(self, CNode obj):             # <<<<<<<<<<<<<<
@@ -3597,7 +3786,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_8LowComby_append(struct __
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_append); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_append); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_13append)) {
         __Pyx_XDECREF(__pyx_r);
@@ -3614,7 +3803,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_8LowComby_append(struct __
         }
         __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, ((PyObject *)__pyx_v_obj)) : __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_obj));
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 38, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 41, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __pyx_r = __pyx_t_2;
@@ -3635,7 +3824,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_8LowComby_append(struct __
     #endif
   }
 
-  /* "pypathfinder/fast/ctools.pyx":39
+  /* "pypathfinder/fast/ctools.pyx":42
  * 
  *     cpdef append(self, CNode obj):
  *         self.list_.append(obj)             # <<<<<<<<<<<<<<
@@ -3644,11 +3833,11 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_8LowComby_append(struct __
  */
   if (unlikely(__pyx_v_self->list_ == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "append");
-    __PYX_ERR(0, 39, __pyx_L1_error)
+    __PYX_ERR(0, 42, __pyx_L1_error)
   }
-  __pyx_t_5 = __Pyx_PyList_Append(__pyx_v_self->list_, ((PyObject *)__pyx_v_obj)); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 39, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyList_Append(__pyx_v_self->list_, ((PyObject *)__pyx_v_obj)); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 42, __pyx_L1_error)
 
-  /* "pypathfinder/fast/ctools.pyx":40
+  /* "pypathfinder/fast/ctools.pyx":43
  *     cpdef append(self, CNode obj):
  *         self.list_.append(obj)
  *         self.set_.add(obj)             # <<<<<<<<<<<<<<
@@ -3657,11 +3846,11 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_8LowComby_append(struct __
  */
   if (unlikely(__pyx_v_self->set_ == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "add");
-    __PYX_ERR(0, 40, __pyx_L1_error)
+    __PYX_ERR(0, 43, __pyx_L1_error)
   }
-  __pyx_t_5 = PySet_Add(__pyx_v_self->set_, ((PyObject *)__pyx_v_obj)); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 40, __pyx_L1_error)
+  __pyx_t_5 = PySet_Add(__pyx_v_self->set_, ((PyObject *)__pyx_v_obj)); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 43, __pyx_L1_error)
 
-  /* "pypathfinder/fast/ctools.pyx":38
+  /* "pypathfinder/fast/ctools.pyx":41
  *         return lc
  * 
  *     cpdef append(self, CNode obj):             # <<<<<<<<<<<<<<
@@ -3688,6 +3877,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_8LowComby_append(struct __
 /* Python wrapper */
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_13append(PyObject *__pyx_v_self, PyObject *__pyx_v_obj); /*proto*/
 static char __pyx_doc_12pypathfinder_4fast_6ctools_8LowComby_12append[] = "LowComby.append(self, CNode obj)";
+static PyMethodDef __pyx_mdef_12pypathfinder_4fast_6ctools_8LowComby_13append = {"append", (PyCFunction)__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_13append, METH_O, __pyx_doc_12pypathfinder_4fast_6ctools_8LowComby_12append};
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_13append(PyObject *__pyx_v_self, PyObject *__pyx_v_obj) {
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
@@ -3695,7 +3885,7 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_13append(PyObje
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("append (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_obj), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "obj", 0))) __PYX_ERR(0, 38, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_obj), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "obj", 0))) __PYX_ERR(0, 41, __pyx_L1_error)
   __pyx_r = __pyx_pf_12pypathfinder_4fast_6ctools_8LowComby_12append(((struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby *)__pyx_v_self), ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_v_obj));
 
   /* function exit code */
@@ -3716,7 +3906,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_8LowComby_12append(struct
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("append", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_12pypathfinder_4fast_6ctools_8LowComby_append(__pyx_v_self, __pyx_v_obj, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_12pypathfinder_4fast_6ctools_8LowComby_append(__pyx_v_self, __pyx_v_obj, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3733,7 +3923,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_8LowComby_12append(struct
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pyx":42
+/* "pypathfinder/fast/ctools.pyx":45
  *         self.set_.add(obj)
  * 
  *     cpdef insert(self, int index, CNode obj):             # <<<<<<<<<<<<<<
@@ -3766,11 +3956,11 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_8LowComby_insert(struct __
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_insert); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_insert); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 45, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_15insert)) {
         __Pyx_XDECREF(__pyx_r);
-        __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_index); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 42, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_index); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 45, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -3788,7 +3978,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_8LowComby_insert(struct __
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_4)) {
           PyObject *__pyx_temp[3] = {__pyx_t_5, __pyx_t_3, ((PyObject *)__pyx_v_obj)};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 42, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 45, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -3797,14 +3987,14 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_8LowComby_insert(struct __
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
           PyObject *__pyx_temp[3] = {__pyx_t_5, __pyx_t_3, ((PyObject *)__pyx_v_obj)};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 42, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 45, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         } else
         #endif
         {
-          __pyx_t_7 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 42, __pyx_L1_error)
+          __pyx_t_7 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 45, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
           if (__pyx_t_5) {
             __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_5); __pyx_t_5 = NULL;
@@ -3815,7 +4005,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_8LowComby_insert(struct __
           __Pyx_GIVEREF(((PyObject *)__pyx_v_obj));
           PyTuple_SET_ITEM(__pyx_t_7, 1+__pyx_t_6, ((PyObject *)__pyx_v_obj));
           __pyx_t_3 = 0;
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 42, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 45, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
         }
@@ -3838,7 +4028,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_8LowComby_insert(struct __
     #endif
   }
 
-  /* "pypathfinder/fast/ctools.pyx":43
+  /* "pypathfinder/fast/ctools.pyx":46
  * 
  *     cpdef insert(self, int index, CNode obj):
  *         self.list_.insert(index, obj)             # <<<<<<<<<<<<<<
@@ -3847,11 +4037,11 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_8LowComby_insert(struct __
  */
   if (unlikely(__pyx_v_self->list_ == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "insert");
-    __PYX_ERR(0, 43, __pyx_L1_error)
+    __PYX_ERR(0, 46, __pyx_L1_error)
   }
-  __pyx_t_8 = PyList_Insert(__pyx_v_self->list_, __pyx_v_index, ((PyObject *)__pyx_v_obj)); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 43, __pyx_L1_error)
+  __pyx_t_8 = PyList_Insert(__pyx_v_self->list_, __pyx_v_index, ((PyObject *)__pyx_v_obj)); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 46, __pyx_L1_error)
 
-  /* "pypathfinder/fast/ctools.pyx":44
+  /* "pypathfinder/fast/ctools.pyx":47
  *     cpdef insert(self, int index, CNode obj):
  *         self.list_.insert(index, obj)
  *         self.set_.add(obj)             # <<<<<<<<<<<<<<
@@ -3860,11 +4050,11 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_8LowComby_insert(struct __
  */
   if (unlikely(__pyx_v_self->set_ == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "add");
-    __PYX_ERR(0, 44, __pyx_L1_error)
+    __PYX_ERR(0, 47, __pyx_L1_error)
   }
-  __pyx_t_8 = PySet_Add(__pyx_v_self->set_, ((PyObject *)__pyx_v_obj)); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 44, __pyx_L1_error)
+  __pyx_t_8 = PySet_Add(__pyx_v_self->set_, ((PyObject *)__pyx_v_obj)); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 47, __pyx_L1_error)
 
-  /* "pypathfinder/fast/ctools.pyx":42
+  /* "pypathfinder/fast/ctools.pyx":45
  *         self.set_.add(obj)
  * 
  *     cpdef insert(self, int index, CNode obj):             # <<<<<<<<<<<<<<
@@ -3893,6 +4083,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_8LowComby_insert(struct __
 /* Python wrapper */
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_15insert(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static char __pyx_doc_12pypathfinder_4fast_6ctools_8LowComby_14insert[] = "LowComby.insert(self, int index, CNode obj)";
+static PyMethodDef __pyx_mdef_12pypathfinder_4fast_6ctools_8LowComby_15insert = {"insert", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_15insert, METH_VARARGS|METH_KEYWORDS, __pyx_doc_12pypathfinder_4fast_6ctools_8LowComby_14insert};
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_15insert(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   int __pyx_v_index;
   struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_obj = 0;
@@ -3925,11 +4116,11 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_15insert(PyObje
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_obj)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("insert", 1, 2, 2, 1); __PYX_ERR(0, 42, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("insert", 1, 2, 2, 1); __PYX_ERR(0, 45, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "insert") < 0)) __PYX_ERR(0, 42, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "insert") < 0)) __PYX_ERR(0, 45, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -3937,18 +4128,18 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_15insert(PyObje
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_index = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_index == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 42, __pyx_L3_error)
+    __pyx_v_index = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_index == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 45, __pyx_L3_error)
     __pyx_v_obj = ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)values[1]);
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("insert", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 42, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("insert", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 45, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pypathfinder.fast.ctools.LowComby.insert", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_obj), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "obj", 0))) __PYX_ERR(0, 42, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_obj), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "obj", 0))) __PYX_ERR(0, 45, __pyx_L1_error)
   __pyx_r = __pyx_pf_12pypathfinder_4fast_6ctools_8LowComby_14insert(((struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby *)__pyx_v_self), __pyx_v_index, __pyx_v_obj);
 
   /* function exit code */
@@ -3969,7 +4160,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_8LowComby_14insert(struct
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("insert", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_12pypathfinder_4fast_6ctools_8LowComby_insert(__pyx_v_self, __pyx_v_index, __pyx_v_obj, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_12pypathfinder_4fast_6ctools_8LowComby_insert(__pyx_v_self, __pyx_v_index, __pyx_v_obj, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 45, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3986,7 +4177,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_8LowComby_14insert(struct
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pyx":46
+/* "pypathfinder/fast/ctools.pyx":49
  *         self.set_.add(obj)
  * 
  *     cpdef pop(self, int index):             # <<<<<<<<<<<<<<
@@ -4018,11 +4209,11 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_8LowComby_pop(struct __pyx
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pop); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pop); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 49, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_17pop)) {
         __Pyx_XDECREF(__pyx_r);
-        __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_index); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 46, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_index); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 49, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -4038,7 +4229,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_8LowComby_pop(struct __pyx
         __pyx_t_2 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3);
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 46, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 49, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __pyx_r = __pyx_t_2;
@@ -4059,7 +4250,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_8LowComby_pop(struct __pyx
     #endif
   }
 
-  /* "pypathfinder/fast/ctools.pyx":47
+  /* "pypathfinder/fast/ctools.pyx":50
  * 
  *     cpdef pop(self, int index):
  *         r = self.list_.pop(index)             # <<<<<<<<<<<<<<
@@ -4068,14 +4259,14 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_8LowComby_pop(struct __pyx
  */
   if (unlikely(__pyx_v_self->list_ == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "pop");
-    __PYX_ERR(0, 47, __pyx_L1_error)
+    __PYX_ERR(0, 50, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_PyList_PopIndex(__pyx_v_self->list_, Py_None, __pyx_v_index, 1, int, __Pyx_PyInt_From_int); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 47, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyList_PopIndex(__pyx_v_self->list_, Py_None, __pyx_v_index, 1, int, __Pyx_PyInt_From_int); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_r = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pypathfinder/fast/ctools.pyx":48
+  /* "pypathfinder/fast/ctools.pyx":51
  *     cpdef pop(self, int index):
  *         r = self.list_.pop(index)
  *         self.set_.remove(r)             # <<<<<<<<<<<<<<
@@ -4084,11 +4275,11 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_8LowComby_pop(struct __pyx
  */
   if (unlikely(__pyx_v_self->set_ == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "remove");
-    __PYX_ERR(0, 48, __pyx_L1_error)
+    __PYX_ERR(0, 51, __pyx_L1_error)
   }
-  __pyx_t_6 = __Pyx_PySet_Remove(__pyx_v_self->set_, __pyx_v_r); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 48, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PySet_Remove(__pyx_v_self->set_, __pyx_v_r); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 51, __pyx_L1_error)
 
-  /* "pypathfinder/fast/ctools.pyx":49
+  /* "pypathfinder/fast/ctools.pyx":52
  *         r = self.list_.pop(index)
  *         self.set_.remove(r)
  *         return r             # <<<<<<<<<<<<<<
@@ -4100,7 +4291,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_8LowComby_pop(struct __pyx
   __pyx_r = __pyx_v_r;
   goto __pyx_L0;
 
-  /* "pypathfinder/fast/ctools.pyx":46
+  /* "pypathfinder/fast/ctools.pyx":49
  *         self.set_.add(obj)
  * 
  *     cpdef pop(self, int index):             # <<<<<<<<<<<<<<
@@ -4127,6 +4318,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_8LowComby_pop(struct __pyx
 /* Python wrapper */
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_17pop(PyObject *__pyx_v_self, PyObject *__pyx_arg_index); /*proto*/
 static char __pyx_doc_12pypathfinder_4fast_6ctools_8LowComby_16pop[] = "LowComby.pop(self, int index)";
+static PyMethodDef __pyx_mdef_12pypathfinder_4fast_6ctools_8LowComby_17pop = {"pop", (PyCFunction)__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_17pop, METH_O, __pyx_doc_12pypathfinder_4fast_6ctools_8LowComby_16pop};
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_17pop(PyObject *__pyx_v_self, PyObject *__pyx_arg_index) {
   int __pyx_v_index;
   int __pyx_lineno = 0;
@@ -4136,7 +4328,7 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_17pop(PyObject 
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("pop (wrapper)", 0);
   assert(__pyx_arg_index); {
-    __pyx_v_index = __Pyx_PyInt_As_int(__pyx_arg_index); if (unlikely((__pyx_v_index == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 46, __pyx_L3_error)
+    __pyx_v_index = __Pyx_PyInt_As_int(__pyx_arg_index); if (unlikely((__pyx_v_index == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 49, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -4160,7 +4352,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_8LowComby_16pop(struct __
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("pop", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_12pypathfinder_4fast_6ctools_8LowComby_pop(__pyx_v_self, __pyx_v_index, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_12pypathfinder_4fast_6ctools_8LowComby_pop(__pyx_v_self, __pyx_v_index, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 49, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4186,6 +4378,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_8LowComby_16pop(struct __
 /* Python wrapper */
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_19__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
 static char __pyx_doc_12pypathfinder_4fast_6ctools_8LowComby_18__reduce_cython__[] = "LowComby.__reduce_cython__(self)";
+static PyMethodDef __pyx_mdef_12pypathfinder_4fast_6ctools_8LowComby_19__reduce_cython__ = {"__reduce_cython__", (PyCFunction)__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_19__reduce_cython__, METH_NOARGS, __pyx_doc_12pypathfinder_4fast_6ctools_8LowComby_18__reduce_cython__};
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_19__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -4436,6 +4629,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_8LowComby_18__reduce_cyth
 /* Python wrapper */
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_21__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
 static char __pyx_doc_12pypathfinder_4fast_6ctools_8LowComby_20__setstate_cython__[] = "LowComby.__setstate_cython__(self, __pyx_state)";
+static PyMethodDef __pyx_mdef_12pypathfinder_4fast_6ctools_8LowComby_21__setstate_cython__ = {"__setstate_cython__", (PyCFunction)__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_21__setstate_cython__, METH_O, __pyx_doc_12pypathfinder_4fast_6ctools_8LowComby_20__setstate_cython__};
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_21__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -4486,7 +4680,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_8LowComby_20__setstate_cy
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pyx":52
+/* "pypathfinder/fast/ctools.pyx":55
  * 
  * class HighComby(LowComby):
  *     def __getitem__(self, index):             # <<<<<<<<<<<<<<
@@ -4530,11 +4724,11 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_9HighComby_1__getitem__(P
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_index)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__getitem__", 1, 2, 2, 1); __PYX_ERR(0, 52, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__getitem__", 1, 2, 2, 1); __PYX_ERR(0, 55, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__getitem__") < 0)) __PYX_ERR(0, 52, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__getitem__") < 0)) __PYX_ERR(0, 55, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -4547,7 +4741,7 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_9HighComby_1__getitem__(P
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__getitem__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 52, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__getitem__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 55, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pypathfinder.fast.ctools.HighComby.__getitem__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -4574,49 +4768,49 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby___getitem__(CY
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__getitem__", 0);
 
-  /* "pypathfinder/fast/ctools.pyx":53
+  /* "pypathfinder/fast/ctools.pyx":56
  * class HighComby(LowComby):
  *     def __getitem__(self, index):
  *         if index < 0 or index >= len(self.list):             # <<<<<<<<<<<<<<
  *             raise ValueError("index out of bounds")
  *         return super().__getitem__(index)
  */
-  __pyx_t_2 = PyObject_RichCompare(__pyx_v_index, __pyx_int_0, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 53, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 53, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_v_index, __pyx_int_0, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 56, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 56, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (!__pyx_t_3) {
   } else {
     __pyx_t_1 = __pyx_t_3;
     goto __pyx_L4_bool_binop_done;
   }
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_list); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 53, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_list); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 56, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = PyObject_Length(__pyx_t_2); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 53, __pyx_L1_error)
+  __pyx_t_4 = PyObject_Length(__pyx_t_2); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 56, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyInt_FromSsize_t(__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 53, __pyx_L1_error)
+  __pyx_t_2 = PyInt_FromSsize_t(__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 56, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = PyObject_RichCompare(__pyx_v_index, __pyx_t_2, Py_GE); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 53, __pyx_L1_error)
+  __pyx_t_5 = PyObject_RichCompare(__pyx_v_index, __pyx_t_2, Py_GE); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 56, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 53, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 56, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_1 = __pyx_t_3;
   __pyx_L4_bool_binop_done:;
   if (unlikely(__pyx_t_1)) {
 
-    /* "pypathfinder/fast/ctools.pyx":54
+    /* "pypathfinder/fast/ctools.pyx":57
  *     def __getitem__(self, index):
  *         if index < 0 or index >= len(self.list):
  *             raise ValueError("index out of bounds")             # <<<<<<<<<<<<<<
  *         return super().__getitem__(index)
  * 
  */
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 54, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 57, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_Raise(__pyx_t_5, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __PYX_ERR(0, 54, __pyx_L1_error)
+    __PYX_ERR(0, 57, __pyx_L1_error)
 
-    /* "pypathfinder/fast/ctools.pyx":53
+    /* "pypathfinder/fast/ctools.pyx":56
  * class HighComby(LowComby):
  *     def __getitem__(self, index):
  *         if index < 0 or index >= len(self.list):             # <<<<<<<<<<<<<<
@@ -4625,7 +4819,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby___getitem__(CY
  */
   }
 
-  /* "pypathfinder/fast/ctools.pyx":55
+  /* "pypathfinder/fast/ctools.pyx":58
  *         if index < 0 or index >= len(self.list):
  *             raise ValueError("index out of bounds")
  *         return super().__getitem__(index)             # <<<<<<<<<<<<<<
@@ -4634,9 +4828,9 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby___getitem__(CY
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2 = __Pyx_CyFunction_GetClassObj(__pyx_self);
-  if (!__pyx_t_2) { PyErr_SetString(PyExc_SystemError, "super(): empty __class__ cell"); __PYX_ERR(0, 55, __pyx_L1_error) }
+  if (!__pyx_t_2) { PyErr_SetString(PyExc_SystemError, "super(): empty __class__ cell"); __PYX_ERR(0, 58, __pyx_L1_error) }
   __Pyx_INCREF(__pyx_t_2);
-  __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 55, __pyx_L1_error)
+  __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_2);
@@ -4644,10 +4838,10 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby___getitem__(CY
   __Pyx_GIVEREF(__pyx_v_self);
   PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_v_self);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_super, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 55, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_super, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_getitem); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 55, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_getitem); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -4662,14 +4856,14 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby___getitem__(CY
   }
   __pyx_t_5 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_2, __pyx_v_index) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_index);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 55, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_r = __pyx_t_5;
   __pyx_t_5 = 0;
   goto __pyx_L0;
 
-  /* "pypathfinder/fast/ctools.pyx":52
+  /* "pypathfinder/fast/ctools.pyx":55
  * 
  * class HighComby(LowComby):
  *     def __getitem__(self, index):             # <<<<<<<<<<<<<<
@@ -4690,7 +4884,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby___getitem__(CY
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pyx":57
+/* "pypathfinder/fast/ctools.pyx":60
  *         return super().__getitem__(index)
  * 
  *     def __setitem__(self, index: int, obj):             # <<<<<<<<<<<<<<
@@ -4737,17 +4931,17 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_9HighComby_3__setitem__(P
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_index)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__setitem__", 1, 3, 3, 1); __PYX_ERR(0, 57, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__setitem__", 1, 3, 3, 1); __PYX_ERR(0, 60, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_obj)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__setitem__", 1, 3, 3, 2); __PYX_ERR(0, 57, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__setitem__", 1, 3, 3, 2); __PYX_ERR(0, 60, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__setitem__") < 0)) __PYX_ERR(0, 57, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__setitem__") < 0)) __PYX_ERR(0, 60, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -4762,7 +4956,7 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_9HighComby_3__setitem__(P
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__setitem__", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 57, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__setitem__", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 60, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pypathfinder.fast.ctools.HighComby.__setitem__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -4792,16 +4986,16 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_2__setitem__(C
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__setitem__", 0);
 
-  /* "pypathfinder/fast/ctools.pyx":58
+  /* "pypathfinder/fast/ctools.pyx":61
  * 
  *     def __setitem__(self, index: int, obj):
  *         if obj in self.set and self.list[index] != obj:             # <<<<<<<<<<<<<<
  *             raise CDublicateError("object already exists")
  *         if index < 0 or index >= len(self.list):
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_set); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_set); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 61, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = (__Pyx_PySequence_ContainsTF(__pyx_v_obj, __pyx_t_2, Py_EQ)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_t_3 = (__Pyx_PySequence_ContainsTF(__pyx_v_obj, __pyx_t_2, Py_EQ)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 61, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_4 = (__pyx_t_3 != 0);
   if (__pyx_t_4) {
@@ -4809,33 +5003,33 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_2__setitem__(C
     __pyx_t_1 = __pyx_t_4;
     goto __pyx_L4_bool_binop_done;
   }
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_list); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_list); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 61, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_v_index); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_v_index); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 61, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyObject_RichCompare(__pyx_t_5, __pyx_v_obj, Py_NE); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_t_5, __pyx_v_obj, Py_NE); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 61, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 61, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_1 = __pyx_t_4;
   __pyx_L4_bool_binop_done:;
   if (unlikely(__pyx_t_1)) {
 
-    /* "pypathfinder/fast/ctools.pyx":59
+    /* "pypathfinder/fast/ctools.pyx":62
  *     def __setitem__(self, index: int, obj):
  *         if obj in self.set and self.list[index] != obj:
  *             raise CDublicateError("object already exists")             # <<<<<<<<<<<<<<
  *         if index < 0 or index >= len(self.list):
  *             raise IndexError("index out of bounds")
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_CDublicateError), __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 59, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_CDublicateError), __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 62, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 59, __pyx_L1_error)
+    __PYX_ERR(0, 62, __pyx_L1_error)
 
-    /* "pypathfinder/fast/ctools.pyx":58
+    /* "pypathfinder/fast/ctools.pyx":61
  * 
  *     def __setitem__(self, index: int, obj):
  *         if obj in self.set and self.list[index] != obj:             # <<<<<<<<<<<<<<
@@ -4844,49 +5038,49 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_2__setitem__(C
  */
   }
 
-  /* "pypathfinder/fast/ctools.pyx":60
+  /* "pypathfinder/fast/ctools.pyx":63
  *         if obj in self.set and self.list[index] != obj:
  *             raise CDublicateError("object already exists")
  *         if index < 0 or index >= len(self.list):             # <<<<<<<<<<<<<<
  *             raise IndexError("index out of bounds")
  *         if not hasattr(obj, "__hash__"):
  */
-  __pyx_t_2 = PyObject_RichCompare(__pyx_v_index, __pyx_int_0, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 60, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_v_index, __pyx_int_0, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (!__pyx_t_4) {
   } else {
     __pyx_t_1 = __pyx_t_4;
     goto __pyx_L7_bool_binop_done;
   }
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_list); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_list); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_6 = PyObject_Length(__pyx_t_2); if (unlikely(__pyx_t_6 == ((Py_ssize_t)-1))) __PYX_ERR(0, 60, __pyx_L1_error)
+  __pyx_t_6 = PyObject_Length(__pyx_t_2); if (unlikely(__pyx_t_6 == ((Py_ssize_t)-1))) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyInt_FromSsize_t(__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __pyx_t_2 = PyInt_FromSsize_t(__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = PyObject_RichCompare(__pyx_v_index, __pyx_t_2, Py_GE); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __pyx_t_5 = PyObject_RichCompare(__pyx_v_index, __pyx_t_2, Py_GE); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_1 = __pyx_t_4;
   __pyx_L7_bool_binop_done:;
   if (unlikely(__pyx_t_1)) {
 
-    /* "pypathfinder/fast/ctools.pyx":61
+    /* "pypathfinder/fast/ctools.pyx":64
  *             raise CDublicateError("object already exists")
  *         if index < 0 or index >= len(self.list):
  *             raise IndexError("index out of bounds")             # <<<<<<<<<<<<<<
  *         if not hasattr(obj, "__hash__"):
  *             raise TypeError("object can't be hashed")
  */
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_IndexError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 61, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_IndexError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 64, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_Raise(__pyx_t_5, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __PYX_ERR(0, 61, __pyx_L1_error)
+    __PYX_ERR(0, 64, __pyx_L1_error)
 
-    /* "pypathfinder/fast/ctools.pyx":60
+    /* "pypathfinder/fast/ctools.pyx":63
  *         if obj in self.set and self.list[index] != obj:
  *             raise CDublicateError("object already exists")
  *         if index < 0 or index >= len(self.list):             # <<<<<<<<<<<<<<
@@ -4895,31 +5089,31 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_2__setitem__(C
  */
   }
 
-  /* "pypathfinder/fast/ctools.pyx":62
+  /* "pypathfinder/fast/ctools.pyx":65
  *         if index < 0 or index >= len(self.list):
  *             raise IndexError("index out of bounds")
  *         if not hasattr(obj, "__hash__"):             # <<<<<<<<<<<<<<
  *             raise TypeError("object can't be hashed")
  *         super().__setitem__(index, obj)
  */
-  __pyx_t_1 = __Pyx_HasAttr(__pyx_v_obj, __pyx_n_u_hash); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 62, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_HasAttr(__pyx_v_obj, __pyx_n_u_hash); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 65, __pyx_L1_error)
   __pyx_t_4 = ((!(__pyx_t_1 != 0)) != 0);
   if (unlikely(__pyx_t_4)) {
 
-    /* "pypathfinder/fast/ctools.pyx":63
+    /* "pypathfinder/fast/ctools.pyx":66
  *             raise IndexError("index out of bounds")
  *         if not hasattr(obj, "__hash__"):
  *             raise TypeError("object can't be hashed")             # <<<<<<<<<<<<<<
  *         super().__setitem__(index, obj)
  * 
  */
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 63, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 66, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_Raise(__pyx_t_5, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __PYX_ERR(0, 63, __pyx_L1_error)
+    __PYX_ERR(0, 66, __pyx_L1_error)
 
-    /* "pypathfinder/fast/ctools.pyx":62
+    /* "pypathfinder/fast/ctools.pyx":65
  *         if index < 0 or index >= len(self.list):
  *             raise IndexError("index out of bounds")
  *         if not hasattr(obj, "__hash__"):             # <<<<<<<<<<<<<<
@@ -4928,7 +5122,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_2__setitem__(C
  */
   }
 
-  /* "pypathfinder/fast/ctools.pyx":64
+  /* "pypathfinder/fast/ctools.pyx":67
  *         if not hasattr(obj, "__hash__"):
  *             raise TypeError("object can't be hashed")
  *         super().__setitem__(index, obj)             # <<<<<<<<<<<<<<
@@ -4936,9 +5130,9 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_2__setitem__(C
  *     def append(self, obj):
  */
   __pyx_t_2 = __Pyx_CyFunction_GetClassObj(__pyx_self);
-  if (!__pyx_t_2) { PyErr_SetString(PyExc_SystemError, "super(): empty __class__ cell"); __PYX_ERR(0, 64, __pyx_L1_error) }
+  if (!__pyx_t_2) { PyErr_SetString(PyExc_SystemError, "super(): empty __class__ cell"); __PYX_ERR(0, 67, __pyx_L1_error) }
   __Pyx_INCREF(__pyx_t_2);
-  __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 64, __pyx_L1_error)
+  __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 67, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_2);
@@ -4946,10 +5140,10 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_2__setitem__(C
   __Pyx_GIVEREF(__pyx_v_self);
   PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_v_self);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_super, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 64, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_super, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 67, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_setitem); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 64, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_setitem); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 67, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -4967,7 +5161,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_2__setitem__(C
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_7)) {
     PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_v_index, __pyx_v_obj};
-    __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 64, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 67, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_5);
   } else
@@ -4975,13 +5169,13 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_2__setitem__(C
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_7)) {
     PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_v_index, __pyx_v_obj};
-    __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 64, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 67, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_5);
   } else
   #endif
   {
-    __pyx_t_9 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 64, __pyx_L1_error)
+    __pyx_t_9 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 67, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     if (__pyx_t_2) {
       __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_2); __pyx_t_2 = NULL;
@@ -4992,14 +5186,14 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_2__setitem__(C
     __Pyx_INCREF(__pyx_v_obj);
     __Pyx_GIVEREF(__pyx_v_obj);
     PyTuple_SET_ITEM(__pyx_t_9, 1+__pyx_t_8, __pyx_v_obj);
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_9, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 64, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_9, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 67, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   }
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "pypathfinder/fast/ctools.pyx":57
+  /* "pypathfinder/fast/ctools.pyx":60
  *         return super().__getitem__(index)
  * 
  *     def __setitem__(self, index: int, obj):             # <<<<<<<<<<<<<<
@@ -5023,7 +5217,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_2__setitem__(C
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pyx":66
+/* "pypathfinder/fast/ctools.pyx":69
  *         super().__setitem__(index, obj)
  * 
  *     def append(self, obj):             # <<<<<<<<<<<<<<
@@ -5067,11 +5261,11 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_9HighComby_5append(PyObje
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_obj)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("append", 1, 2, 2, 1); __PYX_ERR(0, 66, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("append", 1, 2, 2, 1); __PYX_ERR(0, 69, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "append") < 0)) __PYX_ERR(0, 66, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "append") < 0)) __PYX_ERR(0, 69, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -5084,7 +5278,7 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_9HighComby_5append(PyObje
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("append", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 66, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("append", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 69, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pypathfinder.fast.ctools.HighComby.append", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -5110,34 +5304,34 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_4append(CYTHON
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("append", 0);
 
-  /* "pypathfinder/fast/ctools.pyx":67
+  /* "pypathfinder/fast/ctools.pyx":70
  * 
  *     def append(self, obj):
  *         if obj in self.set:             # <<<<<<<<<<<<<<
  *             raise CDublicateError("object already exists")
  *         if not hasattr(obj, "__hash__"):
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_set); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 67, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_set); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 70, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_v_obj, __pyx_t_1, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 67, __pyx_L1_error)
+  __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_v_obj, __pyx_t_1, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 70, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_3 = (__pyx_t_2 != 0);
   if (unlikely(__pyx_t_3)) {
 
-    /* "pypathfinder/fast/ctools.pyx":68
+    /* "pypathfinder/fast/ctools.pyx":71
  *     def append(self, obj):
  *         if obj in self.set:
  *             raise CDublicateError("object already exists")             # <<<<<<<<<<<<<<
  *         if not hasattr(obj, "__hash__"):
  *             raise TypeError("object can't be hashed")
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_CDublicateError), __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 68, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_CDublicateError), __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 71, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 68, __pyx_L1_error)
+    __PYX_ERR(0, 71, __pyx_L1_error)
 
-    /* "pypathfinder/fast/ctools.pyx":67
+    /* "pypathfinder/fast/ctools.pyx":70
  * 
  *     def append(self, obj):
  *         if obj in self.set:             # <<<<<<<<<<<<<<
@@ -5146,31 +5340,31 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_4append(CYTHON
  */
   }
 
-  /* "pypathfinder/fast/ctools.pyx":69
+  /* "pypathfinder/fast/ctools.pyx":72
  *         if obj in self.set:
  *             raise CDublicateError("object already exists")
  *         if not hasattr(obj, "__hash__"):             # <<<<<<<<<<<<<<
  *             raise TypeError("object can't be hashed")
  *         super().append(obj)
  */
-  __pyx_t_3 = __Pyx_HasAttr(__pyx_v_obj, __pyx_n_u_hash); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 69, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_HasAttr(__pyx_v_obj, __pyx_n_u_hash); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 72, __pyx_L1_error)
   __pyx_t_2 = ((!(__pyx_t_3 != 0)) != 0);
   if (unlikely(__pyx_t_2)) {
 
-    /* "pypathfinder/fast/ctools.pyx":70
+    /* "pypathfinder/fast/ctools.pyx":73
  *             raise CDublicateError("object already exists")
  *         if not hasattr(obj, "__hash__"):
  *             raise TypeError("object can't be hashed")             # <<<<<<<<<<<<<<
  *         super().append(obj)
  * 
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 70, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 70, __pyx_L1_error)
+    __PYX_ERR(0, 73, __pyx_L1_error)
 
-    /* "pypathfinder/fast/ctools.pyx":69
+    /* "pypathfinder/fast/ctools.pyx":72
  *         if obj in self.set:
  *             raise CDublicateError("object already exists")
  *         if not hasattr(obj, "__hash__"):             # <<<<<<<<<<<<<<
@@ -5179,7 +5373,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_4append(CYTHON
  */
   }
 
-  /* "pypathfinder/fast/ctools.pyx":71
+  /* "pypathfinder/fast/ctools.pyx":74
  *         if not hasattr(obj, "__hash__"):
  *             raise TypeError("object can't be hashed")
  *         super().append(obj)             # <<<<<<<<<<<<<<
@@ -5187,9 +5381,9 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_4append(CYTHON
  *     def insert(self, int index, obj):
  */
   __pyx_t_1 = __Pyx_CyFunction_GetClassObj(__pyx_self);
-  if (!__pyx_t_1) { PyErr_SetString(PyExc_SystemError, "super(): empty __class__ cell"); __PYX_ERR(0, 71, __pyx_L1_error) }
+  if (!__pyx_t_1) { PyErr_SetString(PyExc_SystemError, "super(): empty __class__ cell"); __PYX_ERR(0, 74, __pyx_L1_error) }
   __Pyx_INCREF(__pyx_t_1);
-  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 71, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 74, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
@@ -5197,13 +5391,13 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_4append(CYTHON
   __Pyx_GIVEREF(__pyx_v_self);
   PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_v_self);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_super, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 71, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_super, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_5 = __Pyx_PyObject_Append(__pyx_t_1, __pyx_v_obj); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 71, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_Append(__pyx_t_1, __pyx_v_obj); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 74, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "pypathfinder/fast/ctools.pyx":66
+  /* "pypathfinder/fast/ctools.pyx":69
  *         super().__setitem__(index, obj)
  * 
  *     def append(self, obj):             # <<<<<<<<<<<<<<
@@ -5225,7 +5419,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_4append(CYTHON
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pyx":73
+/* "pypathfinder/fast/ctools.pyx":76
  *         super().append(obj)
  * 
  *     def insert(self, int index, obj):             # <<<<<<<<<<<<<<
@@ -5272,17 +5466,17 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_9HighComby_7insert(PyObje
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_index)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("insert", 1, 3, 3, 1); __PYX_ERR(0, 73, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("insert", 1, 3, 3, 1); __PYX_ERR(0, 76, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_obj)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("insert", 1, 3, 3, 2); __PYX_ERR(0, 73, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("insert", 1, 3, 3, 2); __PYX_ERR(0, 76, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "insert") < 0)) __PYX_ERR(0, 73, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "insert") < 0)) __PYX_ERR(0, 76, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -5292,12 +5486,12 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_9HighComby_7insert(PyObje
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
     __pyx_v_self = values[0];
-    __pyx_v_index = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_index == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 73, __pyx_L3_error)
+    __pyx_v_index = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_index == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 76, __pyx_L3_error)
     __pyx_v_obj = values[2];
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("insert", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 73, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("insert", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 76, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pypathfinder.fast.ctools.HighComby.insert", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -5328,16 +5522,16 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_6insert(CYTHON
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("insert", 0);
 
-  /* "pypathfinder/fast/ctools.pyx":74
+  /* "pypathfinder/fast/ctools.pyx":77
  * 
  *     def insert(self, int index, obj):
  *         if obj in self.set and self.list[index] != obj:             # <<<<<<<<<<<<<<
  *             raise CDublicateError("object already exists")
  *         if index < 0 or index >= len(self.list):
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_set); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_set); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 77, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = (__Pyx_PySequence_ContainsTF(__pyx_v_obj, __pyx_t_2, Py_EQ)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __pyx_t_3 = (__Pyx_PySequence_ContainsTF(__pyx_v_obj, __pyx_t_2, Py_EQ)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 77, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_4 = (__pyx_t_3 != 0);
   if (__pyx_t_4) {
@@ -5345,33 +5539,33 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_6insert(CYTHON
     __pyx_t_1 = __pyx_t_4;
     goto __pyx_L4_bool_binop_done;
   }
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_list); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_list); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 77, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_2, __pyx_v_index, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_2, __pyx_v_index, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 77, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyObject_RichCompare(__pyx_t_5, __pyx_v_obj, Py_NE); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_t_5, __pyx_v_obj, Py_NE); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 77, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 77, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_1 = __pyx_t_4;
   __pyx_L4_bool_binop_done:;
   if (unlikely(__pyx_t_1)) {
 
-    /* "pypathfinder/fast/ctools.pyx":75
+    /* "pypathfinder/fast/ctools.pyx":78
  *     def insert(self, int index, obj):
  *         if obj in self.set and self.list[index] != obj:
  *             raise CDublicateError("object already exists")             # <<<<<<<<<<<<<<
  *         if index < 0 or index >= len(self.list):
  *             raise IndexError("index out of bounds")
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_CDublicateError), __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 75, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_CDublicateError), __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 78, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 75, __pyx_L1_error)
+    __PYX_ERR(0, 78, __pyx_L1_error)
 
-    /* "pypathfinder/fast/ctools.pyx":74
+    /* "pypathfinder/fast/ctools.pyx":77
  * 
  *     def insert(self, int index, obj):
  *         if obj in self.set and self.list[index] != obj:             # <<<<<<<<<<<<<<
@@ -5380,7 +5574,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_6insert(CYTHON
  */
   }
 
-  /* "pypathfinder/fast/ctools.pyx":76
+  /* "pypathfinder/fast/ctools.pyx":79
  *         if obj in self.set and self.list[index] != obj:
  *             raise CDublicateError("object already exists")
  *         if index < 0 or index >= len(self.list):             # <<<<<<<<<<<<<<
@@ -5393,29 +5587,29 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_6insert(CYTHON
     __pyx_t_1 = __pyx_t_4;
     goto __pyx_L7_bool_binop_done;
   }
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_list); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_list); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_6 = PyObject_Length(__pyx_t_2); if (unlikely(__pyx_t_6 == ((Py_ssize_t)-1))) __PYX_ERR(0, 76, __pyx_L1_error)
+  __pyx_t_6 = PyObject_Length(__pyx_t_2); if (unlikely(__pyx_t_6 == ((Py_ssize_t)-1))) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_4 = ((__pyx_v_index >= __pyx_t_6) != 0);
   __pyx_t_1 = __pyx_t_4;
   __pyx_L7_bool_binop_done:;
   if (unlikely(__pyx_t_1)) {
 
-    /* "pypathfinder/fast/ctools.pyx":77
+    /* "pypathfinder/fast/ctools.pyx":80
  *             raise CDublicateError("object already exists")
  *         if index < 0 or index >= len(self.list):
  *             raise IndexError("index out of bounds")             # <<<<<<<<<<<<<<
  *         if not hasattr(obj, "__hash__"):
  *             raise TypeError("object can't be hashed")
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_IndexError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 77, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_IndexError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 80, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 77, __pyx_L1_error)
+    __PYX_ERR(0, 80, __pyx_L1_error)
 
-    /* "pypathfinder/fast/ctools.pyx":76
+    /* "pypathfinder/fast/ctools.pyx":79
  *         if obj in self.set and self.list[index] != obj:
  *             raise CDublicateError("object already exists")
  *         if index < 0 or index >= len(self.list):             # <<<<<<<<<<<<<<
@@ -5424,31 +5618,31 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_6insert(CYTHON
  */
   }
 
-  /* "pypathfinder/fast/ctools.pyx":78
+  /* "pypathfinder/fast/ctools.pyx":81
  *         if index < 0 or index >= len(self.list):
  *             raise IndexError("index out of bounds")
  *         if not hasattr(obj, "__hash__"):             # <<<<<<<<<<<<<<
  *             raise TypeError("object can't be hashed")
  * 
  */
-  __pyx_t_1 = __Pyx_HasAttr(__pyx_v_obj, __pyx_n_u_hash); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 78, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_HasAttr(__pyx_v_obj, __pyx_n_u_hash); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 81, __pyx_L1_error)
   __pyx_t_4 = ((!(__pyx_t_1 != 0)) != 0);
   if (unlikely(__pyx_t_4)) {
 
-    /* "pypathfinder/fast/ctools.pyx":79
+    /* "pypathfinder/fast/ctools.pyx":82
  *             raise IndexError("index out of bounds")
  *         if not hasattr(obj, "__hash__"):
  *             raise TypeError("object can't be hashed")             # <<<<<<<<<<<<<<
  * 
  *         super().insert(index, obj)
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 79, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 82, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 79, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
 
-    /* "pypathfinder/fast/ctools.pyx":78
+    /* "pypathfinder/fast/ctools.pyx":81
  *         if index < 0 or index >= len(self.list):
  *             raise IndexError("index out of bounds")
  *         if not hasattr(obj, "__hash__"):             # <<<<<<<<<<<<<<
@@ -5457,7 +5651,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_6insert(CYTHON
  */
   }
 
-  /* "pypathfinder/fast/ctools.pyx":81
+  /* "pypathfinder/fast/ctools.pyx":84
  *             raise TypeError("object can't be hashed")
  * 
  *         super().insert(index, obj)             # <<<<<<<<<<<<<<
@@ -5465,9 +5659,9 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_6insert(CYTHON
  *     def pop(self, int index):
  */
   __pyx_t_5 = __Pyx_CyFunction_GetClassObj(__pyx_self);
-  if (!__pyx_t_5) { PyErr_SetString(PyExc_SystemError, "super(): empty __class__ cell"); __PYX_ERR(0, 81, __pyx_L1_error) }
+  if (!__pyx_t_5) { PyErr_SetString(PyExc_SystemError, "super(): empty __class__ cell"); __PYX_ERR(0, 84, __pyx_L1_error) }
   __Pyx_INCREF(__pyx_t_5);
-  __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 84, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_GIVEREF(__pyx_t_5);
   PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_5);
@@ -5475,13 +5669,13 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_6insert(CYTHON
   __Pyx_GIVEREF(__pyx_v_self);
   PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_v_self);
   __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_super, __pyx_t_7, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_super, __pyx_t_7, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 84, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_insert); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_insert); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 84, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_index); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_index); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 84, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_8 = NULL;
   __pyx_t_9 = 0;
@@ -5498,7 +5692,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_6insert(CYTHON
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_7)) {
     PyObject *__pyx_temp[3] = {__pyx_t_8, __pyx_t_5, __pyx_v_obj};
-    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 84, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -5507,14 +5701,14 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_6insert(CYTHON
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_7)) {
     PyObject *__pyx_temp[3] = {__pyx_t_8, __pyx_t_5, __pyx_v_obj};
-    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 84, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   } else
   #endif
   {
-    __pyx_t_10 = PyTuple_New(2+__pyx_t_9); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_10 = PyTuple_New(2+__pyx_t_9); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 84, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     if (__pyx_t_8) {
       __Pyx_GIVEREF(__pyx_t_8); PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_8); __pyx_t_8 = NULL;
@@ -5525,14 +5719,14 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_6insert(CYTHON
     __Pyx_GIVEREF(__pyx_v_obj);
     PyTuple_SET_ITEM(__pyx_t_10, 1+__pyx_t_9, __pyx_v_obj);
     __pyx_t_5 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_10, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_10, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 84, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
   }
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "pypathfinder/fast/ctools.pyx":73
+  /* "pypathfinder/fast/ctools.pyx":76
  *         super().append(obj)
  * 
  *     def insert(self, int index, obj):             # <<<<<<<<<<<<<<
@@ -5557,7 +5751,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_6insert(CYTHON
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pyx":83
+/* "pypathfinder/fast/ctools.pyx":86
  *         super().insert(index, obj)
  * 
  *     def pop(self, int index):             # <<<<<<<<<<<<<<
@@ -5601,11 +5795,11 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_9HighComby_9pop(PyObject 
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_index)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("pop", 1, 2, 2, 1); __PYX_ERR(0, 83, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("pop", 1, 2, 2, 1); __PYX_ERR(0, 86, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "pop") < 0)) __PYX_ERR(0, 83, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "pop") < 0)) __PYX_ERR(0, 86, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -5614,11 +5808,11 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_9HighComby_9pop(PyObject 
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
     __pyx_v_self = values[0];
-    __pyx_v_index = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_index == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_index = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_index == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 86, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("pop", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 83, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("pop", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 86, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pypathfinder.fast.ctools.HighComby.pop", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -5658,7 +5852,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_8pop(CYTHON_UN
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("pop", 0);
 
-  /* "pypathfinder/fast/ctools.pyx":84
+  /* "pypathfinder/fast/ctools.pyx":87
  * 
  *     def pop(self, int index):
  *         try:             # <<<<<<<<<<<<<<
@@ -5674,31 +5868,31 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_8pop(CYTHON_UN
     __Pyx_XGOTREF(__pyx_t_3);
     /*try:*/ {
 
-      /* "pypathfinder/fast/ctools.pyx":85
+      /* "pypathfinder/fast/ctools.pyx":88
  *     def pop(self, int index):
  *         try:
  *             r = self.list.pop(index)             # <<<<<<<<<<<<<<
  *             self.set.pop(r)
  *             return r
  */
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_list); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L3_error)
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_list); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 88, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_5 = __Pyx_PyObject_PopIndex(__pyx_t_4, Py_None, __pyx_v_index, 1, int, __Pyx_PyInt_From_int); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 85, __pyx_L3_error)
+      __pyx_t_5 = __Pyx_PyObject_PopIndex(__pyx_t_4, Py_None, __pyx_v_index, 1, int, __Pyx_PyInt_From_int); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 88, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __pyx_v_r = __pyx_t_5;
       __pyx_t_5 = 0;
 
-      /* "pypathfinder/fast/ctools.pyx":86
+      /* "pypathfinder/fast/ctools.pyx":89
  *         try:
  *             r = self.list.pop(index)
  *             self.set.pop(r)             # <<<<<<<<<<<<<<
  *             return r
  *         except IndexError as e:
  */
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_set); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 86, __pyx_L3_error)
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_set); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 89, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_pop); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 86, __pyx_L3_error)
+      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_pop); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 89, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __pyx_t_4 = NULL;
@@ -5713,12 +5907,12 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_8pop(CYTHON_UN
       }
       __pyx_t_5 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_4, __pyx_v_r) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_r);
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 86, __pyx_L3_error)
+      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 89, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-      /* "pypathfinder/fast/ctools.pyx":87
+      /* "pypathfinder/fast/ctools.pyx":90
  *             r = self.list.pop(index)
  *             self.set.pop(r)
  *             return r             # <<<<<<<<<<<<<<
@@ -5730,7 +5924,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_8pop(CYTHON_UN
       __pyx_r = __pyx_v_r;
       goto __pyx_L7_try_return;
 
-      /* "pypathfinder/fast/ctools.pyx":84
+      /* "pypathfinder/fast/ctools.pyx":87
  * 
  *     def pop(self, int index):
  *         try:             # <<<<<<<<<<<<<<
@@ -5743,7 +5937,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_8pop(CYTHON_UN
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-    /* "pypathfinder/fast/ctools.pyx":88
+    /* "pypathfinder/fast/ctools.pyx":91
  *             self.set.pop(r)
  *             return r
  *         except IndexError as e:             # <<<<<<<<<<<<<<
@@ -5753,7 +5947,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_8pop(CYTHON_UN
     __pyx_t_7 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_IndexError);
     if (__pyx_t_7) {
       __Pyx_AddTraceback("pypathfinder.fast.ctools.HighComby.pop", __pyx_clineno, __pyx_lineno, __pyx_filename);
-      if (__Pyx_GetException(&__pyx_t_5, &__pyx_t_6, &__pyx_t_4) < 0) __PYX_ERR(0, 88, __pyx_L5_except_error)
+      if (__Pyx_GetException(&__pyx_t_5, &__pyx_t_6, &__pyx_t_4) < 0) __PYX_ERR(0, 91, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_GOTREF(__pyx_t_4);
@@ -5761,21 +5955,21 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_8pop(CYTHON_UN
       __pyx_v_e = __pyx_t_6;
       /*try:*/ {
 
-        /* "pypathfinder/fast/ctools.pyx":89
+        /* "pypathfinder/fast/ctools.pyx":92
  *             return r
  *         except IndexError as e:
  *             raise IndexError("out of bounds") from e             # <<<<<<<<<<<<<<
  *         except KeyError as e:
  *             raise CPathfinderError("set didn't contain item") from e
  */
-        __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_IndexError, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 89, __pyx_L14_error)
+        __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_IndexError, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 92, __pyx_L14_error)
         __Pyx_GOTREF(__pyx_t_8);
         __Pyx_Raise(__pyx_t_8, 0, 0, __pyx_v_e);
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-        __PYX_ERR(0, 89, __pyx_L14_error)
+        __PYX_ERR(0, 92, __pyx_L14_error)
       }
 
-      /* "pypathfinder/fast/ctools.pyx":88
+      /* "pypathfinder/fast/ctools.pyx":91
  *             self.set.pop(r)
  *             return r
  *         except IndexError as e:             # <<<<<<<<<<<<<<
@@ -5819,7 +6013,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_8pop(CYTHON_UN
       }
     }
 
-    /* "pypathfinder/fast/ctools.pyx":90
+    /* "pypathfinder/fast/ctools.pyx":93
  *         except IndexError as e:
  *             raise IndexError("out of bounds") from e
  *         except KeyError as e:             # <<<<<<<<<<<<<<
@@ -5829,7 +6023,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_8pop(CYTHON_UN
     __pyx_t_9 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_KeyError);
     if (__pyx_t_9) {
       __Pyx_AddTraceback("pypathfinder.fast.ctools.HighComby.pop", __pyx_clineno, __pyx_lineno, __pyx_filename);
-      if (__Pyx_GetException(&__pyx_t_4, &__pyx_t_6, &__pyx_t_5) < 0) __PYX_ERR(0, 90, __pyx_L5_except_error)
+      if (__Pyx_GetException(&__pyx_t_4, &__pyx_t_6, &__pyx_t_5) < 0) __PYX_ERR(0, 93, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_GOTREF(__pyx_t_5);
@@ -5837,21 +6031,21 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_8pop(CYTHON_UN
       __pyx_v_e = __pyx_t_6;
       /*try:*/ {
 
-        /* "pypathfinder/fast/ctools.pyx":91
+        /* "pypathfinder/fast/ctools.pyx":94
  *             raise IndexError("out of bounds") from e
  *         except KeyError as e:
  *             raise CPathfinderError("set didn't contain item") from e             # <<<<<<<<<<<<<<
  * 
  * cdef wrappop(LowComby x):
  */
-        __pyx_t_8 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_CPathfinderError), __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 91, __pyx_L25_error)
+        __pyx_t_8 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_CPathfinderError), __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 94, __pyx_L25_error)
         __Pyx_GOTREF(__pyx_t_8);
         __Pyx_Raise(__pyx_t_8, 0, 0, __pyx_v_e);
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-        __PYX_ERR(0, 91, __pyx_L25_error)
+        __PYX_ERR(0, 94, __pyx_L25_error)
       }
 
-      /* "pypathfinder/fast/ctools.pyx":90
+      /* "pypathfinder/fast/ctools.pyx":93
  *         except IndexError as e:
  *             raise IndexError("out of bounds") from e
  *         except KeyError as e:             # <<<<<<<<<<<<<<
@@ -5897,7 +6091,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_8pop(CYTHON_UN
     goto __pyx_L5_except_error;
     __pyx_L5_except_error:;
 
-    /* "pypathfinder/fast/ctools.pyx":84
+    /* "pypathfinder/fast/ctools.pyx":87
  * 
  *     def pop(self, int index):
  *         try:             # <<<<<<<<<<<<<<
@@ -5917,7 +6111,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_8pop(CYTHON_UN
     goto __pyx_L0;
   }
 
-  /* "pypathfinder/fast/ctools.pyx":83
+  /* "pypathfinder/fast/ctools.pyx":86
  *         super().insert(index, obj)
  * 
  *     def pop(self, int index):             # <<<<<<<<<<<<<<
@@ -5941,7 +6135,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_9HighComby_8pop(CYTHON_UN
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pyx":93
+/* "pypathfinder/fast/ctools.pyx":96
  *             raise CPathfinderError("set didn't contain item") from e
  * 
  * cdef wrappop(LowComby x):             # <<<<<<<<<<<<<<
@@ -5960,7 +6154,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_wrappop(struct __pyx_obj_1
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("wrappop", 0);
 
-  /* "pypathfinder/fast/ctools.pyx":94
+  /* "pypathfinder/fast/ctools.pyx":97
  * 
  * cdef wrappop(LowComby x):
  *     return heappop(x.list_)             # <<<<<<<<<<<<<<
@@ -5968,7 +6162,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_wrappop(struct __pyx_obj_1
  * cdef wrappush(LowComby x, CNode n):
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_heappop); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 94, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_heappop); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 97, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
@@ -5982,14 +6176,14 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_wrappop(struct __pyx_obj_1
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_v_x->list_) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_x->list_);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 94, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 97, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pypathfinder/fast/ctools.pyx":93
+  /* "pypathfinder/fast/ctools.pyx":96
  *             raise CPathfinderError("set didn't contain item") from e
  * 
  * cdef wrappop(LowComby x):             # <<<<<<<<<<<<<<
@@ -6010,7 +6204,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_wrappop(struct __pyx_obj_1
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pyx":96
+/* "pypathfinder/fast/ctools.pyx":99
  *     return heappop(x.list_)
  * 
  * cdef wrappush(LowComby x, CNode n):             # <<<<<<<<<<<<<<
@@ -6031,7 +6225,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_wrappush(struct __pyx_obj_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("wrappush", 0);
 
-  /* "pypathfinder/fast/ctools.pyx":97
+  /* "pypathfinder/fast/ctools.pyx":100
  * 
  * cdef wrappush(LowComby x, CNode n):
  *     return heappush(x.list_, n)             # <<<<<<<<<<<<<<
@@ -6039,7 +6233,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_wrappush(struct __pyx_obj_
  * cdef class CNode:
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_heappush); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 97, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_heappush); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   __pyx_t_4 = 0;
@@ -6056,7 +6250,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_wrappush(struct __pyx_obj_
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_v_x->list_, ((PyObject *)__pyx_v_n)};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 97, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else
@@ -6064,13 +6258,13 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_wrappush(struct __pyx_obj_
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_v_x->list_, ((PyObject *)__pyx_v_n)};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 97, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else
   #endif
   {
-    __pyx_t_5 = PyTuple_New(2+__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 97, __pyx_L1_error)
+    __pyx_t_5 = PyTuple_New(2+__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 100, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     if (__pyx_t_3) {
       __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_3); __pyx_t_3 = NULL;
@@ -6081,7 +6275,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_wrappush(struct __pyx_obj_
     __Pyx_INCREF(((PyObject *)__pyx_v_n));
     __Pyx_GIVEREF(((PyObject *)__pyx_v_n));
     PyTuple_SET_ITEM(__pyx_t_5, 1+__pyx_t_4, ((PyObject *)__pyx_v_n));
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 97, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
@@ -6090,7 +6284,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_wrappush(struct __pyx_obj_
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pypathfinder/fast/ctools.pyx":96
+  /* "pypathfinder/fast/ctools.pyx":99
  *     return heappop(x.list_)
  * 
  * cdef wrappush(LowComby x, CNode n):             # <<<<<<<<<<<<<<
@@ -6112,17 +6306,17 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_wrappush(struct __pyx_obj_
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pyx":100
+/* "pypathfinder/fast/ctools.pyx":103
  * 
  * cdef class CNode:
- *     def __init__(self, id_, connections = None):             # <<<<<<<<<<<<<<
+ *     def __cinit__(self, id_, connections = None):             # <<<<<<<<<<<<<<
  *         self._connections = {} if connections is None else connections
  *         self.id = id_
  */
 
 /* Python wrapper */
-static int __pyx_pw_12pypathfinder_4fast_6ctools_5CNode_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static int __pyx_pw_12pypathfinder_4fast_6ctools_5CNode_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static int __pyx_pw_12pypathfinder_4fast_6ctools_5CNode_1__cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static int __pyx_pw_12pypathfinder_4fast_6ctools_5CNode_1__cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_id_ = 0;
   PyObject *__pyx_v_connections = 0;
   int __pyx_lineno = 0;
@@ -6130,7 +6324,7 @@ static int __pyx_pw_12pypathfinder_4fast_6ctools_5CNode_1__init__(PyObject *__py
   int __pyx_clineno = 0;
   int __pyx_r;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("__init__ (wrapper)", 0);
+  __Pyx_RefNannySetupContext("__cinit__ (wrapper)", 0);
   {
     static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_id,&__pyx_n_s_connections,0};
     PyObject* values[2] = {0,0};
@@ -6159,7 +6353,7 @@ static int __pyx_pw_12pypathfinder_4fast_6ctools_5CNode_1__init__(PyObject *__py
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 100, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) __PYX_ERR(0, 103, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -6175,20 +6369,20 @@ static int __pyx_pw_12pypathfinder_4fast_6ctools_5CNode_1__init__(PyObject *__py
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 100, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__cinit__", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 103, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("pypathfinder.fast.ctools.CNode.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("pypathfinder.fast.ctools.CNode.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_12pypathfinder_4fast_6ctools_5CNode___init__(((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_v_self), __pyx_v_id_, __pyx_v_connections);
+  __pyx_r = __pyx_pf_12pypathfinder_4fast_6ctools_5CNode___cinit__(((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_v_self), __pyx_v_id_, __pyx_v_connections);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static int __pyx_pf_12pypathfinder_4fast_6ctools_5CNode___init__(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_self, PyObject *__pyx_v_id_, PyObject *__pyx_v_connections) {
+static int __pyx_pf_12pypathfinder_4fast_6ctools_5CNode___cinit__(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_self, PyObject *__pyx_v_id_, PyObject *__pyx_v_connections) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -6197,23 +6391,23 @@ static int __pyx_pf_12pypathfinder_4fast_6ctools_5CNode___init__(struct __pyx_ob
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("__init__", 0);
+  __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "pypathfinder/fast/ctools.pyx":101
+  /* "pypathfinder/fast/ctools.pyx":104
  * cdef class CNode:
- *     def __init__(self, id_, connections = None):
+ *     def __cinit__(self, id_, connections = None):
  *         self._connections = {} if connections is None else connections             # <<<<<<<<<<<<<<
  *         self.id = id_
  *         self.cost = INFINITY
  */
   __pyx_t_2 = (__pyx_v_connections == Py_None);
   if ((__pyx_t_2 != 0)) {
-    __pyx_t_3 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 101, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 104, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_1 = __pyx_t_3;
     __pyx_t_3 = 0;
   } else {
-    if (!(likely(PyDict_CheckExact(__pyx_v_connections))||((__pyx_v_connections) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "dict", Py_TYPE(__pyx_v_connections)->tp_name), 0))) __PYX_ERR(0, 101, __pyx_L1_error)
+    if (!(likely(PyDict_CheckExact(__pyx_v_connections))||((__pyx_v_connections) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "dict", Py_TYPE(__pyx_v_connections)->tp_name), 0))) __PYX_ERR(0, 104, __pyx_L1_error)
     __Pyx_INCREF(__pyx_v_connections);
     __pyx_t_1 = __pyx_v_connections;
   }
@@ -6223,8 +6417,8 @@ static int __pyx_pf_12pypathfinder_4fast_6ctools_5CNode___init__(struct __pyx_ob
   __pyx_v_self->_connections = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pypathfinder/fast/ctools.pyx":102
- *     def __init__(self, id_, connections = None):
+  /* "pypathfinder/fast/ctools.pyx":105
+ *     def __cinit__(self, id_, connections = None):
  *         self._connections = {} if connections is None else connections
  *         self.id = id_             # <<<<<<<<<<<<<<
  *         self.cost = INFINITY
@@ -6236,7 +6430,7 @@ static int __pyx_pf_12pypathfinder_4fast_6ctools_5CNode___init__(struct __pyx_ob
   __Pyx_DECREF(__pyx_v_self->id);
   __pyx_v_self->id = __pyx_v_id_;
 
-  /* "pypathfinder/fast/ctools.pyx":103
+  /* "pypathfinder/fast/ctools.pyx":106
  *         self._connections = {} if connections is None else connections
  *         self.id = id_
  *         self.cost = INFINITY             # <<<<<<<<<<<<<<
@@ -6245,7 +6439,7 @@ static int __pyx_pf_12pypathfinder_4fast_6ctools_5CNode___init__(struct __pyx_ob
  */
   __pyx_v_self->cost = __pyx_v_12pypathfinder_4fast_6ctools_INFINITY;
 
-  /* "pypathfinder/fast/ctools.pyx":104
+  /* "pypathfinder/fast/ctools.pyx":107
  *         self.id = id_
  *         self.cost = INFINITY
  *         self.probable_cost = INFINITY             # <<<<<<<<<<<<<<
@@ -6254,10 +6448,10 @@ static int __pyx_pf_12pypathfinder_4fast_6ctools_5CNode___init__(struct __pyx_ob
  */
   __pyx_v_self->probable_cost = __pyx_v_12pypathfinder_4fast_6ctools_INFINITY;
 
-  /* "pypathfinder/fast/ctools.pyx":100
+  /* "pypathfinder/fast/ctools.pyx":103
  * 
  * cdef class CNode:
- *     def __init__(self, id_, connections = None):             # <<<<<<<<<<<<<<
+ *     def __cinit__(self, id_, connections = None):             # <<<<<<<<<<<<<<
  *         self._connections = {} if connections is None else connections
  *         self.id = id_
  */
@@ -6268,14 +6462,14 @@ static int __pyx_pf_12pypathfinder_4fast_6ctools_5CNode___init__(struct __pyx_ob
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("pypathfinder.fast.ctools.CNode.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("pypathfinder.fast.ctools.CNode.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pyx":106
+/* "pypathfinder/fast/ctools.pyx":109
  *         self.probable_cost = INFINITY
  * 
  *     def __str__(self) -> str:             # <<<<<<<<<<<<<<
@@ -6309,7 +6503,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_2__str__(struct __
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__str__", 0);
 
-  /* "pypathfinder/fast/ctools.pyx":107
+  /* "pypathfinder/fast/ctools.pyx":110
  * 
  *     def __str__(self) -> str:
  *         return f"CNode(id={self.id}, cost={self.cost})"             # <<<<<<<<<<<<<<
@@ -6317,7 +6511,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_2__str__(struct __
  *     def __repr__(self) -> str:
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyTuple_New(5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_2 = 0;
   __pyx_t_3 = 127;
@@ -6325,7 +6519,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_2__str__(struct __
   __pyx_t_2 += 9;
   __Pyx_GIVEREF(__pyx_kp_u_CNode_id);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_kp_u_CNode_id);
-  __pyx_t_4 = __Pyx_PyObject_FormatSimple(__pyx_v_self->id, __pyx_empty_unicode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_FormatSimple(__pyx_v_self->id, __pyx_empty_unicode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_3 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_4) > __pyx_t_3) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_4) : __pyx_t_3;
   __pyx_t_2 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_4);
@@ -6336,9 +6530,9 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_2__str__(struct __
   __pyx_t_2 += 7;
   __Pyx_GIVEREF(__pyx_kp_u_cost);
   PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_kp_u_cost);
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->cost); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->cost); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_FormatSimple(__pyx_t_4, __pyx_empty_unicode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_FormatSimple(__pyx_t_4, __pyx_empty_unicode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_3 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_5) > __pyx_t_3) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_5) : __pyx_t_3;
@@ -6350,14 +6544,14 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_2__str__(struct __
   __pyx_t_2 += 1;
   __Pyx_GIVEREF(__pyx_kp_u__6);
   PyTuple_SET_ITEM(__pyx_t_1, 4, __pyx_kp_u__6);
-  __pyx_t_5 = __Pyx_PyUnicode_Join(__pyx_t_1, 5, __pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyUnicode_Join(__pyx_t_1, 5, __pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_5;
   __pyx_t_5 = 0;
   goto __pyx_L0;
 
-  /* "pypathfinder/fast/ctools.pyx":106
+  /* "pypathfinder/fast/ctools.pyx":109
  *         self.probable_cost = INFINITY
  * 
  *     def __str__(self) -> str:             # <<<<<<<<<<<<<<
@@ -6378,7 +6572,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_2__str__(struct __
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pyx":109
+/* "pypathfinder/fast/ctools.pyx":112
  *         return f"CNode(id={self.id}, cost={self.cost})"
  * 
  *     def __repr__(self) -> str:             # <<<<<<<<<<<<<<
@@ -6410,7 +6604,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_4__repr__(struct _
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__repr__", 0);
 
-  /* "pypathfinder/fast/ctools.pyx":110
+  /* "pypathfinder/fast/ctools.pyx":113
  * 
  *     def __repr__(self) -> str:
  *         return self.__str__()             # <<<<<<<<<<<<<<
@@ -6418,7 +6612,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_4__repr__(struct _
  *     def __lt__(self, CNode other):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_str); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 110, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_str); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 113, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -6432,14 +6626,14 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_4__repr__(struct _
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 110, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 113, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pypathfinder/fast/ctools.pyx":109
+  /* "pypathfinder/fast/ctools.pyx":112
  *         return f"CNode(id={self.id}, cost={self.cost})"
  * 
  *     def __repr__(self) -> str:             # <<<<<<<<<<<<<<
@@ -6460,7 +6654,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_4__repr__(struct _
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pyx":112
+/* "pypathfinder/fast/ctools.pyx":115
  *         return self.__str__()
  * 
  *     def __lt__(self, CNode other):             # <<<<<<<<<<<<<<
@@ -6477,7 +6671,7 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_5CNode_7__lt__(PyObject *
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__lt__ (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "other", 0))) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "other", 0))) __PYX_ERR(0, 115, __pyx_L1_error)
   __pyx_r = __pyx_pf_12pypathfinder_4fast_6ctools_5CNode_6__lt__(((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_v_self), ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_v_other));
 
   /* function exit code */
@@ -6498,7 +6692,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_6__lt__(struct __p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__lt__", 0);
 
-  /* "pypathfinder/fast/ctools.pyx":113
+  /* "pypathfinder/fast/ctools.pyx":116
  * 
  *     def __lt__(self, CNode other):
  *         return self.cost < other.cost             # <<<<<<<<<<<<<<
@@ -6506,13 +6700,13 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_6__lt__(struct __p
  *     def __le__(self, CNode other):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyBool_FromLong((__pyx_v_self->cost < __pyx_v_other->cost)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 113, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyBool_FromLong((__pyx_v_self->cost < __pyx_v_other->cost)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pypathfinder/fast/ctools.pyx":112
+  /* "pypathfinder/fast/ctools.pyx":115
  *         return self.__str__()
  * 
  *     def __lt__(self, CNode other):             # <<<<<<<<<<<<<<
@@ -6531,7 +6725,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_6__lt__(struct __p
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pyx":115
+/* "pypathfinder/fast/ctools.pyx":118
  *         return self.cost < other.cost
  * 
  *     def __le__(self, CNode other):             # <<<<<<<<<<<<<<
@@ -6548,7 +6742,7 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_5CNode_9__le__(PyObject *
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__le__ (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "other", 0))) __PYX_ERR(0, 115, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "other", 0))) __PYX_ERR(0, 118, __pyx_L1_error)
   __pyx_r = __pyx_pf_12pypathfinder_4fast_6ctools_5CNode_8__le__(((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_v_self), ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_v_other));
 
   /* function exit code */
@@ -6569,7 +6763,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_8__le__(struct __p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__le__", 0);
 
-  /* "pypathfinder/fast/ctools.pyx":116
+  /* "pypathfinder/fast/ctools.pyx":119
  * 
  *     def __le__(self, CNode other):
  *         return self.cost <= other.cost             # <<<<<<<<<<<<<<
@@ -6577,13 +6771,13 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_8__le__(struct __p
  *     def __gt__(self, CNode other):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyBool_FromLong((__pyx_v_self->cost <= __pyx_v_other->cost)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyBool_FromLong((__pyx_v_self->cost <= __pyx_v_other->cost)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 119, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pypathfinder/fast/ctools.pyx":115
+  /* "pypathfinder/fast/ctools.pyx":118
  *         return self.cost < other.cost
  * 
  *     def __le__(self, CNode other):             # <<<<<<<<<<<<<<
@@ -6602,7 +6796,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_8__le__(struct __p
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pyx":118
+/* "pypathfinder/fast/ctools.pyx":121
  *         return self.cost <= other.cost
  * 
  *     def __gt__(self, CNode other):             # <<<<<<<<<<<<<<
@@ -6619,7 +6813,7 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_5CNode_11__gt__(PyObject 
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__gt__ (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "other", 0))) __PYX_ERR(0, 118, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "other", 0))) __PYX_ERR(0, 121, __pyx_L1_error)
   __pyx_r = __pyx_pf_12pypathfinder_4fast_6ctools_5CNode_10__gt__(((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_v_self), ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_v_other));
 
   /* function exit code */
@@ -6640,7 +6834,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_10__gt__(struct __
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__gt__", 0);
 
-  /* "pypathfinder/fast/ctools.pyx":119
+  /* "pypathfinder/fast/ctools.pyx":122
  * 
  *     def __gt__(self, CNode other):
  *         return self.cost > other.cost             # <<<<<<<<<<<<<<
@@ -6648,13 +6842,13 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_10__gt__(struct __
  *     def __ge__(self, CNode other):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyBool_FromLong((__pyx_v_self->cost > __pyx_v_other->cost)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 119, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyBool_FromLong((__pyx_v_self->cost > __pyx_v_other->cost)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 122, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pypathfinder/fast/ctools.pyx":118
+  /* "pypathfinder/fast/ctools.pyx":121
  *         return self.cost <= other.cost
  * 
  *     def __gt__(self, CNode other):             # <<<<<<<<<<<<<<
@@ -6673,7 +6867,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_10__gt__(struct __
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pyx":121
+/* "pypathfinder/fast/ctools.pyx":124
  *         return self.cost > other.cost
  * 
  *     def __ge__(self, CNode other):             # <<<<<<<<<<<<<<
@@ -6690,7 +6884,7 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_5CNode_13__ge__(PyObject 
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__ge__ (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "other", 0))) __PYX_ERR(0, 121, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "other", 0))) __PYX_ERR(0, 124, __pyx_L1_error)
   __pyx_r = __pyx_pf_12pypathfinder_4fast_6ctools_5CNode_12__ge__(((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_v_self), ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_v_other));
 
   /* function exit code */
@@ -6711,7 +6905,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_12__ge__(struct __
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__ge__", 0);
 
-  /* "pypathfinder/fast/ctools.pyx":122
+  /* "pypathfinder/fast/ctools.pyx":125
  * 
  *     def __ge__(self, CNode other):
  *         return self.probable_cost >= other.probable_cost             # <<<<<<<<<<<<<<
@@ -6719,13 +6913,13 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_12__ge__(struct __
  *     def __eq__(self, CNode other):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyBool_FromLong((__pyx_v_self->probable_cost >= __pyx_v_other->probable_cost)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 122, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyBool_FromLong((__pyx_v_self->probable_cost >= __pyx_v_other->probable_cost)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 125, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pypathfinder/fast/ctools.pyx":121
+  /* "pypathfinder/fast/ctools.pyx":124
  *         return self.cost > other.cost
  * 
  *     def __ge__(self, CNode other):             # <<<<<<<<<<<<<<
@@ -6744,7 +6938,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_12__ge__(struct __
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pyx":124
+/* "pypathfinder/fast/ctools.pyx":127
  *         return self.probable_cost >= other.probable_cost
  * 
  *     def __eq__(self, CNode other):             # <<<<<<<<<<<<<<
@@ -6761,7 +6955,7 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_5CNode_15__eq__(PyObject 
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__eq__ (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "other", 0))) __PYX_ERR(0, 124, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "other", 0))) __PYX_ERR(0, 127, __pyx_L1_error)
   __pyx_r = __pyx_pf_12pypathfinder_4fast_6ctools_5CNode_14__eq__(((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_v_self), ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_v_other));
 
   /* function exit code */
@@ -6782,7 +6976,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_14__eq__(struct __
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__eq__", 0);
 
-  /* "pypathfinder/fast/ctools.pyx":125
+  /* "pypathfinder/fast/ctools.pyx":128
  * 
  *     def __eq__(self, CNode other):
  *         return other.id == self.id             # <<<<<<<<<<<<<<
@@ -6790,12 +6984,12 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_14__eq__(struct __
  *     def __hash__(self) -> int:
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_other->id, __pyx_v_self->id, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 125, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_other->id, __pyx_v_self->id, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 128, __pyx_L1_error)
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pypathfinder/fast/ctools.pyx":124
+  /* "pypathfinder/fast/ctools.pyx":127
  *         return self.probable_cost >= other.probable_cost
  * 
  *     def __eq__(self, CNode other):             # <<<<<<<<<<<<<<
@@ -6814,7 +7008,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_14__eq__(struct __
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pyx":127
+/* "pypathfinder/fast/ctools.pyx":130
  *         return other.id == self.id
  * 
  *     def __hash__(self) -> int:             # <<<<<<<<<<<<<<
@@ -6845,7 +7039,7 @@ static Py_hash_t __pyx_pf_12pypathfinder_4fast_6ctools_5CNode_16__hash__(struct 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__hash__", 0);
 
-  /* "pypathfinder/fast/ctools.pyx":128
+  /* "pypathfinder/fast/ctools.pyx":131
  * 
  *     def __hash__(self) -> int:
  *         return hash(self.id)             # <<<<<<<<<<<<<<
@@ -6854,12 +7048,12 @@ static Py_hash_t __pyx_pf_12pypathfinder_4fast_6ctools_5CNode_16__hash__(struct 
  */
   __pyx_t_1 = __pyx_v_self->id;
   __Pyx_INCREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Hash(__pyx_t_1); if (unlikely(__pyx_t_2 == ((Py_hash_t)-1))) __PYX_ERR(0, 128, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Hash(__pyx_t_1); if (unlikely(__pyx_t_2 == ((Py_hash_t)-1))) __PYX_ERR(0, 131, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   goto __pyx_L0;
 
-  /* "pypathfinder/fast/ctools.pyx":127
+  /* "pypathfinder/fast/ctools.pyx":130
  *         return other.id == self.id
  * 
  *     def __hash__(self) -> int:             # <<<<<<<<<<<<<<
@@ -6878,7 +7072,7 @@ static Py_hash_t __pyx_pf_12pypathfinder_4fast_6ctools_5CNode_16__hash__(struct 
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pyx":130
+/* "pypathfinder/fast/ctools.pyx":133
  *         return hash(self.id)
  * 
  *     cpdef void connect(self, dict conn, bint reflect = False):             # <<<<<<<<<<<<<<
@@ -6923,10 +7117,10 @@ static void __pyx_f_12pypathfinder_4fast_6ctools_5CNode_connect(struct __pyx_obj
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_connect); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 130, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_connect); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 133, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_12pypathfinder_4fast_6ctools_5CNode_19connect)) {
-        __pyx_t_3 = __Pyx_PyBool_FromLong(__pyx_v_reflect); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 130, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyBool_FromLong(__pyx_v_reflect); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 133, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -6944,7 +7138,7 @@ static void __pyx_f_12pypathfinder_4fast_6ctools_5CNode_connect(struct __pyx_obj
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_4)) {
           PyObject *__pyx_temp[3] = {__pyx_t_5, __pyx_v_conn, __pyx_t_3};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 130, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 133, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -6953,14 +7147,14 @@ static void __pyx_f_12pypathfinder_4fast_6ctools_5CNode_connect(struct __pyx_obj
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
           PyObject *__pyx_temp[3] = {__pyx_t_5, __pyx_v_conn, __pyx_t_3};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 130, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 133, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         } else
         #endif
         {
-          __pyx_t_7 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 130, __pyx_L1_error)
+          __pyx_t_7 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 133, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
           if (__pyx_t_5) {
             __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_5); __pyx_t_5 = NULL;
@@ -6971,7 +7165,7 @@ static void __pyx_f_12pypathfinder_4fast_6ctools_5CNode_connect(struct __pyx_obj
           __Pyx_GIVEREF(__pyx_t_3);
           PyTuple_SET_ITEM(__pyx_t_7, 1+__pyx_t_6, __pyx_t_3);
           __pyx_t_3 = 0;
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 130, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 133, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
         }
@@ -6993,14 +7187,14 @@ static void __pyx_f_12pypathfinder_4fast_6ctools_5CNode_connect(struct __pyx_obj
     #endif
   }
 
-  /* "pypathfinder/fast/ctools.pyx":138
+  /* "pypathfinder/fast/ctools.pyx":141
  *         cdef double value
  *         cdef CNode cnode
  *         self._connections.update(conn)             # <<<<<<<<<<<<<<
  *         if reflect:
  *             for cnode, value in conn.items():
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->_connections, __pyx_n_s_update); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->_connections, __pyx_n_s_update); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -7014,12 +7208,12 @@ static void __pyx_f_12pypathfinder_4fast_6ctools_5CNode_connect(struct __pyx_obj
   }
   __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_4, __pyx_v_conn) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_conn);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 138, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "pypathfinder/fast/ctools.pyx":139
+  /* "pypathfinder/fast/ctools.pyx":142
  *         cdef CNode cnode
  *         self._connections.update(conn)
  *         if reflect:             # <<<<<<<<<<<<<<
@@ -7029,7 +7223,7 @@ static void __pyx_f_12pypathfinder_4fast_6ctools_5CNode_connect(struct __pyx_obj
   __pyx_t_8 = (__pyx_v_reflect != 0);
   if (__pyx_t_8) {
 
-    /* "pypathfinder/fast/ctools.pyx":140
+    /* "pypathfinder/fast/ctools.pyx":143
  *         self._connections.update(conn)
  *         if reflect:
  *             for cnode, value in conn.items():             # <<<<<<<<<<<<<<
@@ -7039,9 +7233,9 @@ static void __pyx_f_12pypathfinder_4fast_6ctools_5CNode_connect(struct __pyx_obj
     __pyx_t_9 = 0;
     if (unlikely(__pyx_v_conn == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "items");
-      __PYX_ERR(0, 140, __pyx_L1_error)
+      __PYX_ERR(0, 143, __pyx_L1_error)
     }
-    __pyx_t_2 = __Pyx_dict_iterator(__pyx_v_conn, 1, __pyx_n_s_items, (&__pyx_t_10), (&__pyx_t_6)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 140, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_dict_iterator(__pyx_v_conn, 1, __pyx_n_s_items, (&__pyx_t_10), (&__pyx_t_6)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 143, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_XDECREF(__pyx_t_1);
     __pyx_t_1 = __pyx_t_2;
@@ -7049,28 +7243,28 @@ static void __pyx_f_12pypathfinder_4fast_6ctools_5CNode_connect(struct __pyx_obj
     while (1) {
       __pyx_t_11 = __Pyx_dict_iter_next(__pyx_t_1, __pyx_t_10, &__pyx_t_9, &__pyx_t_2, &__pyx_t_4, NULL, __pyx_t_6);
       if (unlikely(__pyx_t_11 == 0)) break;
-      if (unlikely(__pyx_t_11 == -1)) __PYX_ERR(0, 140, __pyx_L1_error)
+      if (unlikely(__pyx_t_11 == -1)) __PYX_ERR(0, 143, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_GOTREF(__pyx_t_4);
-      if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_12pypathfinder_4fast_6ctools_CNode))))) __PYX_ERR(0, 140, __pyx_L1_error)
-      __pyx_t_12 = __pyx_PyFloat_AsDouble(__pyx_t_4); if (unlikely((__pyx_t_12 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 140, __pyx_L1_error)
+      if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_12pypathfinder_4fast_6ctools_CNode))))) __PYX_ERR(0, 143, __pyx_L1_error)
+      __pyx_t_12 = __pyx_PyFloat_AsDouble(__pyx_t_4); if (unlikely((__pyx_t_12 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 143, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_XDECREF_SET(__pyx_v_cnode, ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_t_2));
       __pyx_t_2 = 0;
       __pyx_v_value = __pyx_t_12;
 
-      /* "pypathfinder/fast/ctools.pyx":141
+      /* "pypathfinder/fast/ctools.pyx":144
  *         if reflect:
  *             for cnode, value in conn.items():
  *                 cnode.connect({self: value}, False)             # <<<<<<<<<<<<<<
  * 
  *     cpdef CNode _copy(self, dict nodes):
  */
-      __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 141, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 144, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_2 = PyFloat_FromDouble(__pyx_v_value); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 141, __pyx_L1_error)
+      __pyx_t_2 = PyFloat_FromDouble(__pyx_v_value); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 144, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      if (PyDict_SetItem(__pyx_t_4, ((PyObject *)__pyx_v_self), __pyx_t_2) < 0) __PYX_ERR(0, 141, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_t_4, ((PyObject *)__pyx_v_self), __pyx_t_2) < 0) __PYX_ERR(0, 144, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_t_13.__pyx_n = 1;
       __pyx_t_13.reflect = 0;
@@ -7079,7 +7273,7 @@ static void __pyx_f_12pypathfinder_4fast_6ctools_5CNode_connect(struct __pyx_obj
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "pypathfinder/fast/ctools.pyx":139
+    /* "pypathfinder/fast/ctools.pyx":142
  *         cdef CNode cnode
  *         self._connections.update(conn)
  *         if reflect:             # <<<<<<<<<<<<<<
@@ -7088,7 +7282,7 @@ static void __pyx_f_12pypathfinder_4fast_6ctools_5CNode_connect(struct __pyx_obj
  */
   }
 
-  /* "pypathfinder/fast/ctools.pyx":130
+  /* "pypathfinder/fast/ctools.pyx":133
  *         return hash(self.id)
  * 
  *     cpdef void connect(self, dict conn, bint reflect = False):             # <<<<<<<<<<<<<<
@@ -7114,6 +7308,7 @@ static void __pyx_f_12pypathfinder_4fast_6ctools_5CNode_connect(struct __pyx_obj
 /* Python wrapper */
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_5CNode_19connect(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static char __pyx_doc_12pypathfinder_4fast_6ctools_5CNode_18connect[] = "CNode.connect(self, dict conn, bool reflect=False) -> void\n\n        Args:\n            conn: connections\n            reflect: if the connections should also be applied to the connected CNodes\n        ";
+static PyMethodDef __pyx_mdef_12pypathfinder_4fast_6ctools_5CNode_19connect = {"connect", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_12pypathfinder_4fast_6ctools_5CNode_19connect, METH_VARARGS|METH_KEYWORDS, __pyx_doc_12pypathfinder_4fast_6ctools_5CNode_18connect};
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_5CNode_19connect(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_conn = 0;
   int __pyx_v_reflect;
@@ -7150,7 +7345,7 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_5CNode_19connect(PyObject
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "connect") < 0)) __PYX_ERR(0, 130, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "connect") < 0)) __PYX_ERR(0, 133, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -7163,20 +7358,20 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_5CNode_19connect(PyObject
     }
     __pyx_v_conn = ((PyObject*)values[0]);
     if (values[1]) {
-      __pyx_v_reflect = __Pyx_PyObject_IsTrue(values[1]); if (unlikely((__pyx_v_reflect == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 130, __pyx_L3_error)
+      __pyx_v_reflect = __Pyx_PyObject_IsTrue(values[1]); if (unlikely((__pyx_v_reflect == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 133, __pyx_L3_error)
     } else {
       __pyx_v_reflect = ((int)0);
     }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("connect", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 130, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("connect", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 133, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pypathfinder.fast.ctools.CNode.connect", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_conn), (&PyDict_Type), 1, "conn", 1))) __PYX_ERR(0, 130, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_conn), (&PyDict_Type), 1, "conn", 1))) __PYX_ERR(0, 133, __pyx_L1_error)
   __pyx_r = __pyx_pf_12pypathfinder_4fast_6ctools_5CNode_18connect(((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_v_self), __pyx_v_conn, __pyx_v_reflect);
 
   /* function exit code */
@@ -7201,7 +7396,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_18connect(struct _
   __pyx_t_1.__pyx_n = 1;
   __pyx_t_1.reflect = __pyx_v_reflect;
   __pyx_vtabptr_12pypathfinder_4fast_6ctools_CNode->connect(__pyx_v_self, __pyx_v_conn, 1, &__pyx_t_1); 
-  __pyx_t_2 = __Pyx_void_to_None(NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 130, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_void_to_None(NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -7218,7 +7413,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_18connect(struct _
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pyx":143
+/* "pypathfinder/fast/ctools.pyx":146
  *                 cnode.connect({self: value}, False)
  * 
  *     cpdef CNode _copy(self, dict nodes):             # <<<<<<<<<<<<<<
@@ -7260,7 +7455,7 @@ static struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_f_12pypathfind
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_copy_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 143, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_copy_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 146, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_12pypathfinder_4fast_6ctools_5CNode_21_copy)) {
         __Pyx_XDECREF(((PyObject *)__pyx_r));
@@ -7277,10 +7472,10 @@ static struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_f_12pypathfind
         }
         __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_v_nodes) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_nodes);
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 143, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 146, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_12pypathfinder_4fast_6ctools_CNode))))) __PYX_ERR(0, 143, __pyx_L1_error)
+        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_12pypathfinder_4fast_6ctools_CNode))))) __PYX_ERR(0, 146, __pyx_L1_error)
         __pyx_r = ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -7299,31 +7494,31 @@ static struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_f_12pypathfind
     #endif
   }
 
-  /* "pypathfinder/fast/ctools.pyx":144
+  /* "pypathfinder/fast/ctools.pyx":147
  * 
  *     cpdef CNode _copy(self, dict nodes):
  *         cdef CNode self_copy = CNode(self.id)             # <<<<<<<<<<<<<<
  *         cdef dict new_connections = {}
  *         cdef CNode node, node_copy
  */
-  __pyx_t_1 = __Pyx_PyObject_CallOneArg(((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_CNode), __pyx_v_self->id); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallOneArg(((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_CNode), __pyx_v_self->id); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 147, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_self_copy = ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pypathfinder/fast/ctools.pyx":145
+  /* "pypathfinder/fast/ctools.pyx":148
  *     cpdef CNode _copy(self, dict nodes):
  *         cdef CNode self_copy = CNode(self.id)
  *         cdef dict new_connections = {}             # <<<<<<<<<<<<<<
  *         cdef CNode node, node_copy
  *         cdef double cost
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 145, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 148, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_new_connections = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pypathfinder/fast/ctools.pyx":148
+  /* "pypathfinder/fast/ctools.pyx":151
  *         cdef CNode node, node_copy
  *         cdef double cost
  *         nodes[self_copy] = self_copy             # <<<<<<<<<<<<<<
@@ -7332,11 +7527,11 @@ static struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_f_12pypathfind
  */
   if (unlikely(__pyx_v_nodes == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 148, __pyx_L1_error)
+    __PYX_ERR(0, 151, __pyx_L1_error)
   }
-  if (unlikely(PyDict_SetItem(__pyx_v_nodes, ((PyObject *)__pyx_v_self_copy), ((PyObject *)__pyx_v_self_copy)) < 0)) __PYX_ERR(0, 148, __pyx_L1_error)
+  if (unlikely(PyDict_SetItem(__pyx_v_nodes, ((PyObject *)__pyx_v_self_copy), ((PyObject *)__pyx_v_self_copy)) < 0)) __PYX_ERR(0, 151, __pyx_L1_error)
 
-  /* "pypathfinder/fast/ctools.pyx":150
+  /* "pypathfinder/fast/ctools.pyx":153
  *         nodes[self_copy] = self_copy
  * 
  *         for node, cost in self._connections.items():             # <<<<<<<<<<<<<<
@@ -7346,9 +7541,9 @@ static struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_f_12pypathfind
   __pyx_t_5 = 0;
   if (unlikely(__pyx_v_self->_connections == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "items");
-    __PYX_ERR(0, 150, __pyx_L1_error)
+    __PYX_ERR(0, 153, __pyx_L1_error)
   }
-  __pyx_t_2 = __Pyx_dict_iterator(__pyx_v_self->_connections, 1, __pyx_n_s_items, (&__pyx_t_6), (&__pyx_t_7)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_dict_iterator(__pyx_v_self->_connections, 1, __pyx_n_s_items, (&__pyx_t_6), (&__pyx_t_7)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 153, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_1);
   __pyx_t_1 = __pyx_t_2;
@@ -7356,17 +7551,17 @@ static struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_f_12pypathfind
   while (1) {
     __pyx_t_8 = __Pyx_dict_iter_next(__pyx_t_1, __pyx_t_6, &__pyx_t_5, &__pyx_t_2, &__pyx_t_3, NULL, __pyx_t_7);
     if (unlikely(__pyx_t_8 == 0)) break;
-    if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 150, __pyx_L1_error)
+    if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 153, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_GOTREF(__pyx_t_3);
-    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_12pypathfinder_4fast_6ctools_CNode))))) __PYX_ERR(0, 150, __pyx_L1_error)
-    __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 150, __pyx_L1_error)
+    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_12pypathfinder_4fast_6ctools_CNode))))) __PYX_ERR(0, 153, __pyx_L1_error)
+    __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 153, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_XDECREF_SET(__pyx_v_node, ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_t_2));
     __pyx_t_2 = 0;
     __pyx_v_cost = __pyx_t_9;
 
-    /* "pypathfinder/fast/ctools.pyx":151
+    /* "pypathfinder/fast/ctools.pyx":154
  * 
  *         for node, cost in self._connections.items():
  *             if node in nodes.keys():             # <<<<<<<<<<<<<<
@@ -7375,16 +7570,16 @@ static struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_f_12pypathfind
  */
     if (unlikely(__pyx_v_nodes == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "keys");
-      __PYX_ERR(0, 151, __pyx_L1_error)
+      __PYX_ERR(0, 154, __pyx_L1_error)
     }
-    __pyx_t_3 = __Pyx_PyDict_Keys(__pyx_v_nodes); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 151, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyDict_Keys(__pyx_v_nodes); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 154, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_10 = (__Pyx_PySequence_ContainsTF(((PyObject *)__pyx_v_node), __pyx_t_3, Py_EQ)); if (unlikely(__pyx_t_10 < 0)) __PYX_ERR(0, 151, __pyx_L1_error)
+    __pyx_t_10 = (__Pyx_PySequence_ContainsTF(((PyObject *)__pyx_v_node), __pyx_t_3, Py_EQ)); if (unlikely(__pyx_t_10 < 0)) __PYX_ERR(0, 154, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_11 = (__pyx_t_10 != 0);
     if (__pyx_t_11) {
 
-      /* "pypathfinder/fast/ctools.pyx":152
+      /* "pypathfinder/fast/ctools.pyx":155
  *         for node, cost in self._connections.items():
  *             if node in nodes.keys():
  *                 node_copy = nodes.get(node)             # <<<<<<<<<<<<<<
@@ -7393,15 +7588,15 @@ static struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_f_12pypathfind
  */
       if (unlikely(__pyx_v_nodes == Py_None)) {
         PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "get");
-        __PYX_ERR(0, 152, __pyx_L1_error)
+        __PYX_ERR(0, 155, __pyx_L1_error)
       }
-      __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_nodes, ((PyObject *)__pyx_v_node), Py_None); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 152, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_nodes, ((PyObject *)__pyx_v_node), Py_None); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 155, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_12pypathfinder_4fast_6ctools_CNode))))) __PYX_ERR(0, 152, __pyx_L1_error)
+      if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_12pypathfinder_4fast_6ctools_CNode))))) __PYX_ERR(0, 155, __pyx_L1_error)
       __Pyx_XDECREF_SET(__pyx_v_node_copy, ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_t_3));
       __pyx_t_3 = 0;
 
-      /* "pypathfinder/fast/ctools.pyx":151
+      /* "pypathfinder/fast/ctools.pyx":154
  * 
  *         for node, cost in self._connections.items():
  *             if node in nodes.keys():             # <<<<<<<<<<<<<<
@@ -7411,7 +7606,7 @@ static struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_f_12pypathfind
       goto __pyx_L5;
     }
 
-    /* "pypathfinder/fast/ctools.pyx":154
+    /* "pypathfinder/fast/ctools.pyx":157
  *                 node_copy = nodes.get(node)
  *             else:
  *                 node_copy = node._copy(nodes)             # <<<<<<<<<<<<<<
@@ -7419,12 +7614,12 @@ static struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_f_12pypathfind
  *             new_connections[node_copy] = cost
  */
     /*else*/ {
-      __pyx_t_3 = ((PyObject *)((struct __pyx_vtabstruct_12pypathfinder_4fast_6ctools_CNode *)__pyx_v_node->__pyx_vtab)->_copy(__pyx_v_node, __pyx_v_nodes, 0)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 154, __pyx_L1_error)
+      __pyx_t_3 = ((PyObject *)((struct __pyx_vtabstruct_12pypathfinder_4fast_6ctools_CNode *)__pyx_v_node->__pyx_vtab)->_copy(__pyx_v_node, __pyx_v_nodes, 0)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 157, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_XDECREF_SET(__pyx_v_node_copy, ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_t_3));
       __pyx_t_3 = 0;
 
-      /* "pypathfinder/fast/ctools.pyx":155
+      /* "pypathfinder/fast/ctools.pyx":158
  *             else:
  *                 node_copy = node._copy(nodes)
  *                 nodes[node_copy] = node_copy             # <<<<<<<<<<<<<<
@@ -7433,27 +7628,27 @@ static struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_f_12pypathfind
  */
       if (unlikely(__pyx_v_nodes == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 155, __pyx_L1_error)
+        __PYX_ERR(0, 158, __pyx_L1_error)
       }
-      if (unlikely(PyDict_SetItem(__pyx_v_nodes, ((PyObject *)__pyx_v_node_copy), ((PyObject *)__pyx_v_node_copy)) < 0)) __PYX_ERR(0, 155, __pyx_L1_error)
+      if (unlikely(PyDict_SetItem(__pyx_v_nodes, ((PyObject *)__pyx_v_node_copy), ((PyObject *)__pyx_v_node_copy)) < 0)) __PYX_ERR(0, 158, __pyx_L1_error)
     }
     __pyx_L5:;
 
-    /* "pypathfinder/fast/ctools.pyx":156
+    /* "pypathfinder/fast/ctools.pyx":159
  *                 node_copy = node._copy(nodes)
  *                 nodes[node_copy] = node_copy
  *             new_connections[node_copy] = cost             # <<<<<<<<<<<<<<
  *         self_copy.connect(new_connections, False)
  *         return self_copy
  */
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_cost); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 156, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_cost); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 159, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (unlikely(PyDict_SetItem(__pyx_v_new_connections, ((PyObject *)__pyx_v_node_copy), __pyx_t_3) < 0)) __PYX_ERR(0, 156, __pyx_L1_error)
+    if (unlikely(PyDict_SetItem(__pyx_v_new_connections, ((PyObject *)__pyx_v_node_copy), __pyx_t_3) < 0)) __PYX_ERR(0, 159, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "pypathfinder/fast/ctools.pyx":157
+  /* "pypathfinder/fast/ctools.pyx":160
  *                 nodes[node_copy] = node_copy
  *             new_connections[node_copy] = cost
  *         self_copy.connect(new_connections, False)             # <<<<<<<<<<<<<<
@@ -7464,7 +7659,7 @@ static struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_f_12pypathfind
   __pyx_t_12.reflect = 0;
   ((struct __pyx_vtabstruct_12pypathfinder_4fast_6ctools_CNode *)__pyx_v_self_copy->__pyx_vtab)->connect(__pyx_v_self_copy, __pyx_v_new_connections, 0, &__pyx_t_12); 
 
-  /* "pypathfinder/fast/ctools.pyx":158
+  /* "pypathfinder/fast/ctools.pyx":161
  *             new_connections[node_copy] = cost
  *         self_copy.connect(new_connections, False)
  *         return self_copy             # <<<<<<<<<<<<<<
@@ -7476,7 +7671,7 @@ static struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_f_12pypathfind
   __pyx_r = __pyx_v_self_copy;
   goto __pyx_L0;
 
-  /* "pypathfinder/fast/ctools.pyx":143
+  /* "pypathfinder/fast/ctools.pyx":146
  *                 cnode.connect({self: value}, False)
  * 
  *     cpdef CNode _copy(self, dict nodes):             # <<<<<<<<<<<<<<
@@ -7505,6 +7700,7 @@ static struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_f_12pypathfind
 /* Python wrapper */
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_5CNode_21_copy(PyObject *__pyx_v_self, PyObject *__pyx_v_nodes); /*proto*/
 static char __pyx_doc_12pypathfinder_4fast_6ctools_5CNode_20_copy[] = "CNode._copy(self, dict nodes) -> CNode";
+static PyMethodDef __pyx_mdef_12pypathfinder_4fast_6ctools_5CNode_21_copy = {"_copy", (PyCFunction)__pyx_pw_12pypathfinder_4fast_6ctools_5CNode_21_copy, METH_O, __pyx_doc_12pypathfinder_4fast_6ctools_5CNode_20_copy};
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_5CNode_21_copy(PyObject *__pyx_v_self, PyObject *__pyx_v_nodes) {
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
@@ -7512,7 +7708,7 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_5CNode_21_copy(PyObject *
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("_copy (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_nodes), (&PyDict_Type), 1, "nodes", 1))) __PYX_ERR(0, 143, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_nodes), (&PyDict_Type), 1, "nodes", 1))) __PYX_ERR(0, 146, __pyx_L1_error)
   __pyx_r = __pyx_pf_12pypathfinder_4fast_6ctools_5CNode_20_copy(((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_v_self), ((PyObject*)__pyx_v_nodes));
 
   /* function exit code */
@@ -7533,7 +7729,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_20_copy(struct __p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_copy", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_12pypathfinder_4fast_6ctools_5CNode__copy(__pyx_v_self, __pyx_v_nodes, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 143, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_12pypathfinder_4fast_6ctools_5CNode__copy(__pyx_v_self, __pyx_v_nodes, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 146, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7550,7 +7746,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_20_copy(struct __p
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pxd":20
+/* "pypathfinder/fast/ctools.pxd":21
  * 
  * cdef class CNode:
  *     cdef public double cost, probable_cost             # <<<<<<<<<<<<<<
@@ -7580,7 +7776,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_4cost___get__(stru
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->cost); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 20, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->cost); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 21, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7618,7 +7814,7 @@ static int __pyx_pf_12pypathfinder_4fast_6ctools_5CNode_4cost_2__set__(struct __
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(2, 20, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(2, 21, __pyx_L1_error)
   __pyx_v_self->cost = __pyx_t_1;
 
   /* function exit code */
@@ -7654,7 +7850,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_13probable_cost___
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->probable_cost); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 20, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->probable_cost); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 21, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7692,7 +7888,7 @@ static int __pyx_pf_12pypathfinder_4fast_6ctools_5CNode_13probable_cost_2__set__
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(2, 20, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(2, 21, __pyx_L1_error)
   __pyx_v_self->probable_cost = __pyx_t_1;
 
   /* function exit code */
@@ -7706,7 +7902,7 @@ static int __pyx_pf_12pypathfinder_4fast_6ctools_5CNode_13probable_cost_2__set__
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pxd":21
+/* "pypathfinder/fast/ctools.pxd":22
  * cdef class CNode:
  *     cdef public double cost, probable_cost
  *     cdef readonly dict _connections             # <<<<<<<<<<<<<<
@@ -7743,7 +7939,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_12_connections___g
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pxd":22
+/* "pypathfinder/fast/ctools.pxd":23
  *     cdef public double cost, probable_cost
  *     cdef readonly dict _connections
  *     cdef public object id             # <<<<<<<<<<<<<<
@@ -7840,13 +8036,14 @@ static int __pyx_pf_12pypathfinder_4fast_6ctools_5CNode_2id_4__del__(struct __py
 
 /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
- *     cdef tuple state
- *     cdef object _dict
+ *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ * def __setstate_cython__(self, __pyx_state):
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_5CNode_23__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
 static char __pyx_doc_12pypathfinder_4fast_6ctools_5CNode_22__reduce_cython__[] = "CNode.__reduce_cython__(self)";
+static PyMethodDef __pyx_mdef_12pypathfinder_4fast_6ctools_5CNode_23__reduce_cython__ = {"__reduce_cython__", (PyCFunction)__pyx_pw_12pypathfinder_4fast_6ctools_5CNode_23__reduce_cython__, METH_NOARGS, __pyx_doc_12pypathfinder_4fast_6ctools_5CNode_22__reduce_cython__};
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_5CNode_23__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -7858,255 +8055,54 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_5CNode_23__reduce_cython_
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_22__reduce_cython__(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_self) {
-  PyObject *__pyx_v_state = 0;
-  PyObject *__pyx_v__dict = 0;
-  int __pyx_v_use_setstate;
+static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_22__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  int __pyx_t_4;
-  int __pyx_t_5;
-  int __pyx_t_6;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__reduce_cython__", 0);
 
-  /* "(tree fragment)":5
- *     cdef object _dict
- *     cdef bint use_setstate
- *     state = (self._connections, self.cost, self.id, self.probable_cost)             # <<<<<<<<<<<<<<
- *     _dict = getattr(self, '__dict__', None)
- *     if _dict is not None:
- */
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->cost); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 5, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->probable_cost); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 5, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyTuple_New(4); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 5, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_INCREF(__pyx_v_self->_connections);
-  __Pyx_GIVEREF(__pyx_v_self->_connections);
-  PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_v_self->_connections);
-  __Pyx_GIVEREF(__pyx_t_1);
-  PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_1);
-  __Pyx_INCREF(__pyx_v_self->id);
-  __Pyx_GIVEREF(__pyx_v_self->id);
-  PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_v_self->id);
-  __Pyx_GIVEREF(__pyx_t_2);
-  PyTuple_SET_ITEM(__pyx_t_3, 3, __pyx_t_2);
-  __pyx_t_1 = 0;
-  __pyx_t_2 = 0;
-  __pyx_v_state = ((PyObject*)__pyx_t_3);
-  __pyx_t_3 = 0;
-
-  /* "(tree fragment)":6
- *     cdef bint use_setstate
- *     state = (self._connections, self.cost, self.id, self.probable_cost)
- *     _dict = getattr(self, '__dict__', None)             # <<<<<<<<<<<<<<
- *     if _dict is not None:
- *         state += (_dict,)
- */
-  __pyx_t_3 = __Pyx_GetAttr3(((PyObject *)__pyx_v_self), __pyx_n_s_dict, Py_None); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 6, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_v__dict = __pyx_t_3;
-  __pyx_t_3 = 0;
-
-  /* "(tree fragment)":7
- *     state = (self._connections, self.cost, self.id, self.probable_cost)
- *     _dict = getattr(self, '__dict__', None)
- *     if _dict is not None:             # <<<<<<<<<<<<<<
- *         state += (_dict,)
- *         use_setstate = True
- */
-  __pyx_t_4 = (__pyx_v__dict != Py_None);
-  __pyx_t_5 = (__pyx_t_4 != 0);
-  if (__pyx_t_5) {
-
-    /* "(tree fragment)":8
- *     _dict = getattr(self, '__dict__', None)
- *     if _dict is not None:
- *         state += (_dict,)             # <<<<<<<<<<<<<<
- *         use_setstate = True
- *     else:
- */
-    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 8, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_INCREF(__pyx_v__dict);
-    __Pyx_GIVEREF(__pyx_v__dict);
-    PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_v__dict);
-    __pyx_t_2 = PyNumber_InPlaceAdd(__pyx_v_state, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 8, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_DECREF_SET(__pyx_v_state, ((PyObject*)__pyx_t_2));
-    __pyx_t_2 = 0;
-
-    /* "(tree fragment)":9
- *     if _dict is not None:
- *         state += (_dict,)
- *         use_setstate = True             # <<<<<<<<<<<<<<
- *     else:
- *         use_setstate = self._connections is not None or self.id is not None
- */
-    __pyx_v_use_setstate = 1;
-
-    /* "(tree fragment)":7
- *     state = (self._connections, self.cost, self.id, self.probable_cost)
- *     _dict = getattr(self, '__dict__', None)
- *     if _dict is not None:             # <<<<<<<<<<<<<<
- *         state += (_dict,)
- *         use_setstate = True
- */
-    goto __pyx_L3;
-  }
-
-  /* "(tree fragment)":11
- *         use_setstate = True
- *     else:
- *         use_setstate = self._connections is not None or self.id is not None             # <<<<<<<<<<<<<<
- *     if use_setstate:
- *         return __pyx_unpickle_CNode, (type(self), 0x986b206, None), state
- */
-  /*else*/ {
-    __pyx_t_4 = (__pyx_v_self->_connections != ((PyObject*)Py_None));
-    __pyx_t_6 = (__pyx_t_4 != 0);
-    if (!__pyx_t_6) {
-    } else {
-      __pyx_t_5 = __pyx_t_6;
-      goto __pyx_L4_bool_binop_done;
-    }
-    __pyx_t_6 = (__pyx_v_self->id != Py_None);
-    __pyx_t_4 = (__pyx_t_6 != 0);
-    __pyx_t_5 = __pyx_t_4;
-    __pyx_L4_bool_binop_done:;
-    __pyx_v_use_setstate = __pyx_t_5;
-  }
-  __pyx_L3:;
-
-  /* "(tree fragment)":12
- *     else:
- *         use_setstate = self._connections is not None or self.id is not None
- *     if use_setstate:             # <<<<<<<<<<<<<<
- *         return __pyx_unpickle_CNode, (type(self), 0x986b206, None), state
- *     else:
- */
-  __pyx_t_5 = (__pyx_v_use_setstate != 0);
-  if (__pyx_t_5) {
-
-    /* "(tree fragment)":13
- *         use_setstate = self._connections is not None or self.id is not None
- *     if use_setstate:
- *         return __pyx_unpickle_CNode, (type(self), 0x986b206, None), state             # <<<<<<<<<<<<<<
- *     else:
- *         return __pyx_unpickle_CNode, (type(self), 0x986b206, state)
- */
-    __Pyx_XDECREF(__pyx_r);
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_pyx_unpickle_CNode); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 13, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 13, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_INCREF(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
-    __Pyx_GIVEREF(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
-    PyTuple_SET_ITEM(__pyx_t_3, 0, ((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
-    __Pyx_INCREF(__pyx_int_159822342);
-    __Pyx_GIVEREF(__pyx_int_159822342);
-    PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_int_159822342);
-    __Pyx_INCREF(Py_None);
-    __Pyx_GIVEREF(Py_None);
-    PyTuple_SET_ITEM(__pyx_t_3, 2, Py_None);
-    __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 13, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_GIVEREF(__pyx_t_2);
-    PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
-    __Pyx_GIVEREF(__pyx_t_3);
-    PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_t_3);
-    __Pyx_INCREF(__pyx_v_state);
-    __Pyx_GIVEREF(__pyx_v_state);
-    PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_v_state);
-    __pyx_t_2 = 0;
-    __pyx_t_3 = 0;
-    __pyx_r = __pyx_t_1;
-    __pyx_t_1 = 0;
-    goto __pyx_L0;
-
-    /* "(tree fragment)":12
- *     else:
- *         use_setstate = self._connections is not None or self.id is not None
- *     if use_setstate:             # <<<<<<<<<<<<<<
- *         return __pyx_unpickle_CNode, (type(self), 0x986b206, None), state
- *     else:
- */
-  }
-
-  /* "(tree fragment)":15
- *         return __pyx_unpickle_CNode, (type(self), 0x986b206, None), state
- *     else:
- *         return __pyx_unpickle_CNode, (type(self), 0x986b206, state)             # <<<<<<<<<<<<<<
+  /* "(tree fragment)":2
+ * def __reduce_cython__(self):
+ *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
  * def __setstate_cython__(self, __pyx_state):
- *     __pyx_unpickle_CNode__set_state(self, __pyx_state)
+ *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  */
-  /*else*/ {
-    __Pyx_XDECREF(__pyx_r);
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_pyx_unpickle_CNode); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 15, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 15, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_INCREF(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
-    __Pyx_GIVEREF(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
-    PyTuple_SET_ITEM(__pyx_t_3, 0, ((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
-    __Pyx_INCREF(__pyx_int_159822342);
-    __Pyx_GIVEREF(__pyx_int_159822342);
-    PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_int_159822342);
-    __Pyx_INCREF(__pyx_v_state);
-    __Pyx_GIVEREF(__pyx_v_state);
-    PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_v_state);
-    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 15, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_GIVEREF(__pyx_t_1);
-    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
-    __Pyx_GIVEREF(__pyx_t_3);
-    PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_3);
-    __pyx_t_1 = 0;
-    __pyx_t_3 = 0;
-    __pyx_r = __pyx_t_2;
-    __pyx_t_2 = 0;
-    goto __pyx_L0;
-  }
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__7, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 2, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_Raise(__pyx_t_1, 0, 0, 0);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __PYX_ERR(1, 2, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
- *     cdef tuple state
- *     cdef object _dict
+ *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ * def __setstate_cython__(self, __pyx_state):
  */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
   __Pyx_AddTraceback("pypathfinder.fast.ctools.CNode.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XDECREF(__pyx_v_state);
-  __Pyx_XDECREF(__pyx_v__dict);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "(tree fragment)":16
- *     else:
- *         return __pyx_unpickle_CNode, (type(self), 0x986b206, state)
+/* "(tree fragment)":3
+ * def __reduce_cython__(self):
+ *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
- *     __pyx_unpickle_CNode__set_state(self, __pyx_state)
+ *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_5CNode_25__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
 static char __pyx_doc_12pypathfinder_4fast_6ctools_5CNode_24__setstate_cython__[] = "CNode.__setstate_cython__(self, __pyx_state)";
+static PyMethodDef __pyx_mdef_12pypathfinder_4fast_6ctools_5CNode_25__setstate_cython__ = {"__setstate_cython__", (PyCFunction)__pyx_pw_12pypathfinder_4fast_6ctools_5CNode_25__setstate_cython__, METH_O, __pyx_doc_12pypathfinder_4fast_6ctools_5CNode_24__setstate_cython__};
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_5CNode_25__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -8118,7 +8114,7 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_5CNode_25__setstate_cytho
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_24__setstate_cython__(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_24__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -8127,37 +8123,35 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_5CNode_24__setstate_cytho
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__setstate_cython__", 0);
 
-  /* "(tree fragment)":17
- *         return __pyx_unpickle_CNode, (type(self), 0x986b206, state)
+  /* "(tree fragment)":4
+ *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  * def __setstate_cython__(self, __pyx_state):
- *     __pyx_unpickle_CNode__set_state(self, __pyx_state)             # <<<<<<<<<<<<<<
+ *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
  */
-  if (!(likely(PyTuple_CheckExact(__pyx_v___pyx_state))||((__pyx_v___pyx_state) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_v___pyx_state)->tp_name), 0))) __PYX_ERR(1, 17, __pyx_L1_error)
-  __pyx_t_1 = __pyx_f_12pypathfinder_4fast_6ctools___pyx_unpickle_CNode__set_state(__pyx_v_self, ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 17, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __PYX_ERR(1, 4, __pyx_L1_error)
 
-  /* "(tree fragment)":16
- *     else:
- *         return __pyx_unpickle_CNode, (type(self), 0x986b206, state)
+  /* "(tree fragment)":3
+ * def __reduce_cython__(self):
+ *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
- *     __pyx_unpickle_CNode__set_state(self, __pyx_state)
+ *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  */
 
   /* function exit code */
-  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
-  goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_AddTraceback("pypathfinder.fast.ctools.CNode.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
-  __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pyx":160
+/* "pypathfinder/fast/ctools.pyx":163
  *         return self_copy
  * 
  * cdef list construct(CNode startCNode, CNode endCNode):             # <<<<<<<<<<<<<<
@@ -8186,14 +8180,14 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_construct(struct __pyx_obj
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("construct", 0);
 
-  /* "pypathfinder/fast/ctools.pyx":166
+  /* "pypathfinder/fast/ctools.pyx":169
  *     cdef CNode cnode
  * 
  *     path = [endCNode]             # <<<<<<<<<<<<<<
  *     to_check = endCNode
  *     while to_check != startCNode:
  */
-  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 166, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 169, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(((PyObject *)__pyx_v_endCNode));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_endCNode));
@@ -8201,7 +8195,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_construct(struct __pyx_obj
   __pyx_v_path = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pypathfinder/fast/ctools.pyx":167
+  /* "pypathfinder/fast/ctools.pyx":170
  * 
  *     path = [endCNode]
  *     to_check = endCNode             # <<<<<<<<<<<<<<
@@ -8211,7 +8205,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_construct(struct __pyx_obj
   __Pyx_INCREF(((PyObject *)__pyx_v_endCNode));
   __pyx_v_to_check = __pyx_v_endCNode;
 
-  /* "pypathfinder/fast/ctools.pyx":168
+  /* "pypathfinder/fast/ctools.pyx":171
  *     path = [endCNode]
  *     to_check = endCNode
  *     while to_check != startCNode:             # <<<<<<<<<<<<<<
@@ -8219,12 +8213,12 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_construct(struct __pyx_obj
  *             if cnode.cost + cnode._connections.get(to_check) == to_check.cost:
  */
   while (1) {
-    __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_v_to_check), ((PyObject *)__pyx_v_startCNode), Py_NE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 168, __pyx_L1_error)
-    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 168, __pyx_L1_error)
+    __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_v_to_check), ((PyObject *)__pyx_v_startCNode), Py_NE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 171, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 171, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     if (!__pyx_t_2) break;
 
-    /* "pypathfinder/fast/ctools.pyx":169
+    /* "pypathfinder/fast/ctools.pyx":172
  *     to_check = endCNode
  *     while to_check != startCNode:
  *         for cnode in to_check._connections.keys():             # <<<<<<<<<<<<<<
@@ -8234,9 +8228,9 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_construct(struct __pyx_obj
     __pyx_t_3 = 0;
     if (unlikely(__pyx_v_to_check->_connections == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "keys");
-      __PYX_ERR(0, 169, __pyx_L1_error)
+      __PYX_ERR(0, 172, __pyx_L1_error)
     }
-    __pyx_t_6 = __Pyx_dict_iterator(__pyx_v_to_check->_connections, 1, __pyx_n_s_keys, (&__pyx_t_4), (&__pyx_t_5)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 169, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_dict_iterator(__pyx_v_to_check->_connections, 1, __pyx_n_s_keys, (&__pyx_t_4), (&__pyx_t_5)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 172, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_XDECREF(__pyx_t_1);
     __pyx_t_1 = __pyx_t_6;
@@ -8244,50 +8238,50 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_construct(struct __pyx_obj
     while (1) {
       __pyx_t_7 = __Pyx_dict_iter_next(__pyx_t_1, __pyx_t_4, &__pyx_t_3, &__pyx_t_6, NULL, NULL, __pyx_t_5);
       if (unlikely(__pyx_t_7 == 0)) break;
-      if (unlikely(__pyx_t_7 == -1)) __PYX_ERR(0, 169, __pyx_L1_error)
+      if (unlikely(__pyx_t_7 == -1)) __PYX_ERR(0, 172, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
-      if (!(likely(((__pyx_t_6) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_6, __pyx_ptype_12pypathfinder_4fast_6ctools_CNode))))) __PYX_ERR(0, 169, __pyx_L1_error)
+      if (!(likely(((__pyx_t_6) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_6, __pyx_ptype_12pypathfinder_4fast_6ctools_CNode))))) __PYX_ERR(0, 172, __pyx_L1_error)
       __Pyx_XDECREF_SET(__pyx_v_cnode, ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_t_6));
       __pyx_t_6 = 0;
 
-      /* "pypathfinder/fast/ctools.pyx":170
+      /* "pypathfinder/fast/ctools.pyx":173
  *     while to_check != startCNode:
  *         for cnode in to_check._connections.keys():
  *             if cnode.cost + cnode._connections.get(to_check) == to_check.cost:             # <<<<<<<<<<<<<<
  *                 path.append(cnode)
  *                 to_check = cnode
  */
-      __pyx_t_6 = PyFloat_FromDouble(__pyx_v_cnode->cost); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 170, __pyx_L1_error)
+      __pyx_t_6 = PyFloat_FromDouble(__pyx_v_cnode->cost); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 173, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       if (unlikely(__pyx_v_cnode->_connections == Py_None)) {
         PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "get");
-        __PYX_ERR(0, 170, __pyx_L1_error)
+        __PYX_ERR(0, 173, __pyx_L1_error)
       }
-      __pyx_t_8 = __Pyx_PyDict_GetItemDefault(__pyx_v_cnode->_connections, ((PyObject *)__pyx_v_to_check), Py_None); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 170, __pyx_L1_error)
+      __pyx_t_8 = __Pyx_PyDict_GetItemDefault(__pyx_v_cnode->_connections, ((PyObject *)__pyx_v_to_check), Py_None); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 173, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
-      __pyx_t_9 = PyNumber_Add(__pyx_t_6, __pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 170, __pyx_L1_error)
+      __pyx_t_9 = PyNumber_Add(__pyx_t_6, __pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 173, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-      __pyx_t_8 = PyFloat_FromDouble(__pyx_v_to_check->cost); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 170, __pyx_L1_error)
+      __pyx_t_8 = PyFloat_FromDouble(__pyx_v_to_check->cost); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 173, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
-      __pyx_t_6 = PyObject_RichCompare(__pyx_t_9, __pyx_t_8, Py_EQ); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 170, __pyx_L1_error)
+      __pyx_t_6 = PyObject_RichCompare(__pyx_t_9, __pyx_t_8, Py_EQ); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 173, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-      __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 170, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 173, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       if (__pyx_t_2) {
 
-        /* "pypathfinder/fast/ctools.pyx":171
+        /* "pypathfinder/fast/ctools.pyx":174
  *         for cnode in to_check._connections.keys():
  *             if cnode.cost + cnode._connections.get(to_check) == to_check.cost:
  *                 path.append(cnode)             # <<<<<<<<<<<<<<
  *                 to_check = cnode
  *                 break
  */
-        __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_path, ((PyObject *)__pyx_v_cnode)); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(0, 171, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_path, ((PyObject *)__pyx_v_cnode)); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(0, 174, __pyx_L1_error)
 
-        /* "pypathfinder/fast/ctools.pyx":172
+        /* "pypathfinder/fast/ctools.pyx":175
  *             if cnode.cost + cnode._connections.get(to_check) == to_check.cost:
  *                 path.append(cnode)
  *                 to_check = cnode             # <<<<<<<<<<<<<<
@@ -8297,7 +8291,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_construct(struct __pyx_obj
         __Pyx_INCREF(((PyObject *)__pyx_v_cnode));
         __Pyx_DECREF_SET(__pyx_v_to_check, __pyx_v_cnode);
 
-        /* "pypathfinder/fast/ctools.pyx":173
+        /* "pypathfinder/fast/ctools.pyx":176
  *                 path.append(cnode)
  *                 to_check = cnode
  *                 break             # <<<<<<<<<<<<<<
@@ -8306,7 +8300,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_construct(struct __pyx_obj
  */
         goto __pyx_L6_break;
 
-        /* "pypathfinder/fast/ctools.pyx":170
+        /* "pypathfinder/fast/ctools.pyx":173
  *     while to_check != startCNode:
  *         for cnode in to_check._connections.keys():
  *             if cnode.cost + cnode._connections.get(to_check) == to_check.cost:             # <<<<<<<<<<<<<<
@@ -8316,7 +8310,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_construct(struct __pyx_obj
       }
     }
 
-    /* "pypathfinder/fast/ctools.pyx":175
+    /* "pypathfinder/fast/ctools.pyx":178
  *                 break
  *         else:
  *             raise CPathError("Coulnd't construct path")             # <<<<<<<<<<<<<<
@@ -8324,26 +8318,26 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_construct(struct __pyx_obj
  *     path.reverse()
  */
     /*else*/ {
-      __pyx_t_6 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_CPathError), __pyx_tuple__7, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 175, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_CPathError), __pyx_tuple__9, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 178, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_Raise(__pyx_t_6, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __PYX_ERR(0, 175, __pyx_L1_error)
+      __PYX_ERR(0, 178, __pyx_L1_error)
     }
     __pyx_L6_break:;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "pypathfinder/fast/ctools.pyx":177
+  /* "pypathfinder/fast/ctools.pyx":180
  *             raise CPathError("Coulnd't construct path")
  * 
  *     path.reverse()             # <<<<<<<<<<<<<<
  *     return path
  * 
  */
-  __pyx_t_10 = PyList_Reverse(__pyx_v_path); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(0, 177, __pyx_L1_error)
+  __pyx_t_10 = PyList_Reverse(__pyx_v_path); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(0, 180, __pyx_L1_error)
 
-  /* "pypathfinder/fast/ctools.pyx":178
+  /* "pypathfinder/fast/ctools.pyx":181
  * 
  *     path.reverse()
  *     return path             # <<<<<<<<<<<<<<
@@ -8355,7 +8349,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_construct(struct __pyx_obj
   __pyx_r = __pyx_v_path;
   goto __pyx_L0;
 
-  /* "pypathfinder/fast/ctools.pyx":160
+  /* "pypathfinder/fast/ctools.pyx":163
  *         return self_copy
  * 
  * cdef list construct(CNode startCNode, CNode endCNode):             # <<<<<<<<<<<<<<
@@ -8380,7 +8374,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_construct(struct __pyx_obj
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pyx":182
+/* "pypathfinder/fast/ctools.pyx":185
  * # DIJKSTRA
  * @cython.boundscheck(False)
  * cpdef list dijkstra_bestpath(CNode startCNode, CNode endCNode, bint first_contact = False):             # <<<<<<<<<<<<<<
@@ -8419,7 +8413,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_dijkstra_bestpath(struct _
     }
   }
 
-  /* "pypathfinder/fast/ctools.pyx":198
+  /* "pypathfinder/fast/ctools.pyx":201
  * 
  *     # get costs
  *     startCNode.cost = 0             # <<<<<<<<<<<<<<
@@ -8428,30 +8422,30 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_dijkstra_bestpath(struct _
  */
   __pyx_v_startCNode->cost = 0.0;
 
-  /* "pypathfinder/fast/ctools.pyx":199
+  /* "pypathfinder/fast/ctools.pyx":202
  *     # get costs
  *     startCNode.cost = 0
  *     queue = LowComby()             # <<<<<<<<<<<<<<
  *     queue.append(startCNode)
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_LowComby)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 199, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_LowComby)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 202, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_queue = ((struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pypathfinder/fast/ctools.pyx":200
+  /* "pypathfinder/fast/ctools.pyx":203
  *     startCNode.cost = 0
  *     queue = LowComby()
  *     queue.append(startCNode)             # <<<<<<<<<<<<<<
  * 
  *     while len(queue) != 0:
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_12pypathfinder_4fast_6ctools_LowComby *)__pyx_v_queue->__pyx_vtab)->append(__pyx_v_queue, __pyx_v_startCNode, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 200, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_12pypathfinder_4fast_6ctools_LowComby *)__pyx_v_queue->__pyx_vtab)->append(__pyx_v_queue, __pyx_v_startCNode, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 203, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "pypathfinder/fast/ctools.pyx":202
+  /* "pypathfinder/fast/ctools.pyx":205
  *     queue.append(startCNode)
  * 
  *     while len(queue) != 0:             # <<<<<<<<<<<<<<
@@ -8459,24 +8453,24 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_dijkstra_bestpath(struct _
  *         for cnode, cost in currentCNode._connections.items():
  */
   while (1) {
-    __pyx_t_2 = PyObject_Length(((PyObject *)__pyx_v_queue)); if (unlikely(__pyx_t_2 == ((Py_ssize_t)-1))) __PYX_ERR(0, 202, __pyx_L1_error)
+    __pyx_t_2 = PyObject_Length(((PyObject *)__pyx_v_queue)); if (unlikely(__pyx_t_2 == ((Py_ssize_t)-1))) __PYX_ERR(0, 205, __pyx_L1_error)
     __pyx_t_3 = ((__pyx_t_2 != 0) != 0);
     if (!__pyx_t_3) break;
 
-    /* "pypathfinder/fast/ctools.pyx":203
+    /* "pypathfinder/fast/ctools.pyx":206
  * 
  *     while len(queue) != 0:
  *         currentCNode = wrappop(queue)             # <<<<<<<<<<<<<<
  *         for cnode, cost in currentCNode._connections.items():
  *             new_cost = currentCNode.cost + cost
  */
-    __pyx_t_1 = __pyx_f_12pypathfinder_4fast_6ctools_wrappop(__pyx_v_queue); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 203, __pyx_L1_error)
+    __pyx_t_1 = __pyx_f_12pypathfinder_4fast_6ctools_wrappop(__pyx_v_queue); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 206, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_12pypathfinder_4fast_6ctools_CNode))))) __PYX_ERR(0, 203, __pyx_L1_error)
+    if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_12pypathfinder_4fast_6ctools_CNode))))) __PYX_ERR(0, 206, __pyx_L1_error)
     __Pyx_XDECREF_SET(__pyx_v_currentCNode, ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_t_1));
     __pyx_t_1 = 0;
 
-    /* "pypathfinder/fast/ctools.pyx":204
+    /* "pypathfinder/fast/ctools.pyx":207
  *     while len(queue) != 0:
  *         currentCNode = wrappop(queue)
  *         for cnode, cost in currentCNode._connections.items():             # <<<<<<<<<<<<<<
@@ -8486,9 +8480,9 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_dijkstra_bestpath(struct _
     __pyx_t_2 = 0;
     if (unlikely(__pyx_v_currentCNode->_connections == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "items");
-      __PYX_ERR(0, 204, __pyx_L1_error)
+      __PYX_ERR(0, 207, __pyx_L1_error)
     }
-    __pyx_t_6 = __Pyx_dict_iterator(__pyx_v_currentCNode->_connections, 1, __pyx_n_s_items, (&__pyx_t_4), (&__pyx_t_5)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 204, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_dict_iterator(__pyx_v_currentCNode->_connections, 1, __pyx_n_s_items, (&__pyx_t_4), (&__pyx_t_5)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 207, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_XDECREF(__pyx_t_1);
     __pyx_t_1 = __pyx_t_6;
@@ -8496,17 +8490,17 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_dijkstra_bestpath(struct _
     while (1) {
       __pyx_t_8 = __Pyx_dict_iter_next(__pyx_t_1, __pyx_t_4, &__pyx_t_2, &__pyx_t_6, &__pyx_t_7, NULL, __pyx_t_5);
       if (unlikely(__pyx_t_8 == 0)) break;
-      if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 204, __pyx_L1_error)
+      if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 207, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_GOTREF(__pyx_t_7);
-      if (!(likely(((__pyx_t_6) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_6, __pyx_ptype_12pypathfinder_4fast_6ctools_CNode))))) __PYX_ERR(0, 204, __pyx_L1_error)
-      __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_7); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 204, __pyx_L1_error)
+      if (!(likely(((__pyx_t_6) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_6, __pyx_ptype_12pypathfinder_4fast_6ctools_CNode))))) __PYX_ERR(0, 207, __pyx_L1_error)
+      __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_7); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 207, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_XDECREF_SET(__pyx_v_cnode, ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_t_6));
       __pyx_t_6 = 0;
       __pyx_v_cost = __pyx_t_9;
 
-      /* "pypathfinder/fast/ctools.pyx":205
+      /* "pypathfinder/fast/ctools.pyx":208
  *         currentCNode = wrappop(queue)
  *         for cnode, cost in currentCNode._connections.items():
  *             new_cost = currentCNode.cost + cost             # <<<<<<<<<<<<<<
@@ -8515,7 +8509,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_dijkstra_bestpath(struct _
  */
       __pyx_v_new_cost = (__pyx_v_currentCNode->cost + __pyx_v_cost);
 
-      /* "pypathfinder/fast/ctools.pyx":206
+      /* "pypathfinder/fast/ctools.pyx":209
  *         for cnode, cost in currentCNode._connections.items():
  *             new_cost = currentCNode.cost + cost
  *             if new_cost < cnode.cost:             # <<<<<<<<<<<<<<
@@ -8525,7 +8519,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_dijkstra_bestpath(struct _
       __pyx_t_3 = ((__pyx_v_new_cost < __pyx_v_cnode->cost) != 0);
       if (__pyx_t_3) {
 
-        /* "pypathfinder/fast/ctools.pyx":207
+        /* "pypathfinder/fast/ctools.pyx":210
  *             new_cost = currentCNode.cost + cost
  *             if new_cost < cnode.cost:
  *                 cnode.cost = new_cost             # <<<<<<<<<<<<<<
@@ -8534,29 +8528,29 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_dijkstra_bestpath(struct _
  */
         __pyx_v_cnode->cost = __pyx_v_new_cost;
 
-        /* "pypathfinder/fast/ctools.pyx":208
+        /* "pypathfinder/fast/ctools.pyx":211
  *             if new_cost < cnode.cost:
  *                 cnode.cost = new_cost
  *                 if cnode not in queue:             # <<<<<<<<<<<<<<
  *                     wrappush(queue, cnode)
  * 
  */
-        __pyx_t_3 = (__Pyx_PySequence_ContainsTF(((PyObject *)__pyx_v_cnode), ((PyObject *)__pyx_v_queue), Py_NE)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 208, __pyx_L1_error)
+        __pyx_t_3 = (__Pyx_PySequence_ContainsTF(((PyObject *)__pyx_v_cnode), ((PyObject *)__pyx_v_queue), Py_NE)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 211, __pyx_L1_error)
         __pyx_t_10 = (__pyx_t_3 != 0);
         if (__pyx_t_10) {
 
-          /* "pypathfinder/fast/ctools.pyx":209
+          /* "pypathfinder/fast/ctools.pyx":212
  *                 cnode.cost = new_cost
  *                 if cnode not in queue:
  *                     wrappush(queue, cnode)             # <<<<<<<<<<<<<<
  * 
  *         if endCNode.cost <= currentCNode.cost:
  */
-          __pyx_t_7 = __pyx_f_12pypathfinder_4fast_6ctools_wrappush(__pyx_v_queue, __pyx_v_cnode); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 209, __pyx_L1_error)
+          __pyx_t_7 = __pyx_f_12pypathfinder_4fast_6ctools_wrappush(__pyx_v_queue, __pyx_v_cnode); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 212, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-          /* "pypathfinder/fast/ctools.pyx":208
+          /* "pypathfinder/fast/ctools.pyx":211
  *             if new_cost < cnode.cost:
  *                 cnode.cost = new_cost
  *                 if cnode not in queue:             # <<<<<<<<<<<<<<
@@ -8565,7 +8559,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_dijkstra_bestpath(struct _
  */
         }
 
-        /* "pypathfinder/fast/ctools.pyx":206
+        /* "pypathfinder/fast/ctools.pyx":209
  *         for cnode, cost in currentCNode._connections.items():
  *             new_cost = currentCNode.cost + cost
  *             if new_cost < cnode.cost:             # <<<<<<<<<<<<<<
@@ -8576,7 +8570,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_dijkstra_bestpath(struct _
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "pypathfinder/fast/ctools.pyx":211
+    /* "pypathfinder/fast/ctools.pyx":214
  *                     wrappush(queue, cnode)
  * 
  *         if endCNode.cost <= currentCNode.cost:             # <<<<<<<<<<<<<<
@@ -8586,7 +8580,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_dijkstra_bestpath(struct _
     __pyx_t_10 = ((__pyx_v_endCNode->cost <= __pyx_v_currentCNode->cost) != 0);
     if (__pyx_t_10) {
 
-      /* "pypathfinder/fast/ctools.pyx":212
+      /* "pypathfinder/fast/ctools.pyx":215
  * 
  *         if endCNode.cost <= currentCNode.cost:
  *             break             # <<<<<<<<<<<<<<
@@ -8595,7 +8589,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_dijkstra_bestpath(struct _
  */
       goto __pyx_L4_break;
 
-      /* "pypathfinder/fast/ctools.pyx":211
+      /* "pypathfinder/fast/ctools.pyx":214
  *                     wrappush(queue, cnode)
  * 
  *         if endCNode.cost <= currentCNode.cost:             # <<<<<<<<<<<<<<
@@ -8604,7 +8598,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_dijkstra_bestpath(struct _
  */
     }
 
-    /* "pypathfinder/fast/ctools.pyx":213
+    /* "pypathfinder/fast/ctools.pyx":216
  *         if endCNode.cost <= currentCNode.cost:
  *             break
  *         if first_contact and currentCNode is endCNode:             # <<<<<<<<<<<<<<
@@ -8623,7 +8617,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_dijkstra_bestpath(struct _
     __pyx_L11_bool_binop_done:;
     if (__pyx_t_10) {
 
-      /* "pypathfinder/fast/ctools.pyx":214
+      /* "pypathfinder/fast/ctools.pyx":217
  *             break
  *         if first_contact and currentCNode is endCNode:
  *             break             # <<<<<<<<<<<<<<
@@ -8632,7 +8626,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_dijkstra_bestpath(struct _
  */
       goto __pyx_L4_break;
 
-      /* "pypathfinder/fast/ctools.pyx":213
+      /* "pypathfinder/fast/ctools.pyx":216
  *         if endCNode.cost <= currentCNode.cost:
  *             break
  *         if first_contact and currentCNode is endCNode:             # <<<<<<<<<<<<<<
@@ -8643,7 +8637,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_dijkstra_bestpath(struct _
   }
   __pyx_L4_break:;
 
-  /* "pypathfinder/fast/ctools.pyx":217
+  /* "pypathfinder/fast/ctools.pyx":220
  * 
  *     # get path
  *     return construct(startCNode, endCNode)             # <<<<<<<<<<<<<<
@@ -8651,13 +8645,13 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_dijkstra_bestpath(struct _
  * @cython.boundscheck(False)
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_12pypathfinder_4fast_6ctools_construct(__pyx_v_startCNode, __pyx_v_endCNode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 217, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_12pypathfinder_4fast_6ctools_construct(__pyx_v_startCNode, __pyx_v_endCNode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 220, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pypathfinder/fast/ctools.pyx":182
+  /* "pypathfinder/fast/ctools.pyx":185
  * # DIJKSTRA
  * @cython.boundscheck(False)
  * cpdef list dijkstra_bestpath(CNode startCNode, CNode endCNode, bint first_contact = False):             # <<<<<<<<<<<<<<
@@ -8684,6 +8678,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_dijkstra_bestpath(struct _
 /* Python wrapper */
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_1dijkstra_bestpath(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static char __pyx_doc_12pypathfinder_4fast_6ctools_dijkstra_bestpath[] = "dijkstra_bestpath(CNode startCNode, CNode endCNode, bool first_contact=False) -> list\n\n    Args:\n        startCNode: starting point\n        endCNode: ending point\n        first_contact: if True, pathfinding will end as soon as the endCNode has first been discoverd\n    \n    Returns:\n        list of CNodes, creating a path\n    ";
+static PyMethodDef __pyx_mdef_12pypathfinder_4fast_6ctools_1dijkstra_bestpath = {"dijkstra_bestpath", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_12pypathfinder_4fast_6ctools_1dijkstra_bestpath, METH_VARARGS|METH_KEYWORDS, __pyx_doc_12pypathfinder_4fast_6ctools_dijkstra_bestpath};
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_1dijkstra_bestpath(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_startCNode = 0;
   struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_endCNode = 0;
@@ -8719,7 +8714,7 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_1dijkstra_bestpath(PyObje
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_endCNode)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("dijkstra_bestpath", 0, 2, 3, 1); __PYX_ERR(0, 182, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("dijkstra_bestpath", 0, 2, 3, 1); __PYX_ERR(0, 185, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
@@ -8729,7 +8724,7 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_1dijkstra_bestpath(PyObje
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "dijkstra_bestpath") < 0)) __PYX_ERR(0, 182, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "dijkstra_bestpath") < 0)) __PYX_ERR(0, 185, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -8744,21 +8739,21 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_1dijkstra_bestpath(PyObje
     __pyx_v_startCNode = ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)values[0]);
     __pyx_v_endCNode = ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)values[1]);
     if (values[2]) {
-      __pyx_v_first_contact = __Pyx_PyObject_IsTrue(values[2]); if (unlikely((__pyx_v_first_contact == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 182, __pyx_L3_error)
+      __pyx_v_first_contact = __Pyx_PyObject_IsTrue(values[2]); if (unlikely((__pyx_v_first_contact == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 185, __pyx_L3_error)
     } else {
       __pyx_v_first_contact = ((int)0);
     }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("dijkstra_bestpath", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 182, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("dijkstra_bestpath", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 185, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pypathfinder.fast.ctools.dijkstra_bestpath", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_startCNode), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "startCNode", 0))) __PYX_ERR(0, 182, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_endCNode), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "endCNode", 0))) __PYX_ERR(0, 182, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_startCNode), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "startCNode", 0))) __PYX_ERR(0, 185, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_endCNode), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "endCNode", 0))) __PYX_ERR(0, 185, __pyx_L1_error)
   __pyx_r = __pyx_pf_12pypathfinder_4fast_6ctools_dijkstra_bestpath(__pyx_self, __pyx_v_startCNode, __pyx_v_endCNode, __pyx_v_first_contact);
 
   /* function exit code */
@@ -8782,7 +8777,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_dijkstra_bestpath(CYTHON_
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2.__pyx_n = 1;
   __pyx_t_2.first_contact = __pyx_v_first_contact;
-  __pyx_t_1 = __pyx_f_12pypathfinder_4fast_6ctools_dijkstra_bestpath(__pyx_v_startCNode, __pyx_v_endCNode, 0, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 182, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_12pypathfinder_4fast_6ctools_dijkstra_bestpath(__pyx_v_startCNode, __pyx_v_endCNode, 0, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 185, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -8799,7 +8794,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_dijkstra_bestpath(CYTHON_
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pyx":220
+/* "pypathfinder/fast/ctools.pyx":223
  * 
  * @cython.boundscheck(False)
  * cpdef list astar_bestpath(CNode startCNode, CNode endCNode, object func, bint first_contact = False, list args = []):             # <<<<<<<<<<<<<<
@@ -8810,7 +8805,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_dijkstra_bestpath(CYTHON_
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_3astar_bestpath(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_startCNode, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_endCNode, PyObject *__pyx_v_func, CYTHON_UNUSED int __pyx_skip_dispatch, struct __pyx_opt_args_12pypathfinder_4fast_6ctools_astar_bestpath *__pyx_optional_args) {
   int __pyx_v_first_contact = ((int)0);
-  PyObject *__pyx_v_args = __pyx_k__8;
+  PyObject *__pyx_v_args = __pyx_k__10;
   struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby *__pyx_v_queue = 0;
   struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_currentCNode = 0;
   struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_cnode = 0;
@@ -8828,10 +8823,8 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
   PyObject *__pyx_t_7 = NULL;
   int __pyx_t_8;
   double __pyx_t_9;
-  PyObject *__pyx_t_10 = NULL;
-  PyObject *__pyx_t_11 = NULL;
-  int __pyx_t_12;
-  int __pyx_t_13;
+  int __pyx_t_10;
+  int __pyx_t_11;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -8846,7 +8839,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
   }
   __Pyx_INCREF(__pyx_v_args);
 
-  /* "pypathfinder/fast/ctools.pyx":230
+  /* "pypathfinder/fast/ctools.pyx":233
  *         list of CNodes, creating a path
  *     """
  *     if len(args) == 0:             # <<<<<<<<<<<<<<
@@ -8855,25 +8848,25 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
  */
   if (unlikely(__pyx_v_args == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-    __PYX_ERR(0, 230, __pyx_L1_error)
+    __PYX_ERR(0, 233, __pyx_L1_error)
   }
-  __pyx_t_1 = PyList_GET_SIZE(__pyx_v_args); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 230, __pyx_L1_error)
+  __pyx_t_1 = PyList_GET_SIZE(__pyx_v_args); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 233, __pyx_L1_error)
   __pyx_t_2 = ((__pyx_t_1 == 0) != 0);
   if (__pyx_t_2) {
 
-    /* "pypathfinder/fast/ctools.pyx":231
+    /* "pypathfinder/fast/ctools.pyx":234
  *     """
  *     if len(args) == 0:
  *         args = []             # <<<<<<<<<<<<<<
  *     cdef LowComby queue
  *     cdef CNode currentCNode
  */
-    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 231, __pyx_L1_error)
+    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 234, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF_SET(__pyx_v_args, ((PyObject*)__pyx_t_3));
     __pyx_t_3 = 0;
 
-    /* "pypathfinder/fast/ctools.pyx":230
+    /* "pypathfinder/fast/ctools.pyx":233
  *         list of CNodes, creating a path
  *     """
  *     if len(args) == 0:             # <<<<<<<<<<<<<<
@@ -8882,7 +8875,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
  */
   }
 
-  /* "pypathfinder/fast/ctools.pyx":238
+  /* "pypathfinder/fast/ctools.pyx":241
  * 
  *     # get costs
  *     startCNode.cost = 0             # <<<<<<<<<<<<<<
@@ -8891,30 +8884,30 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
  */
   __pyx_v_startCNode->cost = 0.0;
 
-  /* "pypathfinder/fast/ctools.pyx":239
+  /* "pypathfinder/fast/ctools.pyx":242
  *     # get costs
  *     startCNode.cost = 0
  *     queue = LowComby()             # <<<<<<<<<<<<<<
  *     queue.append(startCNode)
  * 
  */
-  __pyx_t_3 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_LowComby)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 239, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_LowComby)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 242, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_v_queue = ((struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby *)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "pypathfinder/fast/ctools.pyx":240
+  /* "pypathfinder/fast/ctools.pyx":243
  *     startCNode.cost = 0
  *     queue = LowComby()
  *     queue.append(startCNode)             # <<<<<<<<<<<<<<
  * 
  *     while len(queue) != 0:
  */
-  __pyx_t_3 = ((struct __pyx_vtabstruct_12pypathfinder_4fast_6ctools_LowComby *)__pyx_v_queue->__pyx_vtab)->append(__pyx_v_queue, __pyx_v_startCNode, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 240, __pyx_L1_error)
+  __pyx_t_3 = ((struct __pyx_vtabstruct_12pypathfinder_4fast_6ctools_LowComby *)__pyx_v_queue->__pyx_vtab)->append(__pyx_v_queue, __pyx_v_startCNode, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 243, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "pypathfinder/fast/ctools.pyx":242
+  /* "pypathfinder/fast/ctools.pyx":245
  *     queue.append(startCNode)
  * 
  *     while len(queue) != 0:             # <<<<<<<<<<<<<<
@@ -8922,24 +8915,24 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
  *         for cnode, cost in currentCNode._connections.items():
  */
   while (1) {
-    __pyx_t_1 = PyObject_Length(((PyObject *)__pyx_v_queue)); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 242, __pyx_L1_error)
+    __pyx_t_1 = PyObject_Length(((PyObject *)__pyx_v_queue)); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 245, __pyx_L1_error)
     __pyx_t_2 = ((__pyx_t_1 != 0) != 0);
     if (!__pyx_t_2) break;
 
-    /* "pypathfinder/fast/ctools.pyx":243
+    /* "pypathfinder/fast/ctools.pyx":246
  * 
  *     while len(queue) != 0:
  *         currentCNode = wrappop(queue)             # <<<<<<<<<<<<<<
  *         for cnode, cost in currentCNode._connections.items():
  * 
  */
-    __pyx_t_3 = __pyx_f_12pypathfinder_4fast_6ctools_wrappop(__pyx_v_queue); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 243, __pyx_L1_error)
+    __pyx_t_3 = __pyx_f_12pypathfinder_4fast_6ctools_wrappop(__pyx_v_queue); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 246, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_12pypathfinder_4fast_6ctools_CNode))))) __PYX_ERR(0, 243, __pyx_L1_error)
+    if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_12pypathfinder_4fast_6ctools_CNode))))) __PYX_ERR(0, 246, __pyx_L1_error)
     __Pyx_XDECREF_SET(__pyx_v_currentCNode, ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_t_3));
     __pyx_t_3 = 0;
 
-    /* "pypathfinder/fast/ctools.pyx":244
+    /* "pypathfinder/fast/ctools.pyx":247
  *     while len(queue) != 0:
  *         currentCNode = wrappop(queue)
  *         for cnode, cost in currentCNode._connections.items():             # <<<<<<<<<<<<<<
@@ -8949,9 +8942,9 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
     __pyx_t_1 = 0;
     if (unlikely(__pyx_v_currentCNode->_connections == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "items");
-      __PYX_ERR(0, 244, __pyx_L1_error)
+      __PYX_ERR(0, 247, __pyx_L1_error)
     }
-    __pyx_t_6 = __Pyx_dict_iterator(__pyx_v_currentCNode->_connections, 1, __pyx_n_s_items, (&__pyx_t_4), (&__pyx_t_5)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 244, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_dict_iterator(__pyx_v_currentCNode->_connections, 1, __pyx_n_s_items, (&__pyx_t_4), (&__pyx_t_5)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 247, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_XDECREF(__pyx_t_3);
     __pyx_t_3 = __pyx_t_6;
@@ -8959,17 +8952,17 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
     while (1) {
       __pyx_t_8 = __Pyx_dict_iter_next(__pyx_t_3, __pyx_t_4, &__pyx_t_1, &__pyx_t_6, &__pyx_t_7, NULL, __pyx_t_5);
       if (unlikely(__pyx_t_8 == 0)) break;
-      if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 244, __pyx_L1_error)
+      if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 247, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_GOTREF(__pyx_t_7);
-      if (!(likely(((__pyx_t_6) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_6, __pyx_ptype_12pypathfinder_4fast_6ctools_CNode))))) __PYX_ERR(0, 244, __pyx_L1_error)
-      __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_7); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 244, __pyx_L1_error)
+      if (!(likely(((__pyx_t_6) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_6, __pyx_ptype_12pypathfinder_4fast_6ctools_CNode))))) __PYX_ERR(0, 247, __pyx_L1_error)
+      __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_7); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 247, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_XDECREF_SET(__pyx_v_cnode, ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_t_6));
       __pyx_t_6 = 0;
       __pyx_v_cost = __pyx_t_9;
 
-      /* "pypathfinder/fast/ctools.pyx":246
+      /* "pypathfinder/fast/ctools.pyx":249
  *         for cnode, cost in currentCNode._connections.items():
  * 
  *             new_cost = currentCNode.cost + cost             # <<<<<<<<<<<<<<
@@ -8978,115 +8971,67 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
  */
       __pyx_v_new_cost = (__pyx_v_currentCNode->cost + __pyx_v_cost);
 
-      /* "pypathfinder/fast/ctools.pyx":247
+      /* "pypathfinder/fast/ctools.pyx":250
  * 
  *             new_cost = currentCNode.cost + cost
  *             if new_cost < cnode.cost:             # <<<<<<<<<<<<<<
  *                 cnode.cost = new_cost
- *                 result = func(cnode, args)
+ *                 result = wrapped_func(func, cnode, args)
  */
       __pyx_t_2 = ((__pyx_v_new_cost < __pyx_v_cnode->cost) != 0);
       if (__pyx_t_2) {
 
-        /* "pypathfinder/fast/ctools.pyx":248
+        /* "pypathfinder/fast/ctools.pyx":251
  *             new_cost = currentCNode.cost + cost
  *             if new_cost < cnode.cost:
  *                 cnode.cost = new_cost             # <<<<<<<<<<<<<<
- *                 result = func(cnode, args)
+ *                 result = wrapped_func(func, cnode, args)
  *                 cnode.probable_cost = new_cost + result
  */
         __pyx_v_cnode->cost = __pyx_v_new_cost;
 
-        /* "pypathfinder/fast/ctools.pyx":249
+        /* "pypathfinder/fast/ctools.pyx":252
  *             if new_cost < cnode.cost:
  *                 cnode.cost = new_cost
- *                 result = func(cnode, args)             # <<<<<<<<<<<<<<
+ *                 result = wrapped_func(func, cnode, args)             # <<<<<<<<<<<<<<
  *                 cnode.probable_cost = new_cost + result
  *                 if cnode not in queue:
  */
-        __Pyx_INCREF(__pyx_v_func);
-        __pyx_t_6 = __pyx_v_func; __pyx_t_10 = NULL;
-        __pyx_t_8 = 0;
-        if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_6))) {
-          __pyx_t_10 = PyMethod_GET_SELF(__pyx_t_6);
-          if (likely(__pyx_t_10)) {
-            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_6);
-            __Pyx_INCREF(__pyx_t_10);
-            __Pyx_INCREF(function);
-            __Pyx_DECREF_SET(__pyx_t_6, function);
-            __pyx_t_8 = 1;
-          }
-        }
-        #if CYTHON_FAST_PYCALL
-        if (PyFunction_Check(__pyx_t_6)) {
-          PyObject *__pyx_temp[3] = {__pyx_t_10, ((PyObject *)__pyx_v_cnode), __pyx_v_args};
-          __pyx_t_7 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 249, __pyx_L1_error)
-          __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
-          __Pyx_GOTREF(__pyx_t_7);
-        } else
-        #endif
-        #if CYTHON_FAST_PYCCALL
-        if (__Pyx_PyFastCFunction_Check(__pyx_t_6)) {
-          PyObject *__pyx_temp[3] = {__pyx_t_10, ((PyObject *)__pyx_v_cnode), __pyx_v_args};
-          __pyx_t_7 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 249, __pyx_L1_error)
-          __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
-          __Pyx_GOTREF(__pyx_t_7);
-        } else
-        #endif
-        {
-          __pyx_t_11 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 249, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_11);
-          if (__pyx_t_10) {
-            __Pyx_GIVEREF(__pyx_t_10); PyTuple_SET_ITEM(__pyx_t_11, 0, __pyx_t_10); __pyx_t_10 = NULL;
-          }
-          __Pyx_INCREF(((PyObject *)__pyx_v_cnode));
-          __Pyx_GIVEREF(((PyObject *)__pyx_v_cnode));
-          PyTuple_SET_ITEM(__pyx_t_11, 0+__pyx_t_8, ((PyObject *)__pyx_v_cnode));
-          __Pyx_INCREF(__pyx_v_args);
-          __Pyx_GIVEREF(__pyx_v_args);
-          PyTuple_SET_ITEM(__pyx_t_11, 1+__pyx_t_8, __pyx_v_args);
-          __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_11, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 249, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_7);
-          __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-        }
-        __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-        __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_7); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 249, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-        __pyx_v_result = __pyx_t_9;
+        __pyx_v_result = __pyx_f_12pypathfinder_4fast_6ctools_wrapped_func(__pyx_v_func, __pyx_v_cnode, __pyx_v_args);
 
-        /* "pypathfinder/fast/ctools.pyx":250
+        /* "pypathfinder/fast/ctools.pyx":253
  *                 cnode.cost = new_cost
- *                 result = func(cnode, args)
+ *                 result = wrapped_func(func, cnode, args)
  *                 cnode.probable_cost = new_cost + result             # <<<<<<<<<<<<<<
  *                 if cnode not in queue:
  *                     wrappush(queue, cnode)
  */
         __pyx_v_cnode->probable_cost = (__pyx_v_new_cost + __pyx_v_result);
 
-        /* "pypathfinder/fast/ctools.pyx":251
- *                 result = func(cnode, args)
+        /* "pypathfinder/fast/ctools.pyx":254
+ *                 result = wrapped_func(func, cnode, args)
  *                 cnode.probable_cost = new_cost + result
  *                 if cnode not in queue:             # <<<<<<<<<<<<<<
  *                     wrappush(queue, cnode)
  * 
  */
-        __pyx_t_2 = (__Pyx_PySequence_ContainsTF(((PyObject *)__pyx_v_cnode), ((PyObject *)__pyx_v_queue), Py_NE)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 251, __pyx_L1_error)
-        __pyx_t_12 = (__pyx_t_2 != 0);
-        if (__pyx_t_12) {
+        __pyx_t_2 = (__Pyx_PySequence_ContainsTF(((PyObject *)__pyx_v_cnode), ((PyObject *)__pyx_v_queue), Py_NE)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 254, __pyx_L1_error)
+        __pyx_t_10 = (__pyx_t_2 != 0);
+        if (__pyx_t_10) {
 
-          /* "pypathfinder/fast/ctools.pyx":252
+          /* "pypathfinder/fast/ctools.pyx":255
  *                 cnode.probable_cost = new_cost + result
  *                 if cnode not in queue:
  *                     wrappush(queue, cnode)             # <<<<<<<<<<<<<<
  * 
  *         if endCNode.cost <= currentCNode.cost:
  */
-          __pyx_t_7 = __pyx_f_12pypathfinder_4fast_6ctools_wrappush(__pyx_v_queue, __pyx_v_cnode); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 252, __pyx_L1_error)
+          __pyx_t_7 = __pyx_f_12pypathfinder_4fast_6ctools_wrappush(__pyx_v_queue, __pyx_v_cnode); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 255, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-          /* "pypathfinder/fast/ctools.pyx":251
- *                 result = func(cnode, args)
+          /* "pypathfinder/fast/ctools.pyx":254
+ *                 result = wrapped_func(func, cnode, args)
  *                 cnode.probable_cost = new_cost + result
  *                 if cnode not in queue:             # <<<<<<<<<<<<<<
  *                     wrappush(queue, cnode)
@@ -9094,28 +9039,28 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
  */
         }
 
-        /* "pypathfinder/fast/ctools.pyx":247
+        /* "pypathfinder/fast/ctools.pyx":250
  * 
  *             new_cost = currentCNode.cost + cost
  *             if new_cost < cnode.cost:             # <<<<<<<<<<<<<<
  *                 cnode.cost = new_cost
- *                 result = func(cnode, args)
+ *                 result = wrapped_func(func, cnode, args)
  */
       }
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "pypathfinder/fast/ctools.pyx":254
+    /* "pypathfinder/fast/ctools.pyx":257
  *                     wrappush(queue, cnode)
  * 
  *         if endCNode.cost <= currentCNode.cost:             # <<<<<<<<<<<<<<
  *             break
  *         if first_contact and currentCNode is endCNode:
  */
-    __pyx_t_12 = ((__pyx_v_endCNode->cost <= __pyx_v_currentCNode->cost) != 0);
-    if (__pyx_t_12) {
+    __pyx_t_10 = ((__pyx_v_endCNode->cost <= __pyx_v_currentCNode->cost) != 0);
+    if (__pyx_t_10) {
 
-      /* "pypathfinder/fast/ctools.pyx":255
+      /* "pypathfinder/fast/ctools.pyx":258
  * 
  *         if endCNode.cost <= currentCNode.cost:
  *             break             # <<<<<<<<<<<<<<
@@ -9124,7 +9069,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
  */
       goto __pyx_L5_break;
 
-      /* "pypathfinder/fast/ctools.pyx":254
+      /* "pypathfinder/fast/ctools.pyx":257
  *                     wrappush(queue, cnode)
  * 
  *         if endCNode.cost <= currentCNode.cost:             # <<<<<<<<<<<<<<
@@ -9133,7 +9078,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
  */
     }
 
-    /* "pypathfinder/fast/ctools.pyx":256
+    /* "pypathfinder/fast/ctools.pyx":259
  *         if endCNode.cost <= currentCNode.cost:
  *             break
  *         if first_contact and currentCNode is endCNode:             # <<<<<<<<<<<<<<
@@ -9143,16 +9088,16 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
     __pyx_t_2 = (__pyx_v_first_contact != 0);
     if (__pyx_t_2) {
     } else {
-      __pyx_t_12 = __pyx_t_2;
+      __pyx_t_10 = __pyx_t_2;
       goto __pyx_L12_bool_binop_done;
     }
     __pyx_t_2 = (__pyx_v_currentCNode == __pyx_v_endCNode);
-    __pyx_t_13 = (__pyx_t_2 != 0);
-    __pyx_t_12 = __pyx_t_13;
+    __pyx_t_11 = (__pyx_t_2 != 0);
+    __pyx_t_10 = __pyx_t_11;
     __pyx_L12_bool_binop_done:;
-    if (__pyx_t_12) {
+    if (__pyx_t_10) {
 
-      /* "pypathfinder/fast/ctools.pyx":257
+      /* "pypathfinder/fast/ctools.pyx":260
  *             break
  *         if first_contact and currentCNode is endCNode:
  *             break             # <<<<<<<<<<<<<<
@@ -9161,7 +9106,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
  */
       goto __pyx_L5_break;
 
-      /* "pypathfinder/fast/ctools.pyx":256
+      /* "pypathfinder/fast/ctools.pyx":259
  *         if endCNode.cost <= currentCNode.cost:
  *             break
  *         if first_contact and currentCNode is endCNode:             # <<<<<<<<<<<<<<
@@ -9172,7 +9117,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
   }
   __pyx_L5_break:;
 
-  /* "pypathfinder/fast/ctools.pyx":260
+  /* "pypathfinder/fast/ctools.pyx":263
  * 
  *     # get path
  *     return construct(startCNode, endCNode)             # <<<<<<<<<<<<<<
@@ -9180,13 +9125,13 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
  * cpdef tuple copy_graph(CNode start, CNode stop):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_3 = __pyx_f_12pypathfinder_4fast_6ctools_construct(__pyx_v_startCNode, __pyx_v_endCNode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 260, __pyx_L1_error)
+  __pyx_t_3 = __pyx_f_12pypathfinder_4fast_6ctools_construct(__pyx_v_startCNode, __pyx_v_endCNode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 263, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "pypathfinder/fast/ctools.pyx":220
+  /* "pypathfinder/fast/ctools.pyx":223
  * 
  * @cython.boundscheck(False)
  * cpdef list astar_bestpath(CNode startCNode, CNode endCNode, object func, bint first_contact = False, list args = []):             # <<<<<<<<<<<<<<
@@ -9199,8 +9144,6 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_6);
   __Pyx_XDECREF(__pyx_t_7);
-  __Pyx_XDECREF(__pyx_t_10);
-  __Pyx_XDECREF(__pyx_t_11);
   __Pyx_AddTraceback("pypathfinder.fast.ctools.astar_bestpath", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
@@ -9216,6 +9159,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(struct __py
 /* Python wrapper */
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_3astar_bestpath(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static char __pyx_doc_12pypathfinder_4fast_6ctools_2astar_bestpath[] = "astar_bestpath(CNode startCNode, CNode endCNode, func, bool first_contact=False, list args=[]) -> list\n\n    Args:\n        startCNode: starting point\n        endCNode: ending point\n        first_contact: if True, pathfinding will end as soon as the endCNode has first been discoverd\n    \n    Returns:\n        list of CNodes, creating a path\n    ";
+static PyMethodDef __pyx_mdef_12pypathfinder_4fast_6ctools_3astar_bestpath = {"astar_bestpath", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_12pypathfinder_4fast_6ctools_3astar_bestpath, METH_VARARGS|METH_KEYWORDS, __pyx_doc_12pypathfinder_4fast_6ctools_2astar_bestpath};
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_3astar_bestpath(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_startCNode = 0;
   struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_endCNode = 0;
@@ -9231,7 +9175,7 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_3astar_bestpath(PyObject 
   {
     static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_startCNode,&__pyx_n_s_endCNode,&__pyx_n_s_func,&__pyx_n_s_first_contact,&__pyx_n_s_args,0};
     PyObject* values[5] = {0,0,0,0,0};
-    values[4] = __pyx_k__8;
+    values[4] = __pyx_k__10;
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
@@ -9258,13 +9202,13 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_3astar_bestpath(PyObject 
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_endCNode)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("astar_bestpath", 0, 3, 5, 1); __PYX_ERR(0, 220, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("astar_bestpath", 0, 3, 5, 1); __PYX_ERR(0, 223, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_func)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("astar_bestpath", 0, 3, 5, 2); __PYX_ERR(0, 220, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("astar_bestpath", 0, 3, 5, 2); __PYX_ERR(0, 223, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
@@ -9280,7 +9224,7 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_3astar_bestpath(PyObject 
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "astar_bestpath") < 0)) __PYX_ERR(0, 220, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "astar_bestpath") < 0)) __PYX_ERR(0, 223, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -9299,7 +9243,7 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_3astar_bestpath(PyObject 
     __pyx_v_endCNode = ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)values[1]);
     __pyx_v_func = values[2];
     if (values[3]) {
-      __pyx_v_first_contact = __Pyx_PyObject_IsTrue(values[3]); if (unlikely((__pyx_v_first_contact == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 220, __pyx_L3_error)
+      __pyx_v_first_contact = __Pyx_PyObject_IsTrue(values[3]); if (unlikely((__pyx_v_first_contact == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 223, __pyx_L3_error)
     } else {
       __pyx_v_first_contact = ((int)0);
     }
@@ -9307,15 +9251,15 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_3astar_bestpath(PyObject 
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("astar_bestpath", 0, 3, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 220, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("astar_bestpath", 0, 3, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 223, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pypathfinder.fast.ctools.astar_bestpath", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_startCNode), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "startCNode", 0))) __PYX_ERR(0, 220, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_endCNode), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "endCNode", 0))) __PYX_ERR(0, 220, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_args), (&PyList_Type), 1, "args", 1))) __PYX_ERR(0, 220, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_startCNode), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "startCNode", 0))) __PYX_ERR(0, 223, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_endCNode), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "endCNode", 0))) __PYX_ERR(0, 223, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_args), (&PyList_Type), 1, "args", 1))) __PYX_ERR(0, 223, __pyx_L1_error)
   __pyx_r = __pyx_pf_12pypathfinder_4fast_6ctools_2astar_bestpath(__pyx_self, __pyx_v_startCNode, __pyx_v_endCNode, __pyx_v_func, __pyx_v_first_contact, __pyx_v_args);
 
   /* function exit code */
@@ -9340,7 +9284,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_2astar_bestpath(CYTHON_UN
   __pyx_t_2.__pyx_n = 2;
   __pyx_t_2.first_contact = __pyx_v_first_contact;
   __pyx_t_2.args = __pyx_v_args;
-  __pyx_t_1 = __pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(__pyx_v_startCNode, __pyx_v_endCNode, __pyx_v_func, 0, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 220, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_12pypathfinder_4fast_6ctools_astar_bestpath(__pyx_v_startCNode, __pyx_v_endCNode, __pyx_v_func, 0, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 223, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -9357,7 +9301,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_2astar_bestpath(CYTHON_UN
   return __pyx_r;
 }
 
-/* "pypathfinder/fast/ctools.pyx":262
+/* "pypathfinder/fast/ctools.pyx":265
  *     return construct(startCNode, endCNode)
  * 
  * cpdef tuple copy_graph(CNode start, CNode stop):             # <<<<<<<<<<<<<<
@@ -9378,38 +9322,38 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_copy_graph(struct __pyx_ob
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("copy_graph", 0);
 
-  /* "pypathfinder/fast/ctools.pyx":264
+  /* "pypathfinder/fast/ctools.pyx":267
  * cpdef tuple copy_graph(CNode start, CNode stop):
  *     """copies the Nodestructure deleting the found cost values for them"""
  *     cdef dict nodes = {}             # <<<<<<<<<<<<<<
  *     cdef CNode new_start = start._copy(nodes)
  *     return new_start, nodes.get(stop), nodes
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 264, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 267, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_nodes = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pypathfinder/fast/ctools.pyx":265
+  /* "pypathfinder/fast/ctools.pyx":268
  *     """copies the Nodestructure deleting the found cost values for them"""
  *     cdef dict nodes = {}
  *     cdef CNode new_start = start._copy(nodes)             # <<<<<<<<<<<<<<
  *     return new_start, nodes.get(stop), nodes
  */
-  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_12pypathfinder_4fast_6ctools_CNode *)__pyx_v_start->__pyx_vtab)->_copy(__pyx_v_start, __pyx_v_nodes, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 265, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_12pypathfinder_4fast_6ctools_CNode *)__pyx_v_start->__pyx_vtab)->_copy(__pyx_v_start, __pyx_v_nodes, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 268, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_new_start = ((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pypathfinder/fast/ctools.pyx":266
+  /* "pypathfinder/fast/ctools.pyx":269
  *     cdef dict nodes = {}
  *     cdef CNode new_start = start._copy(nodes)
  *     return new_start, nodes.get(stop), nodes             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_nodes, ((PyObject *)__pyx_v_stop), Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 266, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_nodes, ((PyObject *)__pyx_v_stop), Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 269, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 266, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 269, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(((PyObject *)__pyx_v_new_start));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_new_start));
@@ -9424,7 +9368,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_copy_graph(struct __pyx_ob
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "pypathfinder/fast/ctools.pyx":262
+  /* "pypathfinder/fast/ctools.pyx":265
  *     return construct(startCNode, endCNode)
  * 
  * cpdef tuple copy_graph(CNode start, CNode stop):             # <<<<<<<<<<<<<<
@@ -9449,6 +9393,7 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools_copy_graph(struct __pyx_ob
 /* Python wrapper */
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_5copy_graph(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static char __pyx_doc_12pypathfinder_4fast_6ctools_4copy_graph[] = "copy_graph(CNode start, CNode stop) -> tuple\ncopies the Nodestructure deleting the found cost values for them";
+static PyMethodDef __pyx_mdef_12pypathfinder_4fast_6ctools_5copy_graph = {"copy_graph", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_12pypathfinder_4fast_6ctools_5copy_graph, METH_VARARGS|METH_KEYWORDS, __pyx_doc_12pypathfinder_4fast_6ctools_4copy_graph};
 static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_5copy_graph(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_start = 0;
   struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v_stop = 0;
@@ -9481,11 +9426,11 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_5copy_graph(PyObject *__p
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_stop)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("copy_graph", 1, 2, 2, 1); __PYX_ERR(0, 262, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("copy_graph", 1, 2, 2, 1); __PYX_ERR(0, 265, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "copy_graph") < 0)) __PYX_ERR(0, 262, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "copy_graph") < 0)) __PYX_ERR(0, 265, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -9498,14 +9443,14 @@ static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_5copy_graph(PyObject *__p
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("copy_graph", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 262, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("copy_graph", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 265, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pypathfinder.fast.ctools.copy_graph", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_start), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "start", 0))) __PYX_ERR(0, 262, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_stop), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "stop", 0))) __PYX_ERR(0, 262, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_start), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "start", 0))) __PYX_ERR(0, 265, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_stop), __pyx_ptype_12pypathfinder_4fast_6ctools_CNode, 1, "stop", 0))) __PYX_ERR(0, 265, __pyx_L1_error)
   __pyx_r = __pyx_pf_12pypathfinder_4fast_6ctools_4copy_graph(__pyx_self, __pyx_v_start, __pyx_v_stop);
 
   /* function exit code */
@@ -9526,7 +9471,7 @@ static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_4copy_graph(CYTHON_UNUSED
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("copy_graph", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_12pypathfinder_4fast_6ctools_copy_graph(__pyx_v_start, __pyx_v_stop, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 262, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_12pypathfinder_4fast_6ctools_copy_graph(__pyx_v_start, __pyx_v_stop, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 265, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -11091,435 +11036,6 @@ static PyObject *__pyx_f_12pypathfinder_4fast_6ctools___pyx_unpickle_LowComby__s
   return __pyx_r;
 }
 
-/* "(tree fragment)":1
- * def __pyx_unpickle_CNode(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
- *     cdef object __pyx_PickleError
- *     cdef object __pyx_result
- */
-
-/* Python wrapper */
-static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_15__pyx_unpickle_CNode(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_12pypathfinder_4fast_6ctools_14__pyx_unpickle_CNode[] = "__pyx_unpickle_CNode(__pyx_type, long __pyx_checksum, __pyx_state)";
-static PyMethodDef __pyx_mdef_12pypathfinder_4fast_6ctools_15__pyx_unpickle_CNode = {"__pyx_unpickle_CNode", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_12pypathfinder_4fast_6ctools_15__pyx_unpickle_CNode, METH_VARARGS|METH_KEYWORDS, __pyx_doc_12pypathfinder_4fast_6ctools_14__pyx_unpickle_CNode};
-static PyObject *__pyx_pw_12pypathfinder_4fast_6ctools_15__pyx_unpickle_CNode(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  PyObject *__pyx_v___pyx_type = 0;
-  long __pyx_v___pyx_checksum;
-  PyObject *__pyx_v___pyx_state = 0;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("__pyx_unpickle_CNode (wrapper)", 0);
-  {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_pyx_type,&__pyx_n_s_pyx_checksum,&__pyx_n_s_pyx_state,0};
-    PyObject* values[3] = {0,0,0};
-    if (unlikely(__pyx_kwds)) {
-      Py_ssize_t kw_args;
-      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
-      switch (pos_args) {
-        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
-        CYTHON_FALLTHROUGH;
-        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
-        CYTHON_FALLTHROUGH;
-        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-        CYTHON_FALLTHROUGH;
-        case  0: break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-      kw_args = PyDict_Size(__pyx_kwds);
-      switch (pos_args) {
-        case  0:
-        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_pyx_type)) != 0)) kw_args--;
-        else goto __pyx_L5_argtuple_error;
-        CYTHON_FALLTHROUGH;
-        case  1:
-        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_pyx_checksum)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("__pyx_unpickle_CNode", 1, 3, 3, 1); __PYX_ERR(1, 1, __pyx_L3_error)
-        }
-        CYTHON_FALLTHROUGH;
-        case  2:
-        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_pyx_state)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("__pyx_unpickle_CNode", 1, 3, 3, 2); __PYX_ERR(1, 1, __pyx_L3_error)
-        }
-      }
-      if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__pyx_unpickle_CNode") < 0)) __PYX_ERR(1, 1, __pyx_L3_error)
-      }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
-      goto __pyx_L5_argtuple_error;
-    } else {
-      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
-      values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
-    }
-    __pyx_v___pyx_type = values[0];
-    __pyx_v___pyx_checksum = __Pyx_PyInt_As_long(values[1]); if (unlikely((__pyx_v___pyx_checksum == (long)-1) && PyErr_Occurred())) __PYX_ERR(1, 1, __pyx_L3_error)
-    __pyx_v___pyx_state = values[2];
-  }
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__pyx_unpickle_CNode", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 1, __pyx_L3_error)
-  __pyx_L3_error:;
-  __Pyx_AddTraceback("pypathfinder.fast.ctools.__pyx_unpickle_CNode", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_12pypathfinder_4fast_6ctools_14__pyx_unpickle_CNode(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_12pypathfinder_4fast_6ctools_14__pyx_unpickle_CNode(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
-  PyObject *__pyx_v___pyx_PickleError = 0;
-  PyObject *__pyx_v___pyx_result = 0;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  int __pyx_t_1;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  PyObject *__pyx_t_4 = NULL;
-  PyObject *__pyx_t_5 = NULL;
-  int __pyx_t_6;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("__pyx_unpickle_CNode", 0);
-
-  /* "(tree fragment)":4
- *     cdef object __pyx_PickleError
- *     cdef object __pyx_result
- *     if __pyx_checksum != 0x986b206:             # <<<<<<<<<<<<<<
- *         from pickle import PickleError as __pyx_PickleError
- *         raise __pyx_PickleError("Incompatible checksums (%s vs 0x986b206 = (_connections, cost, id, probable_cost))" % __pyx_checksum)
- */
-  __pyx_t_1 = ((__pyx_v___pyx_checksum != 0x986b206) != 0);
-  if (__pyx_t_1) {
-
-    /* "(tree fragment)":5
- *     cdef object __pyx_result
- *     if __pyx_checksum != 0x986b206:
- *         from pickle import PickleError as __pyx_PickleError             # <<<<<<<<<<<<<<
- *         raise __pyx_PickleError("Incompatible checksums (%s vs 0x986b206 = (_connections, cost, id, probable_cost))" % __pyx_checksum)
- *     __pyx_result = CNode.__new__(__pyx_type)
- */
-    __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 5, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_INCREF(__pyx_n_s_PickleError);
-    __Pyx_GIVEREF(__pyx_n_s_PickleError);
-    PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_s_PickleError);
-    __pyx_t_3 = __Pyx_Import(__pyx_n_s_pickle, __pyx_t_2, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 5, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_3, __pyx_n_s_PickleError); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 5, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_INCREF(__pyx_t_2);
-    __pyx_v___pyx_PickleError = __pyx_t_2;
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-
-    /* "(tree fragment)":6
- *     if __pyx_checksum != 0x986b206:
- *         from pickle import PickleError as __pyx_PickleError
- *         raise __pyx_PickleError("Incompatible checksums (%s vs 0x986b206 = (_connections, cost, id, probable_cost))" % __pyx_checksum)             # <<<<<<<<<<<<<<
- *     __pyx_result = CNode.__new__(__pyx_type)
- *     if __pyx_state is not None:
- */
-    __pyx_t_2 = __Pyx_PyInt_From_long(__pyx_v___pyx_checksum); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 6, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = __Pyx_PyString_Format(__pyx_kp_s_Incompatible_checksums_s_vs_0x98, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 6, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_INCREF(__pyx_v___pyx_PickleError);
-    __pyx_t_2 = __pyx_v___pyx_PickleError; __pyx_t_5 = NULL;
-    if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
-      __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_2);
-      if (likely(__pyx_t_5)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-        __Pyx_INCREF(__pyx_t_5);
-        __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_2, function);
-      }
-    }
-    __pyx_t_3 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_5, __pyx_t_4) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_4);
-    __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 6, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_Raise(__pyx_t_3, 0, 0, 0);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __PYX_ERR(1, 6, __pyx_L1_error)
-
-    /* "(tree fragment)":4
- *     cdef object __pyx_PickleError
- *     cdef object __pyx_result
- *     if __pyx_checksum != 0x986b206:             # <<<<<<<<<<<<<<
- *         from pickle import PickleError as __pyx_PickleError
- *         raise __pyx_PickleError("Incompatible checksums (%s vs 0x986b206 = (_connections, cost, id, probable_cost))" % __pyx_checksum)
- */
-  }
-
-  /* "(tree fragment)":7
- *         from pickle import PickleError as __pyx_PickleError
- *         raise __pyx_PickleError("Incompatible checksums (%s vs 0x986b206 = (_connections, cost, id, probable_cost))" % __pyx_checksum)
- *     __pyx_result = CNode.__new__(__pyx_type)             # <<<<<<<<<<<<<<
- *     if __pyx_state is not None:
- *         __pyx_unpickle_CNode__set_state(<CNode> __pyx_result, __pyx_state)
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_CNode), __pyx_n_s_new); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 7, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = NULL;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_4)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_4);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_2, function);
-    }
-  }
-  __pyx_t_3 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_4, __pyx_v___pyx_type) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v___pyx_type);
-  __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 7, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_v___pyx_result = __pyx_t_3;
-  __pyx_t_3 = 0;
-
-  /* "(tree fragment)":8
- *         raise __pyx_PickleError("Incompatible checksums (%s vs 0x986b206 = (_connections, cost, id, probable_cost))" % __pyx_checksum)
- *     __pyx_result = CNode.__new__(__pyx_type)
- *     if __pyx_state is not None:             # <<<<<<<<<<<<<<
- *         __pyx_unpickle_CNode__set_state(<CNode> __pyx_result, __pyx_state)
- *     return __pyx_result
- */
-  __pyx_t_1 = (__pyx_v___pyx_state != Py_None);
-  __pyx_t_6 = (__pyx_t_1 != 0);
-  if (__pyx_t_6) {
-
-    /* "(tree fragment)":9
- *     __pyx_result = CNode.__new__(__pyx_type)
- *     if __pyx_state is not None:
- *         __pyx_unpickle_CNode__set_state(<CNode> __pyx_result, __pyx_state)             # <<<<<<<<<<<<<<
- *     return __pyx_result
- * cdef __pyx_unpickle_CNode__set_state(CNode __pyx_result, tuple __pyx_state):
- */
-    if (!(likely(PyTuple_CheckExact(__pyx_v___pyx_state))||((__pyx_v___pyx_state) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_v___pyx_state)->tp_name), 0))) __PYX_ERR(1, 9, __pyx_L1_error)
-    __pyx_t_3 = __pyx_f_12pypathfinder_4fast_6ctools___pyx_unpickle_CNode__set_state(((struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *)__pyx_v___pyx_result), ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 9, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-
-    /* "(tree fragment)":8
- *         raise __pyx_PickleError("Incompatible checksums (%s vs 0x986b206 = (_connections, cost, id, probable_cost))" % __pyx_checksum)
- *     __pyx_result = CNode.__new__(__pyx_type)
- *     if __pyx_state is not None:             # <<<<<<<<<<<<<<
- *         __pyx_unpickle_CNode__set_state(<CNode> __pyx_result, __pyx_state)
- *     return __pyx_result
- */
-  }
-
-  /* "(tree fragment)":10
- *     if __pyx_state is not None:
- *         __pyx_unpickle_CNode__set_state(<CNode> __pyx_result, __pyx_state)
- *     return __pyx_result             # <<<<<<<<<<<<<<
- * cdef __pyx_unpickle_CNode__set_state(CNode __pyx_result, tuple __pyx_state):
- *     __pyx_result._connections = __pyx_state[0]; __pyx_result.cost = __pyx_state[1]; __pyx_result.id = __pyx_state[2]; __pyx_result.probable_cost = __pyx_state[3]
- */
-  __Pyx_XDECREF(__pyx_r);
-  __Pyx_INCREF(__pyx_v___pyx_result);
-  __pyx_r = __pyx_v___pyx_result;
-  goto __pyx_L0;
-
-  /* "(tree fragment)":1
- * def __pyx_unpickle_CNode(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
- *     cdef object __pyx_PickleError
- *     cdef object __pyx_result
- */
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_AddTraceback("pypathfinder.fast.ctools.__pyx_unpickle_CNode", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XDECREF(__pyx_v___pyx_PickleError);
-  __Pyx_XDECREF(__pyx_v___pyx_result);
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "(tree fragment)":11
- *         __pyx_unpickle_CNode__set_state(<CNode> __pyx_result, __pyx_state)
- *     return __pyx_result
- * cdef __pyx_unpickle_CNode__set_state(CNode __pyx_result, tuple __pyx_state):             # <<<<<<<<<<<<<<
- *     __pyx_result._connections = __pyx_state[0]; __pyx_result.cost = __pyx_state[1]; __pyx_result.id = __pyx_state[2]; __pyx_result.probable_cost = __pyx_state[3]
- *     if len(__pyx_state) > 4 and hasattr(__pyx_result, '__dict__'):
- */
-
-static PyObject *__pyx_f_12pypathfinder_4fast_6ctools___pyx_unpickle_CNode__set_state(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *__pyx_v___pyx_result, PyObject *__pyx_v___pyx_state) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  double __pyx_t_2;
-  int __pyx_t_3;
-  Py_ssize_t __pyx_t_4;
-  int __pyx_t_5;
-  int __pyx_t_6;
-  PyObject *__pyx_t_7 = NULL;
-  PyObject *__pyx_t_8 = NULL;
-  PyObject *__pyx_t_9 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("__pyx_unpickle_CNode__set_state", 0);
-
-  /* "(tree fragment)":12
- *     return __pyx_result
- * cdef __pyx_unpickle_CNode__set_state(CNode __pyx_result, tuple __pyx_state):
- *     __pyx_result._connections = __pyx_state[0]; __pyx_result.cost = __pyx_state[1]; __pyx_result.id = __pyx_state[2]; __pyx_result.probable_cost = __pyx_state[3]             # <<<<<<<<<<<<<<
- *     if len(__pyx_state) > 4 and hasattr(__pyx_result, '__dict__'):
- *         __pyx_result.__dict__.update(__pyx_state[4])
- */
-  if (unlikely(__pyx_v___pyx_state == Py_None)) {
-    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(1, 12, __pyx_L1_error)
-  }
-  __pyx_t_1 = __Pyx_GetItemInt_Tuple(__pyx_v___pyx_state, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 12, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (!(likely(PyDict_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "dict", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(1, 12, __pyx_L1_error)
-  __Pyx_GIVEREF(__pyx_t_1);
-  __Pyx_GOTREF(__pyx_v___pyx_result->_connections);
-  __Pyx_DECREF(__pyx_v___pyx_result->_connections);
-  __pyx_v___pyx_result->_connections = ((PyObject*)__pyx_t_1);
-  __pyx_t_1 = 0;
-  if (unlikely(__pyx_v___pyx_state == Py_None)) {
-    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(1, 12, __pyx_L1_error)
-  }
-  __pyx_t_1 = __Pyx_GetItemInt_Tuple(__pyx_v___pyx_state, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 12, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_2 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 12, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_v___pyx_result->cost = __pyx_t_2;
-  if (unlikely(__pyx_v___pyx_state == Py_None)) {
-    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(1, 12, __pyx_L1_error)
-  }
-  __pyx_t_1 = __Pyx_GetItemInt_Tuple(__pyx_v___pyx_state, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 12, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GIVEREF(__pyx_t_1);
-  __Pyx_GOTREF(__pyx_v___pyx_result->id);
-  __Pyx_DECREF(__pyx_v___pyx_result->id);
-  __pyx_v___pyx_result->id = __pyx_t_1;
-  __pyx_t_1 = 0;
-  if (unlikely(__pyx_v___pyx_state == Py_None)) {
-    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(1, 12, __pyx_L1_error)
-  }
-  __pyx_t_1 = __Pyx_GetItemInt_Tuple(__pyx_v___pyx_state, 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 12, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_2 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 12, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_v___pyx_result->probable_cost = __pyx_t_2;
-
-  /* "(tree fragment)":13
- * cdef __pyx_unpickle_CNode__set_state(CNode __pyx_result, tuple __pyx_state):
- *     __pyx_result._connections = __pyx_state[0]; __pyx_result.cost = __pyx_state[1]; __pyx_result.id = __pyx_state[2]; __pyx_result.probable_cost = __pyx_state[3]
- *     if len(__pyx_state) > 4 and hasattr(__pyx_result, '__dict__'):             # <<<<<<<<<<<<<<
- *         __pyx_result.__dict__.update(__pyx_state[4])
- */
-  if (unlikely(__pyx_v___pyx_state == Py_None)) {
-    PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-    __PYX_ERR(1, 13, __pyx_L1_error)
-  }
-  __pyx_t_4 = PyTuple_GET_SIZE(__pyx_v___pyx_state); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(1, 13, __pyx_L1_error)
-  __pyx_t_5 = ((__pyx_t_4 > 4) != 0);
-  if (__pyx_t_5) {
-  } else {
-    __pyx_t_3 = __pyx_t_5;
-    goto __pyx_L4_bool_binop_done;
-  }
-  __pyx_t_5 = __Pyx_HasAttr(((PyObject *)__pyx_v___pyx_result), __pyx_n_s_dict); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(1, 13, __pyx_L1_error)
-  __pyx_t_6 = (__pyx_t_5 != 0);
-  __pyx_t_3 = __pyx_t_6;
-  __pyx_L4_bool_binop_done:;
-  if (__pyx_t_3) {
-
-    /* "(tree fragment)":14
- *     __pyx_result._connections = __pyx_state[0]; __pyx_result.cost = __pyx_state[1]; __pyx_result.id = __pyx_state[2]; __pyx_result.probable_cost = __pyx_state[3]
- *     if len(__pyx_state) > 4 and hasattr(__pyx_result, '__dict__'):
- *         __pyx_result.__dict__.update(__pyx_state[4])             # <<<<<<<<<<<<<<
- */
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v___pyx_result), __pyx_n_s_dict); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 14, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_update); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 14, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
-    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(__pyx_v___pyx_state == Py_None)) {
-      PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(1, 14, __pyx_L1_error)
-    }
-    __pyx_t_7 = __Pyx_GetItemInt_Tuple(__pyx_v___pyx_state, 4, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 14, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_9 = NULL;
-    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_8))) {
-      __pyx_t_9 = PyMethod_GET_SELF(__pyx_t_8);
-      if (likely(__pyx_t_9)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_8);
-        __Pyx_INCREF(__pyx_t_9);
-        __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_8, function);
-      }
-    }
-    __pyx_t_1 = (__pyx_t_9) ? __Pyx_PyObject_Call2Args(__pyx_t_8, __pyx_t_9, __pyx_t_7) : __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_t_7);
-    __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 14, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-    /* "(tree fragment)":13
- * cdef __pyx_unpickle_CNode__set_state(CNode __pyx_result, tuple __pyx_state):
- *     __pyx_result._connections = __pyx_state[0]; __pyx_result.cost = __pyx_state[1]; __pyx_result.id = __pyx_state[2]; __pyx_result.probable_cost = __pyx_state[3]
- *     if len(__pyx_state) > 4 and hasattr(__pyx_result, '__dict__'):             # <<<<<<<<<<<<<<
- *         __pyx_result.__dict__.update(__pyx_state[4])
- */
-  }
-
-  /* "(tree fragment)":11
- *         __pyx_unpickle_CNode__set_state(<CNode> __pyx_result, __pyx_state)
- *     return __pyx_result
- * cdef __pyx_unpickle_CNode__set_state(CNode __pyx_result, tuple __pyx_state):             # <<<<<<<<<<<<<<
- *     __pyx_result._connections = __pyx_state[0]; __pyx_result.cost = __pyx_state[1]; __pyx_result.id = __pyx_state[2]; __pyx_result.probable_cost = __pyx_state[3]
- *     if len(__pyx_state) > 4 and hasattr(__pyx_result, '__dict__'):
- */
-
-  /* function exit code */
-  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_7);
-  __Pyx_XDECREF(__pyx_t_8);
-  __Pyx_XDECREF(__pyx_t_9);
-  __Pyx_AddTraceback("pypathfinder.fast.ctools.__pyx_unpickle_CNode__set_state", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = 0;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
 static PyObject *__pyx_tp_new_12pypathfinder_4fast_6ctools_CPathfinderError(PyTypeObject *t, PyObject *a, PyObject *k) {
   PyObject *o = (&((PyTypeObject*)PyExc_Exception)[0])->tp_new(t, a, k);
   if (unlikely(!o)) return 0;
@@ -11867,10 +11383,6 @@ static int __pyx_mp_ass_subscript_12pypathfinder_4fast_6ctools_LowComby(PyObject
 }
 
 static PyMethodDef __pyx_methods_12pypathfinder_4fast_6ctools_LowComby[] = {
-  {"copy", (PyCFunction)__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_11copy, METH_NOARGS, __pyx_doc_12pypathfinder_4fast_6ctools_8LowComby_10copy},
-  {"append", (PyCFunction)__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_13append, METH_O, __pyx_doc_12pypathfinder_4fast_6ctools_8LowComby_12append},
-  {"insert", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_15insert, METH_VARARGS|METH_KEYWORDS, __pyx_doc_12pypathfinder_4fast_6ctools_8LowComby_14insert},
-  {"pop", (PyCFunction)__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_17pop, METH_O, __pyx_doc_12pypathfinder_4fast_6ctools_8LowComby_16pop},
   {"__reduce_cython__", (PyCFunction)__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_19__reduce_cython__, METH_NOARGS, __pyx_doc_12pypathfinder_4fast_6ctools_8LowComby_18__reduce_cython__},
   {"__setstate_cython__", (PyCFunction)__pyx_pw_12pypathfinder_4fast_6ctools_8LowComby_21__setstate_cython__, METH_O, __pyx_doc_12pypathfinder_4fast_6ctools_8LowComby_20__setstate_cython__},
   {0, 0, 0, 0}
@@ -11968,7 +11480,7 @@ static PyTypeObject __pyx_type_12pypathfinder_4fast_6ctools_LowComby = {
 };
 static struct __pyx_vtabstruct_12pypathfinder_4fast_6ctools_CNode __pyx_vtable_12pypathfinder_4fast_6ctools_CNode;
 
-static PyObject *__pyx_tp_new_12pypathfinder_4fast_6ctools_CNode(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
+static PyObject *__pyx_tp_new_12pypathfinder_4fast_6ctools_CNode(PyTypeObject *t, PyObject *a, PyObject *k) {
   struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *p;
   PyObject *o;
   if (likely((t->tp_flags & Py_TPFLAGS_IS_ABSTRACT) == 0)) {
@@ -11981,7 +11493,11 @@ static PyObject *__pyx_tp_new_12pypathfinder_4fast_6ctools_CNode(PyTypeObject *t
   p->__pyx_vtab = __pyx_vtabptr_12pypathfinder_4fast_6ctools_CNode;
   p->_connections = ((PyObject*)Py_None); Py_INCREF(Py_None);
   p->id = Py_None; Py_INCREF(Py_None);
+  if (unlikely(__pyx_pw_12pypathfinder_4fast_6ctools_5CNode_1__cinit__(o, a, k) < 0)) goto bad;
   return o;
+  bad:
+  Py_DECREF(o); o = 0;
+  return NULL;
 }
 
 static void __pyx_tp_dealloc_12pypathfinder_4fast_6ctools_CNode(PyObject *o) {
@@ -12101,8 +11617,6 @@ static int __pyx_setprop_12pypathfinder_4fast_6ctools_5CNode_id(PyObject *o, PyO
 }
 
 static PyMethodDef __pyx_methods_12pypathfinder_4fast_6ctools_CNode[] = {
-  {"connect", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_12pypathfinder_4fast_6ctools_5CNode_19connect, METH_VARARGS|METH_KEYWORDS, __pyx_doc_12pypathfinder_4fast_6ctools_5CNode_18connect},
-  {"_copy", (PyCFunction)__pyx_pw_12pypathfinder_4fast_6ctools_5CNode_21_copy, METH_O, __pyx_doc_12pypathfinder_4fast_6ctools_5CNode_20_copy},
   {"__reduce_cython__", (PyCFunction)__pyx_pw_12pypathfinder_4fast_6ctools_5CNode_23__reduce_cython__, METH_NOARGS, __pyx_doc_12pypathfinder_4fast_6ctools_5CNode_22__reduce_cython__},
   {"__setstate_cython__", (PyCFunction)__pyx_pw_12pypathfinder_4fast_6ctools_5CNode_25__setstate_cython__, METH_O, __pyx_doc_12pypathfinder_4fast_6ctools_5CNode_24__setstate_cython__},
   {0, 0, 0, 0}
@@ -12147,7 +11661,7 @@ static PyTypeObject __pyx_type_12pypathfinder_4fast_6ctools_CNode = {
   0, /*tp_setattro*/
   0, /*tp_as_buffer*/
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC, /*tp_flags*/
-  "CNode(id_, connections=None)", /*tp_doc*/
+  0, /*tp_doc*/
   __pyx_tp_traverse_12pypathfinder_4fast_6ctools_CNode, /*tp_traverse*/
   __pyx_tp_clear_12pypathfinder_4fast_6ctools_CNode, /*tp_clear*/
   __pyx_tp_richcompare_12pypathfinder_4fast_6ctools_CNode, /*tp_richcompare*/
@@ -12162,7 +11676,7 @@ static PyTypeObject __pyx_type_12pypathfinder_4fast_6ctools_CNode = {
   0, /*tp_descr_get*/
   0, /*tp_descr_set*/
   0, /*tp_dictoffset*/
-  __pyx_pw_12pypathfinder_4fast_6ctools_5CNode_1__init__, /*tp_init*/
+  0, /*tp_init*/
   0, /*tp_alloc*/
   __pyx_tp_new_12pypathfinder_4fast_6ctools_CNode, /*tp_new*/
   0, /*tp_free*/
@@ -12189,9 +11703,6 @@ static PyTypeObject __pyx_type_12pypathfinder_4fast_6ctools_CNode = {
 };
 
 static PyMethodDef __pyx_methods[] = {
-  {"dijkstra_bestpath", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_12pypathfinder_4fast_6ctools_1dijkstra_bestpath, METH_VARARGS|METH_KEYWORDS, __pyx_doc_12pypathfinder_4fast_6ctools_dijkstra_bestpath},
-  {"astar_bestpath", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_12pypathfinder_4fast_6ctools_3astar_bestpath, METH_VARARGS|METH_KEYWORDS, __pyx_doc_12pypathfinder_4fast_6ctools_2astar_bestpath},
-  {"copy_graph", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_12pypathfinder_4fast_6ctools_5copy_graph, METH_VARARGS|METH_KEYWORDS, __pyx_doc_12pypathfinder_4fast_6ctools_4copy_graph},
   {0, 0, 0, 0}
 };
 
@@ -12238,10 +11749,20 @@ static struct PyModuleDef __pyx_moduledef = {
 
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_CDublicateError, __pyx_k_CDublicateError, sizeof(__pyx_k_CDublicateError), 0, 0, 1, 1},
+  {&__pyx_n_s_CDublicateError___reduce_cython, __pyx_k_CDublicateError___reduce_cython, sizeof(__pyx_k_CDublicateError___reduce_cython), 0, 0, 1, 1},
+  {&__pyx_n_s_CDublicateError___setstate_cytho, __pyx_k_CDublicateError___setstate_cytho, sizeof(__pyx_k_CDublicateError___setstate_cytho), 0, 0, 1, 1},
   {&__pyx_n_s_CNode, __pyx_k_CNode, sizeof(__pyx_k_CNode), 0, 0, 1, 1},
+  {&__pyx_n_s_CNode___reduce_cython, __pyx_k_CNode___reduce_cython, sizeof(__pyx_k_CNode___reduce_cython), 0, 0, 1, 1},
+  {&__pyx_n_s_CNode___setstate_cython, __pyx_k_CNode___setstate_cython, sizeof(__pyx_k_CNode___setstate_cython), 0, 0, 1, 1},
+  {&__pyx_n_s_CNode__copy, __pyx_k_CNode__copy, sizeof(__pyx_k_CNode__copy), 0, 0, 1, 1},
+  {&__pyx_n_s_CNode_connect, __pyx_k_CNode_connect, sizeof(__pyx_k_CNode_connect), 0, 0, 1, 1},
   {&__pyx_kp_u_CNode_id, __pyx_k_CNode_id, sizeof(__pyx_k_CNode_id), 0, 1, 0, 0},
   {&__pyx_n_s_CPathError, __pyx_k_CPathError, sizeof(__pyx_k_CPathError), 0, 0, 1, 1},
+  {&__pyx_n_s_CPathError___reduce_cython, __pyx_k_CPathError___reduce_cython, sizeof(__pyx_k_CPathError___reduce_cython), 0, 0, 1, 1},
+  {&__pyx_n_s_CPathError___setstate_cython, __pyx_k_CPathError___setstate_cython, sizeof(__pyx_k_CPathError___setstate_cython), 0, 0, 1, 1},
   {&__pyx_n_s_CPathfinderError, __pyx_k_CPathfinderError, sizeof(__pyx_k_CPathfinderError), 0, 0, 1, 1},
+  {&__pyx_n_s_CPathfinderError___reduce_cython, __pyx_k_CPathfinderError___reduce_cython, sizeof(__pyx_k_CPathfinderError___reduce_cython), 0, 0, 1, 1},
+  {&__pyx_n_s_CPathfinderError___setstate_cyth, __pyx_k_CPathfinderError___setstate_cyth, sizeof(__pyx_k_CPathfinderError___setstate_cyth), 0, 0, 1, 1},
   {&__pyx_kp_u_Coulnd_t_construct_path, __pyx_k_Coulnd_t_construct_path, sizeof(__pyx_k_Coulnd_t_construct_path), 0, 1, 0, 0},
   {&__pyx_n_s_HighComby, __pyx_k_HighComby, sizeof(__pyx_k_HighComby), 0, 0, 1, 1},
   {&__pyx_n_s_HighComby___getitem, __pyx_k_HighComby___getitem, sizeof(__pyx_k_HighComby___getitem), 0, 0, 1, 1},
@@ -12249,27 +11770,36 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_HighComby_append, __pyx_k_HighComby_append, sizeof(__pyx_k_HighComby_append), 0, 0, 1, 1},
   {&__pyx_n_s_HighComby_insert, __pyx_k_HighComby_insert, sizeof(__pyx_k_HighComby_insert), 0, 0, 1, 1},
   {&__pyx_n_s_HighComby_pop, __pyx_k_HighComby_pop, sizeof(__pyx_k_HighComby_pop), 0, 0, 1, 1},
-  {&__pyx_kp_s_Incompatible_checksums_s_vs_0x98, __pyx_k_Incompatible_checksums_s_vs_0x98, sizeof(__pyx_k_Incompatible_checksums_s_vs_0x98), 0, 0, 1, 0},
   {&__pyx_kp_s_Incompatible_checksums_s_vs_0xcd, __pyx_k_Incompatible_checksums_s_vs_0xcd, sizeof(__pyx_k_Incompatible_checksums_s_vs_0xcd), 0, 0, 1, 0},
   {&__pyx_kp_s_Incompatible_checksums_s_vs_0xd4, __pyx_k_Incompatible_checksums_s_vs_0xd4, sizeof(__pyx_k_Incompatible_checksums_s_vs_0xd4), 0, 0, 1, 0},
   {&__pyx_n_s_IndexError, __pyx_k_IndexError, sizeof(__pyx_k_IndexError), 0, 0, 1, 1},
   {&__pyx_n_s_KeyError, __pyx_k_KeyError, sizeof(__pyx_k_KeyError), 0, 0, 1, 1},
   {&__pyx_n_s_LowComby, __pyx_k_LowComby, sizeof(__pyx_k_LowComby), 0, 0, 1, 1},
+  {&__pyx_n_s_LowComby___reduce_cython, __pyx_k_LowComby___reduce_cython, sizeof(__pyx_k_LowComby___reduce_cython), 0, 0, 1, 1},
+  {&__pyx_n_s_LowComby___setstate_cython, __pyx_k_LowComby___setstate_cython, sizeof(__pyx_k_LowComby___setstate_cython), 0, 0, 1, 1},
+  {&__pyx_n_s_LowComby_append, __pyx_k_LowComby_append, sizeof(__pyx_k_LowComby_append), 0, 0, 1, 1},
+  {&__pyx_n_s_LowComby_copy, __pyx_k_LowComby_copy, sizeof(__pyx_k_LowComby_copy), 0, 0, 1, 1},
+  {&__pyx_n_s_LowComby_insert, __pyx_k_LowComby_insert, sizeof(__pyx_k_LowComby_insert), 0, 0, 1, 1},
+  {&__pyx_n_s_LowComby_pop, __pyx_k_LowComby_pop, sizeof(__pyx_k_LowComby_pop), 0, 0, 1, 1},
   {&__pyx_n_s_PickleError, __pyx_k_PickleError, sizeof(__pyx_k_PickleError), 0, 0, 1, 1},
   {&__pyx_n_s_TypeError, __pyx_k_TypeError, sizeof(__pyx_k_TypeError), 0, 0, 1, 1},
   {&__pyx_n_s_ValueError, __pyx_k_ValueError, sizeof(__pyx_k_ValueError), 0, 0, 1, 1},
   {&__pyx_kp_u__6, __pyx_k__6, sizeof(__pyx_k__6), 0, 1, 0, 0},
   {&__pyx_n_s_append, __pyx_k_append, sizeof(__pyx_k_append), 0, 0, 1, 1},
   {&__pyx_n_s_args, __pyx_k_args, sizeof(__pyx_k_args), 0, 0, 1, 1},
+  {&__pyx_n_s_astar_bestpath, __pyx_k_astar_bestpath, sizeof(__pyx_k_astar_bestpath), 0, 0, 1, 1},
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
   {&__pyx_n_s_conn, __pyx_k_conn, sizeof(__pyx_k_conn), 0, 0, 1, 1},
   {&__pyx_n_s_connect, __pyx_k_connect, sizeof(__pyx_k_connect), 0, 0, 1, 1},
   {&__pyx_n_s_connections, __pyx_k_connections, sizeof(__pyx_k_connections), 0, 0, 1, 1},
   {&__pyx_n_s_copy, __pyx_k_copy, sizeof(__pyx_k_copy), 0, 0, 1, 1},
   {&__pyx_n_s_copy_2, __pyx_k_copy_2, sizeof(__pyx_k_copy_2), 0, 0, 1, 1},
+  {&__pyx_n_s_copy_graph, __pyx_k_copy_graph, sizeof(__pyx_k_copy_graph), 0, 0, 1, 1},
   {&__pyx_kp_u_cost, __pyx_k_cost, sizeof(__pyx_k_cost), 0, 1, 0, 0},
   {&__pyx_kp_s_ctools_pyx, __pyx_k_ctools_pyx, sizeof(__pyx_k_ctools_pyx), 0, 0, 1, 0},
   {&__pyx_n_s_dict, __pyx_k_dict, sizeof(__pyx_k_dict), 0, 0, 1, 1},
+  {&__pyx_n_s_dict_2, __pyx_k_dict_2, sizeof(__pyx_k_dict_2), 0, 0, 1, 1},
+  {&__pyx_n_s_dijkstra_bestpath, __pyx_k_dijkstra_bestpath, sizeof(__pyx_k_dijkstra_bestpath), 0, 0, 1, 1},
   {&__pyx_n_s_doc, __pyx_k_doc, sizeof(__pyx_k_doc), 0, 0, 1, 1},
   {&__pyx_n_s_e, __pyx_k_e, sizeof(__pyx_k_e), 0, 0, 1, 1},
   {&__pyx_n_s_endCNode, __pyx_k_endCNode, sizeof(__pyx_k_endCNode), 0, 0, 1, 1},
@@ -12297,6 +11827,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_module, __pyx_k_module, sizeof(__pyx_k_module), 0, 0, 1, 1},
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
   {&__pyx_n_s_new, __pyx_k_new, sizeof(__pyx_k_new), 0, 0, 1, 1},
+  {&__pyx_kp_s_no_default___reduce___due_to_non, __pyx_k_no_default___reduce___due_to_non, sizeof(__pyx_k_no_default___reduce___due_to_non), 0, 0, 1, 0},
+  {&__pyx_n_s_nodes, __pyx_k_nodes, sizeof(__pyx_k_nodes), 0, 0, 1, 1},
   {&__pyx_n_s_obj, __pyx_k_obj, sizeof(__pyx_k_obj), 0, 0, 1, 1},
   {&__pyx_kp_u_object_already_exists, __pyx_k_object_already_exists, sizeof(__pyx_k_object_already_exists), 0, 1, 0, 0},
   {&__pyx_kp_u_object_can_t_be_hashed, __pyx_k_object_can_t_be_hashed, sizeof(__pyx_k_object_can_t_be_hashed), 0, 1, 0, 0},
@@ -12311,7 +11843,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_pyx_state, __pyx_k_pyx_state, sizeof(__pyx_k_pyx_state), 0, 0, 1, 1},
   {&__pyx_n_s_pyx_type, __pyx_k_pyx_type, sizeof(__pyx_k_pyx_type), 0, 0, 1, 1},
   {&__pyx_n_s_pyx_unpickle_CDublicateError, __pyx_k_pyx_unpickle_CDublicateError, sizeof(__pyx_k_pyx_unpickle_CDublicateError), 0, 0, 1, 1},
-  {&__pyx_n_s_pyx_unpickle_CNode, __pyx_k_pyx_unpickle_CNode, sizeof(__pyx_k_pyx_unpickle_CNode), 0, 0, 1, 1},
   {&__pyx_n_s_pyx_unpickle_CPathError, __pyx_k_pyx_unpickle_CPathError, sizeof(__pyx_k_pyx_unpickle_CPathError), 0, 0, 1, 1},
   {&__pyx_n_s_pyx_unpickle_CPathfinderError, __pyx_k_pyx_unpickle_CPathfinderError, sizeof(__pyx_k_pyx_unpickle_CPathfinderError), 0, 0, 1, 1},
   {&__pyx_n_s_pyx_unpickle_LowComby, __pyx_k_pyx_unpickle_LowComby, sizeof(__pyx_k_pyx_unpickle_LowComby), 0, 0, 1, 1},
@@ -12330,20 +11861,22 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_setstate_cython, __pyx_k_setstate_cython, sizeof(__pyx_k_setstate_cython), 0, 0, 1, 1},
   {&__pyx_n_s_start, __pyx_k_start, sizeof(__pyx_k_start), 0, 0, 1, 1},
   {&__pyx_n_s_startCNode, __pyx_k_startCNode, sizeof(__pyx_k_startCNode), 0, 0, 1, 1},
+  {&__pyx_n_s_state, __pyx_k_state, sizeof(__pyx_k_state), 0, 0, 1, 1},
   {&__pyx_n_s_stop, __pyx_k_stop, sizeof(__pyx_k_stop), 0, 0, 1, 1},
   {&__pyx_n_s_str, __pyx_k_str, sizeof(__pyx_k_str), 0, 0, 1, 1},
   {&__pyx_kp_s_stringsource, __pyx_k_stringsource, sizeof(__pyx_k_stringsource), 0, 0, 1, 0},
   {&__pyx_n_s_super, __pyx_k_super, sizeof(__pyx_k_super), 0, 0, 1, 1},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
   {&__pyx_n_s_update, __pyx_k_update, sizeof(__pyx_k_update), 0, 0, 1, 1},
+  {&__pyx_n_s_use_setstate, __pyx_k_use_setstate, sizeof(__pyx_k_use_setstate), 0, 0, 1, 1},
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 54, __pyx_L1_error)
-  __pyx_builtin_super = __Pyx_GetBuiltinName(__pyx_n_s_super); if (!__pyx_builtin_super) __PYX_ERR(0, 55, __pyx_L1_error)
-  __pyx_builtin_IndexError = __Pyx_GetBuiltinName(__pyx_n_s_IndexError); if (!__pyx_builtin_IndexError) __PYX_ERR(0, 61, __pyx_L1_error)
-  __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) __PYX_ERR(0, 63, __pyx_L1_error)
-  __pyx_builtin_KeyError = __Pyx_GetBuiltinName(__pyx_n_s_KeyError); if (!__pyx_builtin_KeyError) __PYX_ERR(0, 90, __pyx_L1_error)
+  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 57, __pyx_L1_error)
+  __pyx_builtin_super = __Pyx_GetBuiltinName(__pyx_n_s_super); if (!__pyx_builtin_super) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_builtin_IndexError = __Pyx_GetBuiltinName(__pyx_n_s_IndexError); if (!__pyx_builtin_IndexError) __PYX_ERR(0, 64, __pyx_L1_error)
+  __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) __PYX_ERR(0, 66, __pyx_L1_error)
+  __pyx_builtin_KeyError = __Pyx_GetBuiltinName(__pyx_n_s_KeyError); if (!__pyx_builtin_KeyError) __PYX_ERR(0, 93, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -12353,157 +11886,385 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "pypathfinder/fast/ctools.pyx":54
+  /* "pypathfinder/fast/ctools.pyx":57
  *     def __getitem__(self, index):
  *         if index < 0 or index >= len(self.list):
  *             raise ValueError("index out of bounds")             # <<<<<<<<<<<<<<
  *         return super().__getitem__(index)
  * 
  */
-  __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_u_index_out_of_bounds); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 54, __pyx_L1_error)
+  __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_u_index_out_of_bounds); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 57, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
-  /* "pypathfinder/fast/ctools.pyx":59
+  /* "pypathfinder/fast/ctools.pyx":62
  *     def __setitem__(self, index: int, obj):
  *         if obj in self.set and self.list[index] != obj:
  *             raise CDublicateError("object already exists")             # <<<<<<<<<<<<<<
  *         if index < 0 or index >= len(self.list):
  *             raise IndexError("index out of bounds")
  */
-  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_kp_u_object_already_exists); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 59, __pyx_L1_error)
+  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_kp_u_object_already_exists); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 62, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
 
-  /* "pypathfinder/fast/ctools.pyx":63
+  /* "pypathfinder/fast/ctools.pyx":66
  *             raise IndexError("index out of bounds")
  *         if not hasattr(obj, "__hash__"):
  *             raise TypeError("object can't be hashed")             # <<<<<<<<<<<<<<
  *         super().__setitem__(index, obj)
  * 
  */
-  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_kp_u_object_can_t_be_hashed); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_kp_u_object_can_t_be_hashed); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 66, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
 
-  /* "pypathfinder/fast/ctools.pyx":89
+  /* "pypathfinder/fast/ctools.pyx":92
  *             return r
  *         except IndexError as e:
  *             raise IndexError("out of bounds") from e             # <<<<<<<<<<<<<<
  *         except KeyError as e:
  *             raise CPathfinderError("set didn't contain item") from e
  */
-  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_kp_u_out_of_bounds); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 89, __pyx_L1_error)
+  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_kp_u_out_of_bounds); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 92, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__4);
   __Pyx_GIVEREF(__pyx_tuple__4);
 
-  /* "pypathfinder/fast/ctools.pyx":91
+  /* "pypathfinder/fast/ctools.pyx":94
  *             raise IndexError("out of bounds") from e
  *         except KeyError as e:
  *             raise CPathfinderError("set didn't contain item") from e             # <<<<<<<<<<<<<<
  * 
  * cdef wrappop(LowComby x):
  */
-  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_kp_u_set_didn_t_contain_item); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 91, __pyx_L1_error)
+  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_kp_u_set_didn_t_contain_item); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 94, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__5);
   __Pyx_GIVEREF(__pyx_tuple__5);
 
-  /* "pypathfinder/fast/ctools.pyx":175
+  /* "(tree fragment)":2
+ * def __reduce_cython__(self):
+ *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ */
+  __pyx_tuple__7 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(1, 2, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__7);
+  __Pyx_GIVEREF(__pyx_tuple__7);
+
+  /* "(tree fragment)":4
+ *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
+ */
+  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__8);
+  __Pyx_GIVEREF(__pyx_tuple__8);
+
+  /* "pypathfinder/fast/ctools.pyx":178
  *                 break
  *         else:
  *             raise CPathError("Coulnd't construct path")             # <<<<<<<<<<<<<<
  * 
  *     path.reverse()
  */
-  __pyx_tuple__7 = PyTuple_Pack(1, __pyx_kp_u_Coulnd_t_construct_path); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 175, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__7);
-  __Pyx_GIVEREF(__pyx_tuple__7);
+  __pyx_tuple__9 = PyTuple_Pack(1, __pyx_kp_u_Coulnd_t_construct_path); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 178, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__9);
+  __Pyx_GIVEREF(__pyx_tuple__9);
 
-  /* "pypathfinder/fast/ctools.pyx":52
+  /* "(tree fragment)":1
+ * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
+ *     cdef tuple state
+ *     cdef object _dict
+ */
+  __pyx_tuple__11 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_state, __pyx_n_s_dict_2, __pyx_n_s_use_setstate); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__11);
+  __Pyx_GIVEREF(__pyx_tuple__11);
+  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(1, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_reduce_cython, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(1, 1, __pyx_L1_error)
+
+  /* "(tree fragment)":16
+ *     else:
+ *         return __pyx_unpickle_CPathfinderError, (type(self), 0xd41d8cd, state)
+ * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
+ *     __pyx_unpickle_CPathfinderError__set_state(self, __pyx_state)
+ */
+  __pyx_tuple__13 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_pyx_state); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(1, 16, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__13);
+  __Pyx_GIVEREF(__pyx_tuple__13);
+  __pyx_codeobj__14 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__13, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__14)) __PYX_ERR(1, 16, __pyx_L1_error)
+
+  /* "(tree fragment)":1
+ * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
+ *     cdef tuple state
+ *     cdef object _dict
+ */
+  __pyx_tuple__15 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_state, __pyx_n_s_dict_2, __pyx_n_s_use_setstate); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__15);
+  __Pyx_GIVEREF(__pyx_tuple__15);
+  __pyx_codeobj__16 = (PyObject*)__Pyx_PyCode_New(1, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__15, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_reduce_cython, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__16)) __PYX_ERR(1, 1, __pyx_L1_error)
+
+  /* "(tree fragment)":16
+ *     else:
+ *         return __pyx_unpickle_CDublicateError, (type(self), 0xd41d8cd, state)
+ * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
+ *     __pyx_unpickle_CDublicateError__set_state(self, __pyx_state)
+ */
+  __pyx_tuple__17 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_pyx_state); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(1, 16, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__17);
+  __Pyx_GIVEREF(__pyx_tuple__17);
+  __pyx_codeobj__18 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__17, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__18)) __PYX_ERR(1, 16, __pyx_L1_error)
+
+  /* "(tree fragment)":1
+ * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
+ *     cdef tuple state
+ *     cdef object _dict
+ */
+  __pyx_tuple__19 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_state, __pyx_n_s_dict_2, __pyx_n_s_use_setstate); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__19);
+  __Pyx_GIVEREF(__pyx_tuple__19);
+  __pyx_codeobj__20 = (PyObject*)__Pyx_PyCode_New(1, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__19, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_reduce_cython, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__20)) __PYX_ERR(1, 1, __pyx_L1_error)
+
+  /* "(tree fragment)":16
+ *     else:
+ *         return __pyx_unpickle_CPathError, (type(self), 0xd41d8cd, state)
+ * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
+ *     __pyx_unpickle_CPathError__set_state(self, __pyx_state)
+ */
+  __pyx_tuple__21 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_pyx_state); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(1, 16, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__21);
+  __Pyx_GIVEREF(__pyx_tuple__21);
+  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(1, 16, __pyx_L1_error)
+
+  /* "pypathfinder/fast/ctools.pyx":34
+ *         return obj in self.set_
+ * 
+ *     cpdef LowComby copy(self):             # <<<<<<<<<<<<<<
+ *         cdef LowComby lc
+ *         lc = LowComby()
+ */
+  __pyx_tuple__23 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__23);
+  __Pyx_GIVEREF(__pyx_tuple__23);
+  __pyx_codeobj__24 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__23, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ctools_pyx, __pyx_n_s_copy, 34, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__24)) __PYX_ERR(0, 34, __pyx_L1_error)
+
+  /* "pypathfinder/fast/ctools.pyx":41
+ *         return lc
+ * 
+ *     cpdef append(self, CNode obj):             # <<<<<<<<<<<<<<
+ *         self.list_.append(obj)
+ *         self.set_.add(obj)
+ */
+  __pyx_tuple__25 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_obj); if (unlikely(!__pyx_tuple__25)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__25);
+  __Pyx_GIVEREF(__pyx_tuple__25);
+  __pyx_codeobj__26 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__25, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ctools_pyx, __pyx_n_s_append, 41, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__26)) __PYX_ERR(0, 41, __pyx_L1_error)
+
+  /* "pypathfinder/fast/ctools.pyx":45
+ *         self.set_.add(obj)
+ * 
+ *     cpdef insert(self, int index, CNode obj):             # <<<<<<<<<<<<<<
+ *         self.list_.insert(index, obj)
+ *         self.set_.add(obj)
+ */
+  __pyx_tuple__27 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_index, __pyx_n_s_obj); if (unlikely(!__pyx_tuple__27)) __PYX_ERR(0, 45, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__27);
+  __Pyx_GIVEREF(__pyx_tuple__27);
+  __pyx_codeobj__28 = (PyObject*)__Pyx_PyCode_New(3, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__27, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ctools_pyx, __pyx_n_s_insert, 45, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__28)) __PYX_ERR(0, 45, __pyx_L1_error)
+
+  /* "pypathfinder/fast/ctools.pyx":49
+ *         self.set_.add(obj)
+ * 
+ *     cpdef pop(self, int index):             # <<<<<<<<<<<<<<
+ *         r = self.list_.pop(index)
+ *         self.set_.remove(r)
+ */
+  __pyx_tuple__29 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_index, __pyx_n_s_index); if (unlikely(!__pyx_tuple__29)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__29);
+  __Pyx_GIVEREF(__pyx_tuple__29);
+  __pyx_codeobj__30 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__29, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ctools_pyx, __pyx_n_s_pop, 49, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__30)) __PYX_ERR(0, 49, __pyx_L1_error)
+
+  /* "(tree fragment)":1
+ * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
+ *     cdef tuple state
+ *     cdef object _dict
+ */
+  __pyx_tuple__31 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_state, __pyx_n_s_dict_2, __pyx_n_s_use_setstate); if (unlikely(!__pyx_tuple__31)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__31);
+  __Pyx_GIVEREF(__pyx_tuple__31);
+  __pyx_codeobj__32 = (PyObject*)__Pyx_PyCode_New(1, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__31, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_reduce_cython, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__32)) __PYX_ERR(1, 1, __pyx_L1_error)
+
+  /* "(tree fragment)":16
+ *     else:
+ *         return __pyx_unpickle_LowComby, (type(self), 0xcd2609e, state)
+ * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
+ *     __pyx_unpickle_LowComby__set_state(self, __pyx_state)
+ */
+  __pyx_tuple__33 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_pyx_state); if (unlikely(!__pyx_tuple__33)) __PYX_ERR(1, 16, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__33);
+  __Pyx_GIVEREF(__pyx_tuple__33);
+  __pyx_codeobj__34 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__33, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__34)) __PYX_ERR(1, 16, __pyx_L1_error)
+
+  /* "pypathfinder/fast/ctools.pyx":55
  * 
  * class HighComby(LowComby):
  *     def __getitem__(self, index):             # <<<<<<<<<<<<<<
  *         if index < 0 or index >= len(self.list):
  *             raise ValueError("index out of bounds")
  */
-  __pyx_tuple__9 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_index); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 52, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__9);
-  __Pyx_GIVEREF(__pyx_tuple__9);
-  __pyx_codeobj__10 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__9, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ctools_pyx, __pyx_n_s_getitem, 52, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__10)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __pyx_tuple__35 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_index); if (unlikely(!__pyx_tuple__35)) __PYX_ERR(0, 55, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__35);
+  __Pyx_GIVEREF(__pyx_tuple__35);
+  __pyx_codeobj__36 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__35, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ctools_pyx, __pyx_n_s_getitem, 55, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__36)) __PYX_ERR(0, 55, __pyx_L1_error)
 
-  /* "pypathfinder/fast/ctools.pyx":57
+  /* "pypathfinder/fast/ctools.pyx":60
  *         return super().__getitem__(index)
  * 
  *     def __setitem__(self, index: int, obj):             # <<<<<<<<<<<<<<
  *         if obj in self.set and self.list[index] != obj:
  *             raise CDublicateError("object already exists")
  */
-  __pyx_tuple__11 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_index, __pyx_n_s_obj); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 57, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__11);
-  __Pyx_GIVEREF(__pyx_tuple__11);
-  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(3, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ctools_pyx, __pyx_n_s_setitem, 57, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __pyx_tuple__37 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_index, __pyx_n_s_obj); if (unlikely(!__pyx_tuple__37)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__37);
+  __Pyx_GIVEREF(__pyx_tuple__37);
+  __pyx_codeobj__38 = (PyObject*)__Pyx_PyCode_New(3, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__37, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ctools_pyx, __pyx_n_s_setitem, 60, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__38)) __PYX_ERR(0, 60, __pyx_L1_error)
 
-  /* "pypathfinder/fast/ctools.pyx":66
+  /* "pypathfinder/fast/ctools.pyx":69
  *         super().__setitem__(index, obj)
  * 
  *     def append(self, obj):             # <<<<<<<<<<<<<<
  *         if obj in self.set:
  *             raise CDublicateError("object already exists")
  */
-  __pyx_tuple__13 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_obj); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 66, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__13);
-  __Pyx_GIVEREF(__pyx_tuple__13);
-  __pyx_codeobj__14 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__13, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ctools_pyx, __pyx_n_s_append, 66, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__14)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __pyx_tuple__39 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_obj); if (unlikely(!__pyx_tuple__39)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__39);
+  __Pyx_GIVEREF(__pyx_tuple__39);
+  __pyx_codeobj__40 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__39, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ctools_pyx, __pyx_n_s_append, 69, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__40)) __PYX_ERR(0, 69, __pyx_L1_error)
 
-  /* "pypathfinder/fast/ctools.pyx":73
+  /* "pypathfinder/fast/ctools.pyx":76
  *         super().append(obj)
  * 
  *     def insert(self, int index, obj):             # <<<<<<<<<<<<<<
  *         if obj in self.set and self.list[index] != obj:
  *             raise CDublicateError("object already exists")
  */
-  __pyx_tuple__15 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_index, __pyx_n_s_obj); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(0, 73, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__15);
-  __Pyx_GIVEREF(__pyx_tuple__15);
-  __pyx_codeobj__16 = (PyObject*)__Pyx_PyCode_New(3, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__15, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ctools_pyx, __pyx_n_s_insert, 73, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__16)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_tuple__41 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_index, __pyx_n_s_obj); if (unlikely(!__pyx_tuple__41)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__41);
+  __Pyx_GIVEREF(__pyx_tuple__41);
+  __pyx_codeobj__42 = (PyObject*)__Pyx_PyCode_New(3, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__41, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ctools_pyx, __pyx_n_s_insert, 76, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__42)) __PYX_ERR(0, 76, __pyx_L1_error)
 
-  /* "pypathfinder/fast/ctools.pyx":83
+  /* "pypathfinder/fast/ctools.pyx":86
  *         super().insert(index, obj)
  * 
  *     def pop(self, int index):             # <<<<<<<<<<<<<<
  *         try:
  *             r = self.list.pop(index)
  */
-  __pyx_tuple__17 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_index, __pyx_n_s_r, __pyx_n_s_e); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(0, 83, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__17);
-  __Pyx_GIVEREF(__pyx_tuple__17);
-  __pyx_codeobj__18 = (PyObject*)__Pyx_PyCode_New(2, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__17, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ctools_pyx, __pyx_n_s_pop, 83, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__18)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_tuple__43 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_index, __pyx_n_s_r, __pyx_n_s_e); if (unlikely(!__pyx_tuple__43)) __PYX_ERR(0, 86, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__43);
+  __Pyx_GIVEREF(__pyx_tuple__43);
+  __pyx_codeobj__44 = (PyObject*)__Pyx_PyCode_New(2, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__43, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ctools_pyx, __pyx_n_s_pop, 86, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__44)) __PYX_ERR(0, 86, __pyx_L1_error)
+
+  /* "pypathfinder/fast/ctools.pyx":133
+ *         return hash(self.id)
+ * 
+ *     cpdef void connect(self, dict conn, bint reflect = False):             # <<<<<<<<<<<<<<
+ *         """
+ *         Args:
+ */
+  __pyx_tuple__45 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_conn, __pyx_n_s_reflect); if (unlikely(!__pyx_tuple__45)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__45);
+  __Pyx_GIVEREF(__pyx_tuple__45);
+  __pyx_codeobj__46 = (PyObject*)__Pyx_PyCode_New(3, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__45, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ctools_pyx, __pyx_n_s_connect, 133, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__46)) __PYX_ERR(0, 133, __pyx_L1_error)
+
+  /* "pypathfinder/fast/ctools.pyx":146
+ *                 cnode.connect({self: value}, False)
+ * 
+ *     cpdef CNode _copy(self, dict nodes):             # <<<<<<<<<<<<<<
+ *         cdef CNode self_copy = CNode(self.id)
+ *         cdef dict new_connections = {}
+ */
+  __pyx_tuple__47 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_nodes); if (unlikely(!__pyx_tuple__47)) __PYX_ERR(0, 146, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__47);
+  __Pyx_GIVEREF(__pyx_tuple__47);
+  __pyx_codeobj__48 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__47, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ctools_pyx, __pyx_n_s_copy_2, 146, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__48)) __PYX_ERR(0, 146, __pyx_L1_error)
+
+  /* "(tree fragment)":1
+ * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
+ *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ * def __setstate_cython__(self, __pyx_state):
+ */
+  __pyx_tuple__49 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__49)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__49);
+  __Pyx_GIVEREF(__pyx_tuple__49);
+  __pyx_codeobj__50 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__49, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_reduce_cython, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__50)) __PYX_ERR(1, 1, __pyx_L1_error)
+
+  /* "(tree fragment)":3
+ * def __reduce_cython__(self):
+ *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
+ *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ */
+  __pyx_tuple__51 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_pyx_state); if (unlikely(!__pyx_tuple__51)) __PYX_ERR(1, 3, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__51);
+  __Pyx_GIVEREF(__pyx_tuple__51);
+  __pyx_codeobj__52 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__51, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 3, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__52)) __PYX_ERR(1, 3, __pyx_L1_error)
+
+  /* "pypathfinder/fast/ctools.pyx":185
+ * # DIJKSTRA
+ * @cython.boundscheck(False)
+ * cpdef list dijkstra_bestpath(CNode startCNode, CNode endCNode, bint first_contact = False):             # <<<<<<<<<<<<<<
+ *     """
+ *     Args:
+ */
+  __pyx_tuple__53 = PyTuple_Pack(3, __pyx_n_s_startCNode, __pyx_n_s_endCNode, __pyx_n_s_first_contact); if (unlikely(!__pyx_tuple__53)) __PYX_ERR(0, 185, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__53);
+  __Pyx_GIVEREF(__pyx_tuple__53);
+  __pyx_codeobj__54 = (PyObject*)__Pyx_PyCode_New(3, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__53, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ctools_pyx, __pyx_n_s_dijkstra_bestpath, 185, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__54)) __PYX_ERR(0, 185, __pyx_L1_error)
+
+  /* "pypathfinder/fast/ctools.pyx":223
+ * 
+ * @cython.boundscheck(False)
+ * cpdef list astar_bestpath(CNode startCNode, CNode endCNode, object func, bint first_contact = False, list args = []):             # <<<<<<<<<<<<<<
+ *     """
+ *     Args:
+ */
+  __pyx_tuple__55 = PyTuple_Pack(5, __pyx_n_s_startCNode, __pyx_n_s_endCNode, __pyx_n_s_func, __pyx_n_s_first_contact, __pyx_n_s_args); if (unlikely(!__pyx_tuple__55)) __PYX_ERR(0, 223, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__55);
+  __Pyx_GIVEREF(__pyx_tuple__55);
+  __pyx_codeobj__56 = (PyObject*)__Pyx_PyCode_New(5, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__55, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ctools_pyx, __pyx_n_s_astar_bestpath, 223, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__56)) __PYX_ERR(0, 223, __pyx_L1_error)
+
+  /* "pypathfinder/fast/ctools.pyx":265
+ *     return construct(startCNode, endCNode)
+ * 
+ * cpdef tuple copy_graph(CNode start, CNode stop):             # <<<<<<<<<<<<<<
+ *     """copies the Nodestructure deleting the found cost values for them"""
+ *     cdef dict nodes = {}
+ */
+  __pyx_tuple__57 = PyTuple_Pack(2, __pyx_n_s_start, __pyx_n_s_stop); if (unlikely(!__pyx_tuple__57)) __PYX_ERR(0, 265, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__57);
+  __Pyx_GIVEREF(__pyx_tuple__57);
+  __pyx_codeobj__58 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__57, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_ctools_pyx, __pyx_n_s_copy_graph, 265, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__58)) __PYX_ERR(0, 265, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __pyx_unpickle_CPathfinderError(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
  */
-  __pyx_tuple__19 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__19);
-  __Pyx_GIVEREF(__pyx_tuple__19);
-  __pyx_codeobj__20 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__19, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_CPathfinderError, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__20)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __pyx_tuple__21 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__21);
-  __Pyx_GIVEREF(__pyx_tuple__21);
-  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_CDublicateError, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __pyx_tuple__23 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__23);
-  __Pyx_GIVEREF(__pyx_tuple__23);
-  __pyx_codeobj__24 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__23, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_CPathError, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__24)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __pyx_tuple__25 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__25)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__25);
-  __Pyx_GIVEREF(__pyx_tuple__25);
-  __pyx_codeobj__26 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__25, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_LowComby, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__26)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __pyx_tuple__27 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__27)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__27);
-  __Pyx_GIVEREF(__pyx_tuple__27);
-  __pyx_codeobj__28 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__27, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_CNode, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__28)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_tuple__59 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__59)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__59);
+  __Pyx_GIVEREF(__pyx_tuple__59);
+  __pyx_codeobj__60 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__59, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_CPathfinderError, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__60)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_tuple__61 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__61)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__61);
+  __Pyx_GIVEREF(__pyx_tuple__61);
+  __pyx_codeobj__62 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__61, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_CDublicateError, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__62)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_tuple__63 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__63)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__63);
+  __Pyx_GIVEREF(__pyx_tuple__63);
+  __pyx_codeobj__64 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__63, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_CPathError, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__64)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_tuple__65 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__65)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__65);
+  __Pyx_GIVEREF(__pyx_tuple__65);
+  __pyx_codeobj__66 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__65, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_LowComby, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__66)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -12516,7 +12277,6 @@ static CYTHON_SMALL_CODE int __Pyx_InitGlobals(void) {
   __pyx_umethod_PyDict_Type_keys.type = (PyObject*)&PyDict_Type;
   if (__Pyx_InitStrings(__pyx_string_tab) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   __pyx_int_0 = PyInt_FromLong(0); if (unlikely(!__pyx_int_0)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __pyx_int_159822342 = PyInt_FromLong(159822342L); if (unlikely(!__pyx_int_159822342)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_215113886 = PyInt_FromLong(215113886L); if (unlikely(!__pyx_int_215113886)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_222419149 = PyInt_FromLong(222419149L); if (unlikely(!__pyx_int_222419149)) __PYX_ERR(0, 1, __pyx_L1_error)
   return 0;
@@ -12613,30 +12373,30 @@ static int __Pyx_modinit_type_init_code(void) {
   __pyx_vtable_12pypathfinder_4fast_6ctools_LowComby.append = (PyObject *(*)(struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby *, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *, int __pyx_skip_dispatch))__pyx_f_12pypathfinder_4fast_6ctools_8LowComby_append;
   __pyx_vtable_12pypathfinder_4fast_6ctools_LowComby.insert = (PyObject *(*)(struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby *, int, struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *, int __pyx_skip_dispatch))__pyx_f_12pypathfinder_4fast_6ctools_8LowComby_insert;
   __pyx_vtable_12pypathfinder_4fast_6ctools_LowComby.pop = (PyObject *(*)(struct __pyx_obj_12pypathfinder_4fast_6ctools_LowComby *, int, int __pyx_skip_dispatch))__pyx_f_12pypathfinder_4fast_6ctools_8LowComby_pop;
-  if (PyType_Ready(&__pyx_type_12pypathfinder_4fast_6ctools_LowComby) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_12pypathfinder_4fast_6ctools_LowComby) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_12pypathfinder_4fast_6ctools_LowComby.tp_print = 0;
   #endif
   if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_12pypathfinder_4fast_6ctools_LowComby.tp_dictoffset && __pyx_type_12pypathfinder_4fast_6ctools_LowComby.tp_getattro == PyObject_GenericGetAttr)) {
     __pyx_type_12pypathfinder_4fast_6ctools_LowComby.tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
-  if (__Pyx_SetVtable(__pyx_type_12pypathfinder_4fast_6ctools_LowComby.tp_dict, __pyx_vtabptr_12pypathfinder_4fast_6ctools_LowComby) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_LowComby, (PyObject *)&__pyx_type_12pypathfinder_4fast_6ctools_LowComby) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_12pypathfinder_4fast_6ctools_LowComby) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_12pypathfinder_4fast_6ctools_LowComby.tp_dict, __pyx_vtabptr_12pypathfinder_4fast_6ctools_LowComby) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_LowComby, (PyObject *)&__pyx_type_12pypathfinder_4fast_6ctools_LowComby) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_12pypathfinder_4fast_6ctools_LowComby) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
   __pyx_ptype_12pypathfinder_4fast_6ctools_LowComby = &__pyx_type_12pypathfinder_4fast_6ctools_LowComby;
   __pyx_vtabptr_12pypathfinder_4fast_6ctools_CNode = &__pyx_vtable_12pypathfinder_4fast_6ctools_CNode;
   __pyx_vtable_12pypathfinder_4fast_6ctools_CNode.connect = (void (*)(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *, PyObject *, int __pyx_skip_dispatch, struct __pyx_opt_args_12pypathfinder_4fast_6ctools_5CNode_connect *__pyx_optional_args))__pyx_f_12pypathfinder_4fast_6ctools_5CNode_connect;
   __pyx_vtable_12pypathfinder_4fast_6ctools_CNode._copy = (struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *(*)(struct __pyx_obj_12pypathfinder_4fast_6ctools_CNode *, PyObject *, int __pyx_skip_dispatch))__pyx_f_12pypathfinder_4fast_6ctools_5CNode__copy;
-  if (PyType_Ready(&__pyx_type_12pypathfinder_4fast_6ctools_CNode) < 0) __PYX_ERR(0, 99, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_12pypathfinder_4fast_6ctools_CNode) < 0) __PYX_ERR(0, 102, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_12pypathfinder_4fast_6ctools_CNode.tp_print = 0;
   #endif
   if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_12pypathfinder_4fast_6ctools_CNode.tp_dictoffset && __pyx_type_12pypathfinder_4fast_6ctools_CNode.tp_getattro == PyObject_GenericGetAttr)) {
     __pyx_type_12pypathfinder_4fast_6ctools_CNode.tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
-  if (__Pyx_SetVtable(__pyx_type_12pypathfinder_4fast_6ctools_CNode.tp_dict, __pyx_vtabptr_12pypathfinder_4fast_6ctools_CNode) < 0) __PYX_ERR(0, 99, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_CNode, (PyObject *)&__pyx_type_12pypathfinder_4fast_6ctools_CNode) < 0) __PYX_ERR(0, 99, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_12pypathfinder_4fast_6ctools_CNode) < 0) __PYX_ERR(0, 99, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_12pypathfinder_4fast_6ctools_CNode.tp_dict, __pyx_vtabptr_12pypathfinder_4fast_6ctools_CNode) < 0) __PYX_ERR(0, 102, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_CNode, (PyObject *)&__pyx_type_12pypathfinder_4fast_6ctools_CNode) < 0) __PYX_ERR(0, 102, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_12pypathfinder_4fast_6ctools_CNode) < 0) __PYX_ERR(0, 102, __pyx_L1_error)
   __pyx_ptype_12pypathfinder_4fast_6ctools_CNode = &__pyx_type_12pypathfinder_4fast_6ctools_CNode;
   __Pyx_RefNannyFinishContext();
   return 0;
@@ -12876,7 +12636,7 @@ if (!__Pyx_RefNanny) {
   #endif
 
   /* "pypathfinder/fast/ctools.pyx":2
- * # cython: language_level=3, emit_code_comments=True, embedsignature=True
+ * # cython: language_level=3, emit_code_comments=True, embedsignature=True, binding=True
  * from heapq import heappop, heappush             # <<<<<<<<<<<<<<
  * cimport cython
  * 
@@ -12902,153 +12662,372 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
+  /* "(tree fragment)":1
+ * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
+ *     cdef tuple state
+ *     cdef object _dict
+ */
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_16CPathfinderError_1__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_CPathfinderError___reduce_cython, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__12)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_CPathfinderError->tp_dict, __pyx_n_s_reduce_cython, __pyx_t_2) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  PyType_Modified(__pyx_ptype_12pypathfinder_4fast_6ctools_CPathfinderError);
+
+  /* "(tree fragment)":16
+ *     else:
+ *         return __pyx_unpickle_CPathfinderError, (type(self), 0xd41d8cd, state)
+ * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
+ *     __pyx_unpickle_CPathfinderError__set_state(self, __pyx_state)
+ */
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_16CPathfinderError_3__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_CPathfinderError___setstate_cyth, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__14)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 16, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_CPathfinderError->tp_dict, __pyx_n_s_setstate_cython, __pyx_t_2) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  PyType_Modified(__pyx_ptype_12pypathfinder_4fast_6ctools_CPathfinderError);
+
+  /* "(tree fragment)":1
+ * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
+ *     cdef tuple state
+ *     cdef object _dict
+ */
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_15CDublicateError_1__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_CDublicateError___reduce_cython, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__16)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_CDublicateError->tp_dict, __pyx_n_s_reduce_cython, __pyx_t_2) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  PyType_Modified(__pyx_ptype_12pypathfinder_4fast_6ctools_CDublicateError);
+
+  /* "(tree fragment)":16
+ *     else:
+ *         return __pyx_unpickle_CDublicateError, (type(self), 0xd41d8cd, state)
+ * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
+ *     __pyx_unpickle_CDublicateError__set_state(self, __pyx_state)
+ */
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_15CDublicateError_3__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_CDublicateError___setstate_cytho, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__18)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 16, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_CDublicateError->tp_dict, __pyx_n_s_setstate_cython, __pyx_t_2) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  PyType_Modified(__pyx_ptype_12pypathfinder_4fast_6ctools_CDublicateError);
+
+  /* "(tree fragment)":1
+ * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
+ *     cdef tuple state
+ *     cdef object _dict
+ */
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_10CPathError_1__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_CPathError___reduce_cython, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__20)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_CPathError->tp_dict, __pyx_n_s_reduce_cython, __pyx_t_2) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  PyType_Modified(__pyx_ptype_12pypathfinder_4fast_6ctools_CPathError);
+
+  /* "(tree fragment)":16
+ *     else:
+ *         return __pyx_unpickle_CPathError, (type(self), 0xd41d8cd, state)
+ * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
+ *     __pyx_unpickle_CPathError__set_state(self, __pyx_state)
+ */
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_10CPathError_3__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_CPathError___setstate_cython, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__22)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 16, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_CPathError->tp_dict, __pyx_n_s_setstate_cython, __pyx_t_2) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  PyType_Modified(__pyx_ptype_12pypathfinder_4fast_6ctools_CPathError);
+
   /* "pypathfinder/fast/ctools.pyx":11
  * cdef class CPathError(CPathfinderError): pass
  * 
  * cdef double INFINITY = float("inf")             # <<<<<<<<<<<<<<
  * 
- * cdef class LowComby:
+ * cdef double wrapped_func(object func, CNode node, list arg):
  */
   __pyx_t_3 = __Pyx_PyObject_AsDouble(__pyx_n_u_inf); if (unlikely(__pyx_t_3 == ((double)((double)-1)) && PyErr_Occurred())) __PYX_ERR(0, 11, __pyx_L1_error)
   __pyx_v_12pypathfinder_4fast_6ctools_INFINITY = __pyx_t_3;
 
-  /* "pypathfinder/fast/ctools.pyx":51
+  /* "pypathfinder/fast/ctools.pyx":34
+ *         return obj in self.set_
+ * 
+ *     cpdef LowComby copy(self):             # <<<<<<<<<<<<<<
+ *         cdef LowComby lc
+ *         lc = LowComby()
+ */
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_8LowComby_11copy, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LowComby_copy, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__24)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_LowComby->tp_dict, __pyx_n_s_copy, __pyx_t_2) < 0) __PYX_ERR(0, 34, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  PyType_Modified(__pyx_ptype_12pypathfinder_4fast_6ctools_LowComby);
+
+  /* "pypathfinder/fast/ctools.pyx":41
+ *         return lc
+ * 
+ *     cpdef append(self, CNode obj):             # <<<<<<<<<<<<<<
+ *         self.list_.append(obj)
+ *         self.set_.add(obj)
+ */
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_8LowComby_13append, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LowComby_append, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__26)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_LowComby->tp_dict, __pyx_n_s_append, __pyx_t_2) < 0) __PYX_ERR(0, 41, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  PyType_Modified(__pyx_ptype_12pypathfinder_4fast_6ctools_LowComby);
+
+  /* "pypathfinder/fast/ctools.pyx":45
+ *         self.set_.add(obj)
+ * 
+ *     cpdef insert(self, int index, CNode obj):             # <<<<<<<<<<<<<<
+ *         self.list_.insert(index, obj)
+ *         self.set_.add(obj)
+ */
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_8LowComby_15insert, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LowComby_insert, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__28)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 45, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_LowComby->tp_dict, __pyx_n_s_insert, __pyx_t_2) < 0) __PYX_ERR(0, 45, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  PyType_Modified(__pyx_ptype_12pypathfinder_4fast_6ctools_LowComby);
+
+  /* "pypathfinder/fast/ctools.pyx":49
+ *         self.set_.add(obj)
+ * 
+ *     cpdef pop(self, int index):             # <<<<<<<<<<<<<<
+ *         r = self.list_.pop(index)
+ *         self.set_.remove(r)
+ */
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_8LowComby_17pop, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LowComby_pop, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__30)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_LowComby->tp_dict, __pyx_n_s_pop, __pyx_t_2) < 0) __PYX_ERR(0, 49, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  PyType_Modified(__pyx_ptype_12pypathfinder_4fast_6ctools_LowComby);
+
+  /* "(tree fragment)":1
+ * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
+ *     cdef tuple state
+ *     cdef object _dict
+ */
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_8LowComby_19__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LowComby___reduce_cython, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__32)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_LowComby->tp_dict, __pyx_n_s_reduce_cython, __pyx_t_2) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  PyType_Modified(__pyx_ptype_12pypathfinder_4fast_6ctools_LowComby);
+
+  /* "(tree fragment)":16
+ *     else:
+ *         return __pyx_unpickle_LowComby, (type(self), 0xcd2609e, state)
+ * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
+ *     __pyx_unpickle_LowComby__set_state(self, __pyx_state)
+ */
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_8LowComby_21__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LowComby___setstate_cython, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__34)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 16, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_LowComby->tp_dict, __pyx_n_s_setstate_cython, __pyx_t_2) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  PyType_Modified(__pyx_ptype_12pypathfinder_4fast_6ctools_LowComby);
+
+  /* "pypathfinder/fast/ctools.pyx":54
  *         return r
  * 
  * class HighComby(LowComby):             # <<<<<<<<<<<<<<
  *     def __getitem__(self, index):
  *         if index < 0 or index >= len(self.list):
  */
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_LowComby));
   __Pyx_GIVEREF(((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_LowComby));
   PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_LowComby));
-  __pyx_t_1 = __Pyx_CalculateMetaclass(NULL, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CalculateMetaclass(NULL, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_Py3MetaclassPrepare(__pyx_t_1, __pyx_t_2, __pyx_n_s_HighComby, __pyx_n_s_HighComby, (PyObject *) NULL, __pyx_n_s_pypathfinder_fast_ctools, (PyObject *) NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3MetaclassPrepare(__pyx_t_1, __pyx_t_2, __pyx_n_s_HighComby, __pyx_n_s_HighComby, (PyObject *) NULL, __pyx_n_s_pypathfinder_fast_ctools, (PyObject *) NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyList_New(0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_t_5 = PyList_New(0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
 
-  /* "pypathfinder/fast/ctools.pyx":52
+  /* "pypathfinder/fast/ctools.pyx":55
  * 
  * class HighComby(LowComby):
  *     def __getitem__(self, index):             # <<<<<<<<<<<<<<
  *         if index < 0 or index >= len(self.list):
  *             raise ValueError("index out of bounds")
  */
-  __pyx_t_6 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_9HighComby_1__getitem__, 0, __pyx_n_s_HighComby___getitem, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__10)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_9HighComby_1__getitem__, 0, __pyx_n_s_HighComby___getitem, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 55, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_INCREF(__pyx_t_6);
   PyList_Append(__pyx_t_5, __pyx_t_6);
   __Pyx_GIVEREF(__pyx_t_6);
-  if (__Pyx_SetNameInClass(__pyx_t_4, __pyx_n_s_getitem, __pyx_t_6) < 0) __PYX_ERR(0, 52, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_4, __pyx_n_s_getitem, __pyx_t_6) < 0) __PYX_ERR(0, 55, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-  /* "pypathfinder/fast/ctools.pyx":57
+  /* "pypathfinder/fast/ctools.pyx":60
  *         return super().__getitem__(index)
  * 
  *     def __setitem__(self, index: int, obj):             # <<<<<<<<<<<<<<
  *         if obj in self.set and self.list[index] != obj:
  *             raise CDublicateError("object already exists")
  */
-  __pyx_t_6 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 60, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_index, __pyx_n_u_int) < 0) __PYX_ERR(0, 57, __pyx_L1_error)
-  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_9HighComby_3__setitem__, 0, __pyx_n_s_HighComby___setitem, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__12)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 57, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_index, __pyx_n_u_int) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_9HighComby_3__setitem__, 0, __pyx_n_s_HighComby___setitem, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__38)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 60, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_INCREF(__pyx_t_7);
   PyList_Append(__pyx_t_5, __pyx_t_7);
   __Pyx_GIVEREF(__pyx_t_7);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_7, __pyx_t_6);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (__Pyx_SetNameInClass(__pyx_t_4, __pyx_n_s_setitem, __pyx_t_7) < 0) __PYX_ERR(0, 57, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_4, __pyx_n_s_setitem, __pyx_t_7) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "pypathfinder/fast/ctools.pyx":66
+  /* "pypathfinder/fast/ctools.pyx":69
  *         super().__setitem__(index, obj)
  * 
  *     def append(self, obj):             # <<<<<<<<<<<<<<
  *         if obj in self.set:
  *             raise CDublicateError("object already exists")
  */
-  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_9HighComby_5append, 0, __pyx_n_s_HighComby_append, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__14)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_9HighComby_5append, 0, __pyx_n_s_HighComby_append, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__40)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 69, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_INCREF(__pyx_t_7);
   PyList_Append(__pyx_t_5, __pyx_t_7);
   __Pyx_GIVEREF(__pyx_t_7);
-  if (__Pyx_SetNameInClass(__pyx_t_4, __pyx_n_s_append, __pyx_t_7) < 0) __PYX_ERR(0, 66, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_4, __pyx_n_s_append, __pyx_t_7) < 0) __PYX_ERR(0, 69, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "pypathfinder/fast/ctools.pyx":73
+  /* "pypathfinder/fast/ctools.pyx":76
  *         super().append(obj)
  * 
  *     def insert(self, int index, obj):             # <<<<<<<<<<<<<<
  *         if obj in self.set and self.list[index] != obj:
  *             raise CDublicateError("object already exists")
  */
-  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_9HighComby_7insert, 0, __pyx_n_s_HighComby_insert, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__16)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_9HighComby_7insert, 0, __pyx_n_s_HighComby_insert, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__42)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 76, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_INCREF(__pyx_t_7);
   PyList_Append(__pyx_t_5, __pyx_t_7);
   __Pyx_GIVEREF(__pyx_t_7);
-  if (__Pyx_SetNameInClass(__pyx_t_4, __pyx_n_s_insert, __pyx_t_7) < 0) __PYX_ERR(0, 73, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_4, __pyx_n_s_insert, __pyx_t_7) < 0) __PYX_ERR(0, 76, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "pypathfinder/fast/ctools.pyx":83
+  /* "pypathfinder/fast/ctools.pyx":86
  *         super().insert(index, obj)
  * 
  *     def pop(self, int index):             # <<<<<<<<<<<<<<
  *         try:
  *             r = self.list.pop(index)
  */
-  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_9HighComby_9pop, 0, __pyx_n_s_HighComby_pop, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__18)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_9HighComby_9pop, 0, __pyx_n_s_HighComby_pop, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__44)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  if (__Pyx_SetNameInClass(__pyx_t_4, __pyx_n_s_pop, __pyx_t_7) < 0) __PYX_ERR(0, 83, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_4, __pyx_n_s_pop, __pyx_t_7) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "pypathfinder/fast/ctools.pyx":51
+  /* "pypathfinder/fast/ctools.pyx":54
  *         return r
  * 
  * class HighComby(LowComby):             # <<<<<<<<<<<<<<
  *     def __getitem__(self, index):
  *         if index < 0 or index >= len(self.list):
  */
-  __pyx_t_7 = __Pyx_Py3ClassCreate(__pyx_t_1, __pyx_n_s_HighComby, __pyx_t_2, __pyx_t_4, NULL, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_Py3ClassCreate(__pyx_t_1, __pyx_n_s_HighComby, __pyx_t_2, __pyx_t_4, NULL, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  if (__Pyx_CyFunction_InitClassCell(__pyx_t_5, __pyx_t_7) < 0) __PYX_ERR(0, 51, __pyx_L1_error)
+  if (__Pyx_CyFunction_InitClassCell(__pyx_t_5, __pyx_t_7) < 0) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_HighComby, __pyx_t_7) < 0) __PYX_ERR(0, 51, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_HighComby, __pyx_t_7) < 0) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "pypathfinder/fast/ctools.pyx":220
+  /* "pypathfinder/fast/ctools.pyx":133
+ *         return hash(self.id)
+ * 
+ *     cpdef void connect(self, dict conn, bint reflect = False):             # <<<<<<<<<<<<<<
+ *         """
+ *         Args:
+ */
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_5CNode_19connect, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_CNode_connect, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__46)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_CNode->tp_dict, __pyx_n_s_connect, __pyx_t_2) < 0) __PYX_ERR(0, 133, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  PyType_Modified(__pyx_ptype_12pypathfinder_4fast_6ctools_CNode);
+
+  /* "pypathfinder/fast/ctools.pyx":146
+ *                 cnode.connect({self: value}, False)
+ * 
+ *     cpdef CNode _copy(self, dict nodes):             # <<<<<<<<<<<<<<
+ *         cdef CNode self_copy = CNode(self.id)
+ *         cdef dict new_connections = {}
+ */
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_5CNode_21_copy, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_CNode__copy, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__48)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 146, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_12pypathfinder_4fast_6ctools_CNode->tp_dict, __pyx_n_s_copy_2, __pyx_t_2) < 0) __PYX_ERR(0, 146, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  PyType_Modified(__pyx_ptype_12pypathfinder_4fast_6ctools_CNode);
+
+  /* "(tree fragment)":1
+ * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
+ *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ * def __setstate_cython__(self, __pyx_state):
+ */
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_5CNode_23__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_CNode___reduce_cython, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__50)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_reduce_cython, __pyx_t_2) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "(tree fragment)":3
+ * def __reduce_cython__(self):
+ *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
+ *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ */
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_5CNode_25__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_CNode___setstate_cython, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__52)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 3, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_setstate_cython, __pyx_t_2) < 0) __PYX_ERR(1, 3, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "pypathfinder/fast/ctools.pyx":185
+ * # DIJKSTRA
+ * @cython.boundscheck(False)
+ * cpdef list dijkstra_bestpath(CNode startCNode, CNode endCNode, bint first_contact = False):             # <<<<<<<<<<<<<<
+ *     """
+ *     Args:
+ */
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_1dijkstra_bestpath, 0, __pyx_n_s_dijkstra_bestpath, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__54)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 185, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_dijkstra_bestpath, __pyx_t_2) < 0) __PYX_ERR(0, 185, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "pypathfinder/fast/ctools.pyx":223
  * 
  * @cython.boundscheck(False)
  * cpdef list astar_bestpath(CNode startCNode, CNode endCNode, object func, bint first_contact = False, list args = []):             # <<<<<<<<<<<<<<
  *     """
  *     Args:
  */
-  __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 220, __pyx_L1_error)
+  __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 223, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_k__8 = ((PyObject*)__pyx_t_2);
+  __pyx_k__10 = ((PyObject*)__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 220, __pyx_L1_error)
+  __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 223, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_k__8 = ((PyObject*)__pyx_t_2);
+  __pyx_k__10 = ((PyObject*)__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_2);
   __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_3astar_bestpath, 0, __pyx_n_s_astar_bestpath, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__56)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 223, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_astar_bestpath, __pyx_t_2) < 0) __PYX_ERR(0, 223, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "pypathfinder/fast/ctools.pyx":265
+ *     return construct(startCNode, endCNode)
+ * 
+ * cpdef tuple copy_graph(CNode start, CNode stop):             # <<<<<<<<<<<<<<
+ *     """copies the Nodestructure deleting the found cost values for them"""
+ *     cdef dict nodes = {}
+ */
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_5copy_graph, 0, __pyx_n_s_copy_graph, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__58)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 265, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_copy_graph, __pyx_t_2) < 0) __PYX_ERR(0, 265, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "(tree fragment)":1
  * def __pyx_unpickle_CPathfinderError(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_12pypathfinder_4fast_6ctools_7__pyx_unpickle_CPathfinderError, NULL, __pyx_n_s_pypathfinder_fast_ctools); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_7__pyx_unpickle_CPathfinderError, 0, __pyx_n_s_pyx_unpickle_CPathfinderError, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__60)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_CPathfinderError, __pyx_t_2) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -13060,7 +13039,7 @@ if (!__Pyx_RefNanny) {
  *     if len(__pyx_state) > 0 and hasattr(__pyx_result, '__dict__'):
  *         __pyx_result.__dict__.update(__pyx_state[0])
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_12pypathfinder_4fast_6ctools_9__pyx_unpickle_CDublicateError, NULL, __pyx_n_s_pypathfinder_fast_ctools); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_9__pyx_unpickle_CDublicateError, 0, __pyx_n_s_pyx_unpickle_CDublicateError, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__62)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_CDublicateError, __pyx_t_2) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -13070,7 +13049,7 @@ if (!__Pyx_RefNanny) {
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_12pypathfinder_4fast_6ctools_11__pyx_unpickle_CPathError, NULL, __pyx_n_s_pypathfinder_fast_ctools); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_11__pyx_unpickle_CPathError, 0, __pyx_n_s_pyx_unpickle_CPathError, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__64)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_CPathError, __pyx_t_2) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -13082,23 +13061,13 @@ if (!__Pyx_RefNanny) {
  *     if len(__pyx_state) > 0 and hasattr(__pyx_result, '__dict__'):
  *         __pyx_result.__dict__.update(__pyx_state[0])
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_12pypathfinder_4fast_6ctools_13__pyx_unpickle_LowComby, NULL, __pyx_n_s_pypathfinder_fast_ctools); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_12pypathfinder_4fast_6ctools_13__pyx_unpickle_LowComby, 0, __pyx_n_s_pyx_unpickle_LowComby, NULL, __pyx_n_s_pypathfinder_fast_ctools, __pyx_d, ((PyObject *)__pyx_codeobj__66)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_LowComby, __pyx_t_2) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "(tree fragment)":1
- * def __pyx_unpickle_CNode(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
- *     cdef object __pyx_PickleError
- *     cdef object __pyx_result
- */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_12pypathfinder_4fast_6ctools_15__pyx_unpickle_CNode, NULL, __pyx_n_s_pypathfinder_fast_ctools); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_CNode, __pyx_t_2) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
   /* "pypathfinder/fast/ctools.pyx":1
- * # cython: language_level=3, emit_code_comments=True, embedsignature=True             # <<<<<<<<<<<<<<
+ * # cython: language_level=3, emit_code_comments=True, embedsignature=True, binding=True             # <<<<<<<<<<<<<<
  * from heapq import heappop, heappush
  * cimport cython
  */
@@ -13318,6 +13287,210 @@ static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name)
     PyErr_Clear();
 #endif
     return __Pyx_GetBuiltinName(name);
+}
+
+/* PyFunctionFastCall */
+#if CYTHON_FAST_PYCALL
+static PyObject* __Pyx_PyFunction_FastCallNoKw(PyCodeObject *co, PyObject **args, Py_ssize_t na,
+                                               PyObject *globals) {
+    PyFrameObject *f;
+    PyThreadState *tstate = __Pyx_PyThreadState_Current;
+    PyObject **fastlocals;
+    Py_ssize_t i;
+    PyObject *result;
+    assert(globals != NULL);
+    /* XXX Perhaps we should create a specialized
+       PyFrame_New() that doesn't take locals, but does
+       take builtins without sanity checking them.
+       */
+    assert(tstate != NULL);
+    f = PyFrame_New(tstate, co, globals, NULL);
+    if (f == NULL) {
+        return NULL;
+    }
+    fastlocals = __Pyx_PyFrame_GetLocalsplus(f);
+    for (i = 0; i < na; i++) {
+        Py_INCREF(*args);
+        fastlocals[i] = *args++;
+    }
+    result = PyEval_EvalFrameEx(f,0);
+    ++tstate->recursion_depth;
+    Py_DECREF(f);
+    --tstate->recursion_depth;
+    return result;
+}
+#if 1 || PY_VERSION_HEX < 0x030600B1
+static PyObject *__Pyx_PyFunction_FastCallDict(PyObject *func, PyObject **args, Py_ssize_t nargs, PyObject *kwargs) {
+    PyCodeObject *co = (PyCodeObject *)PyFunction_GET_CODE(func);
+    PyObject *globals = PyFunction_GET_GLOBALS(func);
+    PyObject *argdefs = PyFunction_GET_DEFAULTS(func);
+    PyObject *closure;
+#if PY_MAJOR_VERSION >= 3
+    PyObject *kwdefs;
+#endif
+    PyObject *kwtuple, **k;
+    PyObject **d;
+    Py_ssize_t nd;
+    Py_ssize_t nk;
+    PyObject *result;
+    assert(kwargs == NULL || PyDict_Check(kwargs));
+    nk = kwargs ? PyDict_Size(kwargs) : 0;
+    if (Py_EnterRecursiveCall((char*)" while calling a Python object")) {
+        return NULL;
+    }
+    if (
+#if PY_MAJOR_VERSION >= 3
+            co->co_kwonlyargcount == 0 &&
+#endif
+            likely(kwargs == NULL || nk == 0) &&
+            co->co_flags == (CO_OPTIMIZED | CO_NEWLOCALS | CO_NOFREE)) {
+        if (argdefs == NULL && co->co_argcount == nargs) {
+            result = __Pyx_PyFunction_FastCallNoKw(co, args, nargs, globals);
+            goto done;
+        }
+        else if (nargs == 0 && argdefs != NULL
+                 && co->co_argcount == Py_SIZE(argdefs)) {
+            /* function called with no arguments, but all parameters have
+               a default value: use default values as arguments .*/
+            args = &PyTuple_GET_ITEM(argdefs, 0);
+            result =__Pyx_PyFunction_FastCallNoKw(co, args, Py_SIZE(argdefs), globals);
+            goto done;
+        }
+    }
+    if (kwargs != NULL) {
+        Py_ssize_t pos, i;
+        kwtuple = PyTuple_New(2 * nk);
+        if (kwtuple == NULL) {
+            result = NULL;
+            goto done;
+        }
+        k = &PyTuple_GET_ITEM(kwtuple, 0);
+        pos = i = 0;
+        while (PyDict_Next(kwargs, &pos, &k[i], &k[i+1])) {
+            Py_INCREF(k[i]);
+            Py_INCREF(k[i+1]);
+            i += 2;
+        }
+        nk = i / 2;
+    }
+    else {
+        kwtuple = NULL;
+        k = NULL;
+    }
+    closure = PyFunction_GET_CLOSURE(func);
+#if PY_MAJOR_VERSION >= 3
+    kwdefs = PyFunction_GET_KW_DEFAULTS(func);
+#endif
+    if (argdefs != NULL) {
+        d = &PyTuple_GET_ITEM(argdefs, 0);
+        nd = Py_SIZE(argdefs);
+    }
+    else {
+        d = NULL;
+        nd = 0;
+    }
+#if PY_MAJOR_VERSION >= 3
+    result = PyEval_EvalCodeEx((PyObject*)co, globals, (PyObject *)NULL,
+                               args, (int)nargs,
+                               k, (int)nk,
+                               d, (int)nd, kwdefs, closure);
+#else
+    result = PyEval_EvalCodeEx(co, globals, (PyObject *)NULL,
+                               args, (int)nargs,
+                               k, (int)nk,
+                               d, (int)nd, closure);
+#endif
+    Py_XDECREF(kwtuple);
+done:
+    Py_LeaveRecursiveCall();
+    return result;
+}
+#endif
+#endif
+
+/* PyCFunctionFastCall */
+#if CYTHON_FAST_PYCCALL
+static CYTHON_INLINE PyObject * __Pyx_PyCFunction_FastCall(PyObject *func_obj, PyObject **args, Py_ssize_t nargs) {
+    PyCFunctionObject *func = (PyCFunctionObject*)func_obj;
+    PyCFunction meth = PyCFunction_GET_FUNCTION(func);
+    PyObject *self = PyCFunction_GET_SELF(func);
+    int flags = PyCFunction_GET_FLAGS(func);
+    assert(PyCFunction_Check(func));
+    assert(METH_FASTCALL == (flags & ~(METH_CLASS | METH_STATIC | METH_COEXIST | METH_KEYWORDS | METH_STACKLESS)));
+    assert(nargs >= 0);
+    assert(nargs == 0 || args != NULL);
+    /* _PyCFunction_FastCallDict() must not be called with an exception set,
+       because it may clear it (directly or indirectly) and so the
+       caller loses its exception */
+    assert(!PyErr_Occurred());
+    if ((PY_VERSION_HEX < 0x030700A0) || unlikely(flags & METH_KEYWORDS)) {
+        return (*((__Pyx_PyCFunctionFastWithKeywords)(void*)meth)) (self, args, nargs, NULL);
+    } else {
+        return (*((__Pyx_PyCFunctionFast)(void*)meth)) (self, args, nargs);
+    }
+}
+#endif
+
+/* PyObjectCall */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw) {
+    PyObject *result;
+    ternaryfunc call = Py_TYPE(func)->tp_call;
+    if (unlikely(!call))
+        return PyObject_Call(func, arg, kw);
+    if (unlikely(Py_EnterRecursiveCall((char*)" while calling a Python object")))
+        return NULL;
+    result = (*call)(func, arg, kw);
+    Py_LeaveRecursiveCall();
+    if (unlikely(!result) && unlikely(!PyErr_Occurred())) {
+        PyErr_SetString(
+            PyExc_SystemError,
+            "NULL result without error in PyObject_Call");
+    }
+    return result;
+}
+#endif
+
+/* WriteUnraisableException */
+static void __Pyx_WriteUnraisable(const char *name, CYTHON_UNUSED int clineno,
+                                  CYTHON_UNUSED int lineno, CYTHON_UNUSED const char *filename,
+                                  int full_traceback, CYTHON_UNUSED int nogil) {
+    PyObject *old_exc, *old_val, *old_tb;
+    PyObject *ctx;
+    __Pyx_PyThreadState_declare
+#ifdef WITH_THREAD
+    PyGILState_STATE state;
+    if (nogil)
+        state = PyGILState_Ensure();
+#ifdef _MSC_VER
+    else state = (PyGILState_STATE)-1;
+#endif
+#endif
+    __Pyx_PyThreadState_assign
+    __Pyx_ErrFetch(&old_exc, &old_val, &old_tb);
+    if (full_traceback) {
+        Py_XINCREF(old_exc);
+        Py_XINCREF(old_val);
+        Py_XINCREF(old_tb);
+        __Pyx_ErrRestore(old_exc, old_val, old_tb);
+        PyErr_PrintEx(1);
+    }
+    #if PY_MAJOR_VERSION < 3
+    ctx = PyString_FromString(name);
+    #else
+    ctx = PyUnicode_FromString(name);
+    #endif
+    __Pyx_ErrRestore(old_exc, old_val, old_tb);
+    if (!ctx) {
+        PyErr_WriteUnraisable(Py_None);
+    } else {
+        PyErr_WriteUnraisable(ctx);
+        Py_DECREF(ctx);
+    }
+#ifdef WITH_THREAD
+    if (nogil)
+        PyGILState_Release(state);
+#endif
 }
 
 /* RaiseArgTupleInvalid */
@@ -13597,145 +13770,6 @@ static CYTHON_INLINE int __Pyx_PySet_ContainsTF(PyObject* key, PyObject* set, in
     return unlikely(result < 0) ? result : (result == (eq == Py_EQ));
 }
 
-/* PyFunctionFastCall */
-#if CYTHON_FAST_PYCALL
-static PyObject* __Pyx_PyFunction_FastCallNoKw(PyCodeObject *co, PyObject **args, Py_ssize_t na,
-                                               PyObject *globals) {
-    PyFrameObject *f;
-    PyThreadState *tstate = __Pyx_PyThreadState_Current;
-    PyObject **fastlocals;
-    Py_ssize_t i;
-    PyObject *result;
-    assert(globals != NULL);
-    /* XXX Perhaps we should create a specialized
-       PyFrame_New() that doesn't take locals, but does
-       take builtins without sanity checking them.
-       */
-    assert(tstate != NULL);
-    f = PyFrame_New(tstate, co, globals, NULL);
-    if (f == NULL) {
-        return NULL;
-    }
-    fastlocals = __Pyx_PyFrame_GetLocalsplus(f);
-    for (i = 0; i < na; i++) {
-        Py_INCREF(*args);
-        fastlocals[i] = *args++;
-    }
-    result = PyEval_EvalFrameEx(f,0);
-    ++tstate->recursion_depth;
-    Py_DECREF(f);
-    --tstate->recursion_depth;
-    return result;
-}
-#if 1 || PY_VERSION_HEX < 0x030600B1
-static PyObject *__Pyx_PyFunction_FastCallDict(PyObject *func, PyObject **args, Py_ssize_t nargs, PyObject *kwargs) {
-    PyCodeObject *co = (PyCodeObject *)PyFunction_GET_CODE(func);
-    PyObject *globals = PyFunction_GET_GLOBALS(func);
-    PyObject *argdefs = PyFunction_GET_DEFAULTS(func);
-    PyObject *closure;
-#if PY_MAJOR_VERSION >= 3
-    PyObject *kwdefs;
-#endif
-    PyObject *kwtuple, **k;
-    PyObject **d;
-    Py_ssize_t nd;
-    Py_ssize_t nk;
-    PyObject *result;
-    assert(kwargs == NULL || PyDict_Check(kwargs));
-    nk = kwargs ? PyDict_Size(kwargs) : 0;
-    if (Py_EnterRecursiveCall((char*)" while calling a Python object")) {
-        return NULL;
-    }
-    if (
-#if PY_MAJOR_VERSION >= 3
-            co->co_kwonlyargcount == 0 &&
-#endif
-            likely(kwargs == NULL || nk == 0) &&
-            co->co_flags == (CO_OPTIMIZED | CO_NEWLOCALS | CO_NOFREE)) {
-        if (argdefs == NULL && co->co_argcount == nargs) {
-            result = __Pyx_PyFunction_FastCallNoKw(co, args, nargs, globals);
-            goto done;
-        }
-        else if (nargs == 0 && argdefs != NULL
-                 && co->co_argcount == Py_SIZE(argdefs)) {
-            /* function called with no arguments, but all parameters have
-               a default value: use default values as arguments .*/
-            args = &PyTuple_GET_ITEM(argdefs, 0);
-            result =__Pyx_PyFunction_FastCallNoKw(co, args, Py_SIZE(argdefs), globals);
-            goto done;
-        }
-    }
-    if (kwargs != NULL) {
-        Py_ssize_t pos, i;
-        kwtuple = PyTuple_New(2 * nk);
-        if (kwtuple == NULL) {
-            result = NULL;
-            goto done;
-        }
-        k = &PyTuple_GET_ITEM(kwtuple, 0);
-        pos = i = 0;
-        while (PyDict_Next(kwargs, &pos, &k[i], &k[i+1])) {
-            Py_INCREF(k[i]);
-            Py_INCREF(k[i+1]);
-            i += 2;
-        }
-        nk = i / 2;
-    }
-    else {
-        kwtuple = NULL;
-        k = NULL;
-    }
-    closure = PyFunction_GET_CLOSURE(func);
-#if PY_MAJOR_VERSION >= 3
-    kwdefs = PyFunction_GET_KW_DEFAULTS(func);
-#endif
-    if (argdefs != NULL) {
-        d = &PyTuple_GET_ITEM(argdefs, 0);
-        nd = Py_SIZE(argdefs);
-    }
-    else {
-        d = NULL;
-        nd = 0;
-    }
-#if PY_MAJOR_VERSION >= 3
-    result = PyEval_EvalCodeEx((PyObject*)co, globals, (PyObject *)NULL,
-                               args, (int)nargs,
-                               k, (int)nk,
-                               d, (int)nd, kwdefs, closure);
-#else
-    result = PyEval_EvalCodeEx(co, globals, (PyObject *)NULL,
-                               args, (int)nargs,
-                               k, (int)nk,
-                               d, (int)nd, closure);
-#endif
-    Py_XDECREF(kwtuple);
-done:
-    Py_LeaveRecursiveCall();
-    return result;
-}
-#endif
-#endif
-
-/* PyObjectCall */
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw) {
-    PyObject *result;
-    ternaryfunc call = Py_TYPE(func)->tp_call;
-    if (unlikely(!call))
-        return PyObject_Call(func, arg, kw);
-    if (unlikely(Py_EnterRecursiveCall((char*)" while calling a Python object")))
-        return NULL;
-    result = (*call)(func, arg, kw);
-    Py_LeaveRecursiveCall();
-    if (unlikely(!result) && unlikely(!PyErr_Occurred())) {
-        PyErr_SetString(
-            PyExc_SystemError,
-            "NULL result without error in PyObject_Call");
-    }
-    return result;
-}
-#endif
-
 /* PyObjectCallMethO */
 #if CYTHON_COMPILING_IN_CPYTHON
 static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject *arg) {
@@ -13775,29 +13809,6 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func) {
         }
     }
     return __Pyx_PyObject_Call(func, __pyx_empty_tuple, NULL);
-}
-#endif
-
-/* PyCFunctionFastCall */
-#if CYTHON_FAST_PYCCALL
-static CYTHON_INLINE PyObject * __Pyx_PyCFunction_FastCall(PyObject *func_obj, PyObject **args, Py_ssize_t nargs) {
-    PyCFunctionObject *func = (PyCFunctionObject*)func_obj;
-    PyCFunction meth = PyCFunction_GET_FUNCTION(func);
-    PyObject *self = PyCFunction_GET_SELF(func);
-    int flags = PyCFunction_GET_FLAGS(func);
-    assert(PyCFunction_Check(func));
-    assert(METH_FASTCALL == (flags & ~(METH_CLASS | METH_STATIC | METH_COEXIST | METH_KEYWORDS | METH_STACKLESS)));
-    assert(nargs >= 0);
-    assert(nargs == 0 || args != NULL);
-    /* _PyCFunction_FastCallDict() must not be called with an exception set,
-       because it may clear it (directly or indirectly) and so the
-       caller loses its exception */
-    assert(!PyErr_Occurred());
-    if ((PY_VERSION_HEX < 0x030700A0) || unlikely(flags & METH_KEYWORDS)) {
-        return (*((__Pyx_PyCFunctionFastWithKeywords)(void*)meth)) (self, args, nargs, NULL);
-    } else {
-        return (*((__Pyx_PyCFunctionFast)(void*)meth)) (self, args, nargs);
-    }
 }
 #endif
 
@@ -14904,48 +14915,6 @@ static CYTHON_INLINE int __Pyx_dict_iter_next(
     return 1;
 }
 
-/* WriteUnraisableException */
-static void __Pyx_WriteUnraisable(const char *name, CYTHON_UNUSED int clineno,
-                                  CYTHON_UNUSED int lineno, CYTHON_UNUSED const char *filename,
-                                  int full_traceback, CYTHON_UNUSED int nogil) {
-    PyObject *old_exc, *old_val, *old_tb;
-    PyObject *ctx;
-    __Pyx_PyThreadState_declare
-#ifdef WITH_THREAD
-    PyGILState_STATE state;
-    if (nogil)
-        state = PyGILState_Ensure();
-#ifdef _MSC_VER
-    else state = (PyGILState_STATE)-1;
-#endif
-#endif
-    __Pyx_PyThreadState_assign
-    __Pyx_ErrFetch(&old_exc, &old_val, &old_tb);
-    if (full_traceback) {
-        Py_XINCREF(old_exc);
-        Py_XINCREF(old_val);
-        Py_XINCREF(old_tb);
-        __Pyx_ErrRestore(old_exc, old_val, old_tb);
-        PyErr_PrintEx(1);
-    }
-    #if PY_MAJOR_VERSION < 3
-    ctx = PyString_FromString(name);
-    #else
-    ctx = PyUnicode_FromString(name);
-    #endif
-    __Pyx_ErrRestore(old_exc, old_val, old_tb);
-    if (!ctx) {
-        PyErr_WriteUnraisable(Py_None);
-    } else {
-        PyErr_WriteUnraisable(ctx);
-        Py_DECREF(ctx);
-    }
-#ifdef WITH_THREAD
-    if (nogil)
-        PyGILState_Release(state);
-#endif
-}
-
 /* UnpackUnboundCMethod */
 static int __Pyx_TryUnpackUnboundCMethod(__Pyx_CachedCFunction* target) {
     PyObject *method;
@@ -15382,85 +15351,6 @@ static int __Pyx_SetVtable(PyObject *dict, void *vtable) {
 bad:
     Py_XDECREF(ob);
     return -1;
-}
-
-/* pyobject_as_double */
-static double __Pyx__PyObject_AsDouble(PyObject* obj) {
-    PyObject* float_value;
-#if !CYTHON_USE_TYPE_SLOTS
-    float_value = PyNumber_Float(obj);  if ((0)) goto bad;
-#else
-    PyNumberMethods *nb = Py_TYPE(obj)->tp_as_number;
-    if (likely(nb) && likely(nb->nb_float)) {
-        float_value = nb->nb_float(obj);
-        if (likely(float_value) && unlikely(!PyFloat_Check(float_value))) {
-            PyErr_Format(PyExc_TypeError,
-                "__float__ returned non-float (type %.200s)",
-                Py_TYPE(float_value)->tp_name);
-            Py_DECREF(float_value);
-            goto bad;
-        }
-    } else if (PyUnicode_CheckExact(obj) || PyBytes_CheckExact(obj)) {
-#if PY_MAJOR_VERSION >= 3
-        float_value = PyFloat_FromString(obj);
-#else
-        float_value = PyFloat_FromString(obj, 0);
-#endif
-    } else {
-        PyObject* args = PyTuple_New(1);
-        if (unlikely(!args)) goto bad;
-        PyTuple_SET_ITEM(args, 0, obj);
-        float_value = PyObject_Call((PyObject*)&PyFloat_Type, args, 0);
-        PyTuple_SET_ITEM(args, 0, 0);
-        Py_DECREF(args);
-    }
-#endif
-    if (likely(float_value)) {
-        double value = PyFloat_AS_DOUBLE(float_value);
-        Py_DECREF(float_value);
-        return value;
-    }
-bad:
-    return (double)-1;
-}
-
-/* CalculateMetaclass */
-static PyObject *__Pyx_CalculateMetaclass(PyTypeObject *metaclass, PyObject *bases) {
-    Py_ssize_t i, nbases = PyTuple_GET_SIZE(bases);
-    for (i=0; i < nbases; i++) {
-        PyTypeObject *tmptype;
-        PyObject *tmp = PyTuple_GET_ITEM(bases, i);
-        tmptype = Py_TYPE(tmp);
-#if PY_MAJOR_VERSION < 3
-        if (tmptype == &PyClass_Type)
-            continue;
-#endif
-        if (!metaclass) {
-            metaclass = tmptype;
-            continue;
-        }
-        if (PyType_IsSubtype(metaclass, tmptype))
-            continue;
-        if (PyType_IsSubtype(tmptype, metaclass)) {
-            metaclass = tmptype;
-            continue;
-        }
-        PyErr_SetString(PyExc_TypeError,
-                        "metaclass conflict: "
-                        "the metaclass of a derived class "
-                        "must be a (non-strict) subclass "
-                        "of the metaclasses of all its bases");
-        return NULL;
-    }
-    if (!metaclass) {
-#if PY_MAJOR_VERSION < 3
-        metaclass = &PyClass_Type;
-#else
-        metaclass = &PyType_Type;
-#endif
-    }
-    Py_INCREF((PyObject*) metaclass);
-    return (PyObject*) metaclass;
 }
 
 /* FetchCommonType */
@@ -16121,6 +16011,85 @@ static PyObject *__Pyx_CyFunction_New(PyMethodDef *ml, int flags, PyObject* qual
         PyObject_GC_Track(op);
     }
     return op;
+}
+
+/* pyobject_as_double */
+static double __Pyx__PyObject_AsDouble(PyObject* obj) {
+    PyObject* float_value;
+#if !CYTHON_USE_TYPE_SLOTS
+    float_value = PyNumber_Float(obj);  if ((0)) goto bad;
+#else
+    PyNumberMethods *nb = Py_TYPE(obj)->tp_as_number;
+    if (likely(nb) && likely(nb->nb_float)) {
+        float_value = nb->nb_float(obj);
+        if (likely(float_value) && unlikely(!PyFloat_Check(float_value))) {
+            PyErr_Format(PyExc_TypeError,
+                "__float__ returned non-float (type %.200s)",
+                Py_TYPE(float_value)->tp_name);
+            Py_DECREF(float_value);
+            goto bad;
+        }
+    } else if (PyUnicode_CheckExact(obj) || PyBytes_CheckExact(obj)) {
+#if PY_MAJOR_VERSION >= 3
+        float_value = PyFloat_FromString(obj);
+#else
+        float_value = PyFloat_FromString(obj, 0);
+#endif
+    } else {
+        PyObject* args = PyTuple_New(1);
+        if (unlikely(!args)) goto bad;
+        PyTuple_SET_ITEM(args, 0, obj);
+        float_value = PyObject_Call((PyObject*)&PyFloat_Type, args, 0);
+        PyTuple_SET_ITEM(args, 0, 0);
+        Py_DECREF(args);
+    }
+#endif
+    if (likely(float_value)) {
+        double value = PyFloat_AS_DOUBLE(float_value);
+        Py_DECREF(float_value);
+        return value;
+    }
+bad:
+    return (double)-1;
+}
+
+/* CalculateMetaclass */
+static PyObject *__Pyx_CalculateMetaclass(PyTypeObject *metaclass, PyObject *bases) {
+    Py_ssize_t i, nbases = PyTuple_GET_SIZE(bases);
+    for (i=0; i < nbases; i++) {
+        PyTypeObject *tmptype;
+        PyObject *tmp = PyTuple_GET_ITEM(bases, i);
+        tmptype = Py_TYPE(tmp);
+#if PY_MAJOR_VERSION < 3
+        if (tmptype == &PyClass_Type)
+            continue;
+#endif
+        if (!metaclass) {
+            metaclass = tmptype;
+            continue;
+        }
+        if (PyType_IsSubtype(metaclass, tmptype))
+            continue;
+        if (PyType_IsSubtype(tmptype, metaclass)) {
+            metaclass = tmptype;
+            continue;
+        }
+        PyErr_SetString(PyExc_TypeError,
+                        "metaclass conflict: "
+                        "the metaclass of a derived class "
+                        "must be a (non-strict) subclass "
+                        "of the metaclasses of all its bases");
+        return NULL;
+    }
+    if (!metaclass) {
+#if PY_MAJOR_VERSION < 3
+        metaclass = &PyClass_Type;
+#else
+        metaclass = &PyType_Type;
+#endif
+    }
+    Py_INCREF((PyObject*) metaclass);
+    return (PyObject*) metaclass;
 }
 
 /* Py3ClassCreate */

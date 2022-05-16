@@ -1,4 +1,4 @@
-# cython: language_level=3, emit_code_comments=True, embedsignature=True
+# cython: language_level=3, emit_code_comments=True, embedsignature=True, binding=True
 from heapq import heappop, heappush
 cimport cython
 
@@ -9,6 +9,9 @@ cdef class CDublicateError(CPathfinderError): pass
 cdef class CPathError(CPathfinderError): pass
 
 cdef double INFINITY = float("inf")
+
+cdef double wrapped_func(object func, CNode node, list arg):
+    return func(node, arg)
 
 cdef class LowComby:
     def __init__(self):
@@ -97,7 +100,7 @@ cdef wrappush(LowComby x, CNode n):
     return heappush(x.list_, n)
 
 cdef class CNode:
-    def __init__(self, id_, connections = None):
+    def __cinit__(self, id_, connections = None):
         self._connections = {} if connections is None else connections
         self.id = id_
         self.cost = INFINITY
@@ -246,7 +249,7 @@ cpdef list astar_bestpath(CNode startCNode, CNode endCNode, object func, bint fi
             new_cost = currentCNode.cost + cost
             if new_cost < cnode.cost:
                 cnode.cost = new_cost
-                result = func(cnode, args)
+                result = wrapped_func(func, cnode, args)
                 cnode.probable_cost = new_cost + result
                 if cnode not in queue:
                     wrappush(queue, cnode)
